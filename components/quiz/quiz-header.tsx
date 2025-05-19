@@ -16,6 +16,10 @@ export function QuizHeader({
     currentQuestion,
     totalQuestions,
 }: QuizHeaderProps) {
+    const minutes = Math.floor(timeRemaining / 60)
+    const seconds = timeRemaining % 60
+    const timeDisplay = `${minutes}:${seconds.toString().padStart(2, '0')}`
+
     return (
         <div className="space-y-4">
             <h1 className="text-2xl font-bold text-center">{title}</h1>
@@ -29,7 +33,7 @@ export function QuizHeader({
                 <Alert className="w-fit">
                     <Clock className="h-4 w-4" />
                     <AlertDescription>
-                        {timeRemaining} seconds remaining
+                        {timeDisplay} remaining
                     </AlertDescription>
                 </Alert>
             </div>

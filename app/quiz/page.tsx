@@ -1,83 +1,70 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 import Layout from "@/components/layout"
 import { QuizHeader } from "@/components/quiz/quiz-header"
 import { QuestionCard } from "@/components/quiz/question-card"
-
-// Temporary mock data for development
-const mockQuestions = [
-    {
-        id: "1",
-        text: "What is the correct way to declare a variable in JavaScript?",
-        type: "single" as const,
-        options: [
-            { id: "a", text: "var x = 5;" },
-            { id: "b", text: "variable x = 5;" },
-            { id: "c", text: "v x = 5;" },
-            { id: "d", text: "let x = 5;" },
-        ],
-    },
-    {
-        id: "2",
-        text: "Which of the following are valid JavaScript array methods? (Select all that apply)",
-        type: "multiple" as const,
-        options: [
-            { id: "a", text: "push()" },
-            { id: "b", text: "append()" },
-            { id: "c", text: "pop()" },
-            { id: "d", text: "add()" },
-            { id: "e", text: "shift()" },
-        ],
-    },
-]
+import { useQuiz } from "@/hooks/useQuiz"
+import { useQuizStore } from "@/store/quizStore"
+import { Loading } from "@/components/ui/loading"
 
 export default function QuizPage() {
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-    const [selectedAnswers, setSelectedAnswers] = useState<string[]>([])
+    const router = useRouter()
+    const { config } = useQuizStore()
 
-    const currentQuestion = mockQuestions[currentQuestionIndex]
-
-    const handleAnswerSelect = (answerId: string) => {
-        if (currentQuestion.type === "single") {
-            setSelectedAnswers([answerId])
-        } else {
-            setSelectedAnswers((prev) =>
-                prev.includes(answerId)
-                    ? prev.filter((id) => id !== answerId)
-                    : [...prev, answerId]
-            )
+    useEffect(() => {
+        if (!config) {
+            router.push('/')
+            return
         }
+    }, [config, router])
 
+    const {
+        questions,
+        currentQuestion,
+        selectedAnswers,
+        timeRemaining,
+        isLoading,
+        handleAnswerSelect,
+        handleNextQuestion,
+    } = useQuiz(config || { topic: '', difficulty: '', timeLimit: 0, numberOfQuestions: 0 })
 
-        // go to next question
-        // check if there are more questions if yes then go to next question if no then show result page
-        if (currentQuestionIndex < mockQuestions.length - 1) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1)
-            // clear the selected answers
-            setSelectedAnswers([])
-        } else {
-            // show result page
-        }
+    if (!config) {
+        return (
+            <Layout>
+                <Loading message="Redirecting to home page..." fullScreen />
+            </Layout>
+        )
     }
 
-    const handleNextQuestion = () => {
-        if (currentQuestionIndex < mockQuestions.length - 1) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1)
-            setSelectedAnswers([])
-        } else {
-            // show result page
-        }
+    if (isLoading) {
+        return (
+            <Layout>
+                <Loading message="Loading questions..." fullScreen />
+            </Layout>
+        )
+    }
+
+    if (questions.length === 0) {
+        return (
+            <Layout>
+                <div className="text-center">
+                    <h1 className="text-2xl font-bold">No questions available</h1>
+                    <p className="mt-2">Please try a different topic or difficulty.</p>
+                </div>
+            </Layout>
+        )
     }
 
     return (
         <Layout>
             <div className="space-y-8">
                 <QuizHeader
-                    title="JavaScript - Medium"
-                    timeRemaining={45}
-                    currentQuestion={currentQuestionIndex + 1}
-                    totalQuestions={mockQuestions.length}
+                    title={`${config.topic} - ${config.difficulty}`}
+                    timeRemaining={timeRemaining}
+                    currentQuestion={questions.indexOf(currentQuestion) + 1}
+                    totalQuestions={questions.length}
                 />
                 <QuestionCard
                     question={currentQuestion}
