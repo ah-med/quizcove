@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "id": "js-hard-1",
+      "question": "What is the output of the following code?\n\nclass Base {\n  constructor() {\n    this.name = 'Base';\n  }\n}\n\nclass Derived extends Base {\n  constructor() {\n    super();\n    this.name = 'Derived';\n  }\n}\n\nconst obj = new Derived();\nconsole.log(obj.name);",
+      "options": ["Base", "Derived", "undefined", "Error"],
+      "correctAnswers": ["Derived"],
+      "type": "single",
+      "explanation": "The super() call in the Derived constructor calls the Base constructor, which sets name to 'Base'. Then the Derived constructor sets name to 'Derived', overriding the previous value."
+    },
+    {
+      "id": "js-hard-2",
+      "question": "Which of the following are true about JavaScript's Event Loop?",
+      "options": [
+        "It's single-threaded",
+        "It uses a message queue",
+        "It processes one message at a time",
+        "It can handle multiple tasks simultaneously"
+      ],
+      "correctAnswers": [
+        "It's single-threaded",
+        "It uses a message queue",
+        "It processes one message at a time"
+      ],
+      "type": "multiple",
+      "explanation": "JavaScript's Event Loop is single-threaded and processes one message at a time from the message queue. While it can handle asynchronous operations, it does so by queuing them and processing them one at a time."
+    },
+    {
+      "id": "js-hard-3",
+      "question": "What is the difference between Object.freeze() and Object.seal()?",
+      "options": [
+        "Object.freeze() makes an object immutable",
+        "Object.seal() prevents adding new properties",
+        "Object.freeze() is deeper than Object.seal()",
+        "Object.seal() allows modifying existing properties"
+      ],
+      "correctAnswers": [
+        "Object.freeze() makes an object immutable",
+        "Object.seal() prevents adding new properties",
+        "Object.seal() allows modifying existing properties"
+      ],
+      "type": "multiple",
+      "explanation": "Object.freeze() makes an object completely immutable, while Object.seal() only prevents adding or removing properties but allows modifying existing ones. Neither method is recursive (deep)."
+    },
+    {
+      "id": "js-hard-4",
+      "question": "What will be the output of:\n\nasync function* generator() {\n  yield await Promise.resolve(1);\n  yield await Promise.resolve(2);\n}\n\n(async () => {\n  for await (const num of generator()) {\n    console.log(num);\n  }\n})();",
+      "options": ["1\n2", "2\n1", "Promise { 1 }\nPromise { 2 }", "Error"],
+      "correctAnswers": ["1\n2"],
+      "type": "single",
+      "explanation": "This code demonstrates an async generator function. The for await...of loop waits for each yielded Promise to resolve before continuing. The output will be 1 followed by 2 as the Promises resolve in sequence."
+    }
+  ]
+}

@@ -6,8 +6,7 @@ import { ResultDetails } from "@/components/result/result-details"
 import { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { useQuizStore } from "@/store/quizStore"
-import { Button } from "@/components/ui/button"
-import type { QuizConfig, QuestionResult } from "@/store/quizStore"
+import type { QuizConfig, QuestionResult } from "@/types/quiz"
 import { STORAGE_KEYS } from "@/constants/storage"
 import { Loading } from "@/components/ui/loading"
 
@@ -107,20 +106,14 @@ export default function ResultPage() {
 
     return (
         <Layout>
-            <div className="space-y-8">
-                <ResultCard
-                    score={quizResult.score}
-                    correctAnswers={quizResult.correctAnswers}
-                    totalQuestions={quizResult.totalQuestions}
-                    timeTaken={quizResult.timeTaken}
-                />
-                <ResultDetails results={results} />
-                <div className="flex justify-center">
-                    <Button onClick={handleStartNewQuiz} size="lg">
-                        Start New Quiz
-                    </Button>
-                </div>
-            </div>
+            <ResultCard
+                score={quizResult.score}
+                correctAnswers={quizResult.correctAnswers}
+                totalQuestions={quizResult.totalQuestions}
+                timeTaken={quizResult.timeTaken}
+                onStartNewQuiz={handleStartNewQuiz}
+            />
+            <ResultDetails results={results} />
         </Layout>
     )
 } 

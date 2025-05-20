@@ -1,0 +1,50 @@
+{
+  "questions": [
+    {
+      "id": "py-hard-1",
+      "question": "What is the output of the following code?\n\nclass Meta(type):\n    def __new__(mcs, name, bases, namespace):\n        namespace['value'] = 42\n        return super().__new__(mcs, name, bases, namespace)\n\nclass MyClass(metaclass=Meta):\n    pass\n\nprint(MyClass.value)",
+      "options": ["42", "None", "AttributeError", "TypeError"],
+      "correctAnswers": ["42"],
+      "type": "single",
+      "explanation": "This code demonstrates metaclass usage in Python. The Meta metaclass adds a class variable 'value' with the value 42 to any class that uses it. When MyClass is created, it inherits this class variable."
+    },
+    {
+      "id": "py-hard-2",
+      "question": "Which of the following are true about Python's GIL (Global Interpreter Lock)?",
+      "options": [
+        "It prevents multiple threads from executing Python bytecode simultaneously",
+        "It only affects CPU-bound tasks",
+        "It can be completely disabled",
+        "It doesn't affect multiprocessing"
+      ],
+      "correctAnswers": [
+        "It prevents multiple threads from executing Python bytecode simultaneously",
+        "It only affects CPU-bound tasks",
+        "It doesn't affect multiprocessing"
+      ],
+      "type": "multiple",
+      "explanation": "The GIL is a mutex that protects access to Python objects, preventing multiple native threads from executing Python bytecodes simultaneously. It primarily affects CPU-bound tasks and doesn't impact multiprocessing as each process has its own GIL."
+    },
+    {
+      "id": "py-hard-3",
+      "question": "What is the difference between __new__ and __init__ in Python?",
+      "options": [
+        "__new__ is called before __init__",
+        "__new__ returns the instance",
+        "__init__ initializes the instance",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "__new__ is called first to create the instance and returns it, while __init__ is called after to initialize the instance. __new__ is a static method that takes the class as its first argument, while __init__ is an instance method that takes the instance as its first argument."
+    },
+    {
+      "id": "py-hard-4",
+      "question": "What will be the output of:\n\nimport asyncio\n\nasync def main():\n    print('1')\n    await asyncio.sleep(0)\n    print('2')\n\nasyncio.run(main())",
+      "options": ["1\n2", "2\n1", "1", "Error"],
+      "correctAnswers": ["1\n2"],
+      "type": "single",
+      "explanation": "This code demonstrates basic async/await usage. The await asyncio.sleep(0) yields control back to the event loop, but since there are no other tasks, it immediately resumes and prints '2'. The output will be '1' followed by '2'."
+    }
+  ]
+}

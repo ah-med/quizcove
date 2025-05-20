@@ -1,0 +1,49 @@
+{
+  "questions": [
+    {
+      "id": "js-medium-1",
+      "question": "What is the output of the following code?\n\nconst obj = {\n  name: 'John',\n  greet() {\n    console.log(this.name);\n  }\n};\n\nconst greet = obj.greet;\ngreet();",
+      "options": ["John", "undefined", "Error", "null"],
+      "correctAnswers": ["undefined"],
+      "type": "single",
+      "explanation": "When the method is assigned to a variable and called directly, it loses its context (this). In non-strict mode, this will be undefined."
+    },
+    {
+      "id": "js-medium-2",
+      "question": "Which of the following are true about Promises in JavaScript?",
+      "options": [
+        "They can be chained using .then()",
+        "They can handle asynchronous operations",
+        "They can be in one of three states: pending, fulfilled, or rejected",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Promises are objects that represent the eventual completion or failure of an asynchronous operation. They can be chained, handle async operations, and have three possible states."
+    },
+    {
+      "id": "js-medium-3",
+      "question": "What is the difference between let and const?",
+      "options": [
+        "let can be reassigned, const cannot",
+        "const must be initialized when declared",
+        "let is block-scoped, const is function-scoped",
+        "const creates immutable values"
+      ],
+      "correctAnswers": [
+        "let can be reassigned, const cannot",
+        "const must be initialized when declared"
+      ],
+      "type": "multiple",
+      "explanation": "let and const are both block-scoped, but const cannot be reassigned and must be initialized when declared. const does not make values immutable, it only prevents reassignment of the variable."
+    },
+    {
+      "id": "js-medium-4",
+      "question": "What will be the output of:\n\nconsole.log([1, 2, 3].map(num => num * 2).filter(num => num > 4));",
+      "options": ["[6]", "[4, 6]", "[2, 4, 6]", "Error"],
+      "correctAnswers": ["[4, 6]"],
+      "type": "single",
+      "explanation": "The map function multiplies each number by 2, resulting in [2, 4, 6]. Then filter keeps only numbers greater than 4, resulting in [4, 6]."
+    }
+  ]
+}

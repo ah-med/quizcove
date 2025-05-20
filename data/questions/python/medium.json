@@ -1,0 +1,50 @@
+{
+  "questions": [
+    {
+      "id": "py-medium-1",
+      "question": "What is the output of the following code?\n\ndef outer():\n    x = 1\n    def inner():\n        nonlocal x\n        x = 2\n    inner()\n    print(x)\nouter()",
+      "options": ["1", "2", "Error", "None"],
+      "correctAnswers": ["2"],
+      "type": "single",
+      "explanation": "The nonlocal keyword allows the inner function to modify the variable from the outer scope. When inner() is called, it changes x to 2, and this change is reflected in the outer scope."
+    },
+    {
+      "id": "py-medium-2",
+      "question": "Which of the following are valid ways to create a dictionary in Python?",
+      "options": [
+        "dict = {}",
+        "dict = dict()",
+        "dict = {'key': 'value'}",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "All of these are valid ways to create a dictionary in Python. Empty dictionaries can be created using {} or dict(), and dictionaries with key-value pairs can be created using {'key': 'value'} syntax."
+    },
+    {
+      "id": "py-medium-3",
+      "question": "What is the difference between a list comprehension and a generator expression?",
+      "options": [
+        "List comprehensions are faster",
+        "Generator expressions use less memory",
+        "List comprehensions create a list immediately",
+        "Generator expressions are lazy evaluated"
+      ],
+      "correctAnswers": [
+        "Generator expressions use less memory",
+        "List comprehensions create a list immediately",
+        "Generator expressions are lazy evaluated"
+      ],
+      "type": "multiple",
+      "explanation": "List comprehensions create the entire list in memory at once, while generator expressions create items one at a time as needed. This makes generator expressions more memory efficient but list comprehensions can be faster for small datasets."
+    },
+    {
+      "id": "py-medium-4",
+      "question": "What will be the output of:\n\nfrom collections import defaultdict\nd = defaultdict(list)\nd['key'].append(1)\nprint(d['nonexistent'])",
+      "options": ["[]", "None", "KeyError", "[1]"],
+      "correctAnswers": ["[]"],
+      "type": "single",
+      "explanation": "defaultdict automatically creates a new list when a non-existent key is accessed. This is different from a regular dictionary which would raise a KeyError."
+    }
+  ]
+}

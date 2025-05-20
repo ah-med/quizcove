@@ -8,6 +8,7 @@ import { QuestionCard } from "@/components/quiz/question-card"
 import { useQuiz } from "@/hooks/useQuiz"
 import { useQuizStore } from "@/store/quizStore"
 import { Loading } from "@/components/ui/loading"
+import { QuizConfig } from "@/types/quiz"
 
 export default function QuizPage() {
     const router = useRouter()
@@ -28,7 +29,7 @@ export default function QuizPage() {
         isLoading,
         handleAnswerSelect,
         handleNextQuestion,
-    } = useQuiz(config || { topic: '', difficulty: '', timeLimit: 0, numberOfQuestions: 0 })
+    } = useQuiz(config as QuizConfig)
 
     if (!config) {
         return (

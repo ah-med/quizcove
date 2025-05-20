@@ -2,13 +2,13 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
 
 interface ResultCardProps {
     score: number
     correctAnswers: number
     totalQuestions: number
     timeTaken: number // in seconds
+    onStartNewQuiz: () => void
 }
 
 export function ResultCard({
@@ -16,8 +16,8 @@ export function ResultCard({
     correctAnswers,
     totalQuestions,
     timeTaken,
+    onStartNewQuiz
 }: ResultCardProps) {
-    const router = useRouter()
 
     const formatTime = (seconds: number) => {
         const minutes = Math.floor(seconds / 60)
@@ -29,10 +29,10 @@ export function ResultCard({
         <div className="space-y-4">
             <div className="flex justify-end">
                 <Button
-                    onClick={() => router.push("/")}
+                    onClick={() => onStartNewQuiz()}
                     variant="outline"
                 >
-                    Go Home
+                    Start New Quiz
                 </Button>
             </div>
             <Card>

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQuizTimer } from "./useQuizTimer";
 import { useQuizStore } from "@/store/quizStore";
-import type { QuizConfig } from "@/store/quizStore";
+import type { QuizConfig } from "@/types/quiz";
 
 export const useQuiz = (config: QuizConfig) => {
   const router = useRouter();
@@ -64,7 +64,7 @@ export const useQuiz = (config: QuizConfig) => {
 
     const result = {
       id: currentQuestion.id,
-      question: currentQuestion.text,
+      question: currentQuestion.question,
       correctAnswers: currentQuestion.correctAnswers,
       userAnswers: selectedAnswers,
       explanation: currentQuestion.explanation,

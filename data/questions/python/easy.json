@@ -1,0 +1,51 @@
+{
+  "questions": [
+    {
+      "id": "py-easy-1",
+      "question": "Which of the following is the correct way to create a list in Python?",
+      "options": [
+        "list = []",
+        "list = list()",
+        "list = new List()",
+        "list = Array()"
+      ],
+      "correctAnswers": ["list = []", "list = list()"],
+      "type": "multiple",
+      "explanation": "In Python, you can create an empty list using either square brackets [] or the list() constructor. Both methods are valid."
+    },
+    {
+      "id": "py-easy-2",
+      "question": "What is the output of print(type(3.14))?",
+      "options": [
+        "<class 'int'>",
+        "<class 'float'>",
+        "<class 'number'>",
+        "<class 'decimal'>"
+      ],
+      "correctAnswers": ["<class 'float'>"],
+      "type": "single",
+      "explanation": "In Python, numbers with decimal points are of type 'float'. The type() function returns the type of an object."
+    },
+    {
+      "id": "py-easy-3",
+      "question": "Which of these is NOT a valid Python variable name?",
+      "options": ["my_variable", "1variable", "variable1", "_variable"],
+      "correctAnswers": ["1variable"],
+      "type": "single",
+      "explanation": "Python variable names cannot start with a number. They can start with a letter or underscore, and can contain numbers after the first character."
+    },
+    {
+      "id": "py-easy-4",
+      "question": "What is the correct way to create a tuple in Python?",
+      "options": [
+        "tuple = ()",
+        "tuple = tuple()",
+        "tuple = (1, 2, 3)",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "single",
+      "explanation": "All of these are valid ways to create a tuple in Python. An empty tuple can be created using () or tuple(), and a tuple with elements can be created using (element1, element2, ...)."
+    }
+  ]
+}

@@ -5,18 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-
-interface Question {
-    id: string
-    text: string
-    type: "single" | "multiple"
-    options: string[]
-    correctAnswers: string[]
-    explanation: string
-}
+import { QuizQuestion } from "@/types/quiz"
 
 interface QuestionCardProps {
-    question: Question
+    question: QuizQuestion
     selectedAnswers: string[]
     onAnswerSelect: (answer: string) => void
     onNextQuestion?: () => void
@@ -31,7 +23,7 @@ export function QuestionCard({
     return (
         <Card>
             <CardHeader>
-                <CardTitle>{question.text}</CardTitle>
+                <CardTitle>{question.question}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
                 {question.type === "single" ? (
