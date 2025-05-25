@@ -17,7 +17,7 @@ export async function GET(): Promise<
     const config: ConfigResponse = {
       topics,
       difficulties: ["easy", "medium", "hard"],
-      timeLimits: [15, 30, 45, 60],
+      timeLimits: [5, 10, 15, 20, 30, 45, 60],
       numberOfQuestions: [5, 10, 15, 20],
     };
 
