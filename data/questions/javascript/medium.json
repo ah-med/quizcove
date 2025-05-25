@@ -2,11 +2,16 @@
   "questions": [
     {
       "id": "js-medium-1",
-      "question": "What is the output of the following code?\n\nconst obj = {\n  name: 'John',\n  greet() {\n    console.log(this.name);\n  }\n};\n\nconst greet = obj.greet;\ngreet();",
-      "options": ["John", "undefined", "Error", "null"],
-      "correctAnswers": ["undefined"],
+      "question": "What happens when a method is assigned to a variable and called directly in JavaScript?",
+      "options": [
+        "It maintains its original context",
+        "It loses its context (this)",
+        "It creates a new context",
+        "It throws an error"
+      ],
+      "correctAnswers": ["It loses its context (this)"],
       "type": "single",
-      "explanation": "When the method is assigned to a variable and called directly, it loses its context (this). In non-strict mode, this will be undefined."
+      "explanation": "When a method is assigned to a variable and called directly, it loses its context (this). In non-strict mode, this will be undefined."
     },
     {
       "id": "js-medium-2",
@@ -39,11 +44,18 @@
     },
     {
       "id": "js-medium-4",
-      "question": "What will be the output of:\n\nconsole.log([1, 2, 3].map(num => num * 2).filter(num => num > 4));",
-      "options": ["[6]", "[4, 6]", "[2, 4, 6]", "Error"],
-      "correctAnswers": ["[4, 6]"],
+      "question": "What happens when you use map() followed by filter() on an array?",
+      "options": [
+        "It transforms each element and then filters the results",
+        "It filters first and then transforms",
+        "It only transforms the elements",
+        "It only filters the elements"
+      ],
+      "correctAnswers": [
+        "It transforms each element and then filters the results"
+      ],
       "type": "single",
-      "explanation": "The map function multiplies each number by 2, resulting in [2, 4, 6]. Then filter keeps only numbers greater than 4, resulting in [4, 6]."
+      "explanation": "When chaining map() and filter(), map() first transforms each element in the array, and then filter() processes the transformed array to keep only elements that match the filter condition."
     }
   ]
 }

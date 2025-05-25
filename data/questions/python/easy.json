@@ -2,27 +2,25 @@
   "questions": [
     {
       "id": "py-easy-1",
-      "question": "Which of the following is the correct way to create a list in Python?",
+      "question": "Which of the following are valid ways to create a list in Python?",
       "options": [
-        "list = []",
-        "list = list()",
-        "list = new List()",
-        "list = Array()"
+        "Using square brackets",
+        "Using the list() constructor",
+        "Using the new List() constructor",
+        "Using the Array() constructor"
       ],
-      "correctAnswers": ["list = []", "list = list()"],
+      "correctAnswers": [
+        "Using square brackets",
+        "Using the list() constructor"
+      ],
       "type": "multiple",
       "explanation": "In Python, you can create an empty list using either square brackets [] or the list() constructor. Both methods are valid."
     },
     {
       "id": "py-easy-2",
-      "question": "What is the output of print(type(3.14))?",
-      "options": [
-        "<class 'int'>",
-        "<class 'float'>",
-        "<class 'number'>",
-        "<class 'decimal'>"
-      ],
-      "correctAnswers": ["<class 'float'>"],
+      "question": "What type does Python return when checking the type of a decimal number?",
+      "options": ["int", "float", "number", "decimal"],
+      "correctAnswers": ["float"],
       "type": "single",
       "explanation": "In Python, numbers with decimal points are of type 'float'. The type() function returns the type of an object."
     },
@@ -36,11 +34,11 @@
     },
     {
       "id": "py-easy-4",
-      "question": "What is the correct way to create a tuple in Python?",
+      "question": "What are the valid ways to create a tuple in Python?",
       "options": [
-        "tuple = ()",
-        "tuple = tuple()",
-        "tuple = (1, 2, 3)",
+        "Using empty parentheses",
+        "Using the tuple() constructor",
+        "Using parentheses with elements",
         "All of the above"
       ],
       "correctAnswers": ["All of the above"],

@@ -2,11 +2,16 @@
   "questions": [
     {
       "id": "js-hard-1",
-      "question": "What is the output of the following code?\n\nclass Base {\n  constructor() {\n    this.name = 'Base';\n  }\n}\n\nclass Derived extends Base {\n  constructor() {\n    super();\n    this.name = 'Derived';\n  }\n}\n\nconst obj = new Derived();\nconsole.log(obj.name);",
-      "options": ["Base", "Derived", "undefined", "Error"],
-      "correctAnswers": ["Derived"],
-      "type": "single",
-      "explanation": "The super() call in the Derived constructor calls the Base constructor, which sets name to 'Base'. Then the Derived constructor sets name to 'Derived', overriding the previous value."
+      "question": "What happens when a derived class constructor calls super() in JavaScript?",
+      "options": [
+        "It calls the parent class constructor",
+        "It creates a new instance of the parent class",
+        "It initializes the parent class properties",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "When a derived class constructor calls super(), it calls the parent class constructor, which initializes the parent class properties. This must be done before accessing 'this' in the derived class."
     },
     {
       "id": "js-hard-2",
@@ -44,11 +49,16 @@
     },
     {
       "id": "js-hard-4",
-      "question": "What will be the output of:\n\nasync function* generator() {\n  yield await Promise.resolve(1);\n  yield await Promise.resolve(2);\n}\n\n(async () => {\n  for await (const num of generator()) {\n    console.log(num);\n  }\n})();",
-      "options": ["1\n2", "2\n1", "Promise { 1 }\nPromise { 2 }", "Error"],
-      "correctAnswers": ["1\n2"],
-      "type": "single",
-      "explanation": "This code demonstrates an async generator function. The for await...of loop waits for each yielded Promise to resolve before continuing. The output will be 1 followed by 2 as the Promises resolve in sequence."
+      "question": "What is the purpose of async generator functions in JavaScript?",
+      "options": [
+        "They allow yielding Promises",
+        "They can be used with for await...of loops",
+        "They provide a way to handle asynchronous sequences",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Async generator functions allow you to yield Promises and handle asynchronous sequences. They can be used with for await...of loops to process the yielded values as they become available."
     }
   ]
 }

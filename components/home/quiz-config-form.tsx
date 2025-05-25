@@ -9,22 +9,19 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useQuizStore } from "@/store/quizStore"
-import type { QuizConfig } from "@/store/quizStore"
+import type { Difficulty, QuizConfig } from "@/types/quiz"
 import { STORAGE_KEYS } from "@/constants/storage"
-
-const QUIZ_CONFIG = {
-    topics: ["JavaScript", "Python", "React", "TypeScript", "Node.js"],
-    difficulties: ["Easy", "Medium", "Hard"],
-    timeLimits: [15, 30, 45, 60],
-    numberOfQuestions: [10, 20, 30]
-}
+import { Loading } from "@/components/ui/loading"
+import type { ConfigResponse } from "@/lib/api"
 
 export function QuizConfigForm() {
     const router = useRouter()
     const { results, timeTaken, reset, setConfig } = useQuizStore()
+    const [isLoading, setIsLoading] = useState(true)
+    const [configOptions, setConfigOptions] = useState<ConfigResponse | null>(null)
     const [formData, setFormData] = useState<QuizConfig>({
         topic: "",
         difficulty: "medium",
@@ -32,10 +29,26 @@ export function QuizConfigForm() {
         numberOfQuestions: 10
     })
 
+    useEffect(() => {
+        const fetchConfig = async () => {
+            try {
+                const response = await fetch('/api/config')
+                if (!response.ok) throw new Error('Failed to fetch config')
+                const data = await response.json()
+                setConfigOptions(data)
+            } catch (error) {
+                console.error('Error fetching config:', error)
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        fetchConfig()
+    }, [])
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        // Save current quiz to history if it exists
         if (results.length > 0 && timeTaken > 0) {
             const correctAnswers = results.filter((result) =>
                 result.correctAnswers.length === result.userAnswers.length &&
@@ -58,21 +71,26 @@ export function QuizConfigForm() {
                 detailedResults: results
             }
 
-            // Get existing history or initialize empty array
             const existingHistory = localStorage.getItem(STORAGE_KEYS.QUIZ_HISTORY)
             const history = existingHistory ? JSON.parse(existingHistory) : []
 
-            // Add new quiz to history
             history.push(quizHistory)
-
-            // Save updated history
             localStorage.setItem(STORAGE_KEYS.QUIZ_HISTORY, JSON.stringify(history))
         }
 
-        // Reset store and set new config
         reset()
         setConfig(formData)
         router.push('/quiz')
+    }
+
+    if (isLoading || !configOptions) {
+        return (
+            <Card className="w-full max-w-2xl mx-auto">
+                <CardContent className="flex items-center justify-center min-h-[400px]">
+                    <Loading message="Loading quiz options..." />
+                </CardContent>
+            </Card>
+        )
     }
 
     return (
@@ -93,7 +111,7 @@ export function QuizConfigForm() {
                                 <SelectValue placeholder="Select a topic" />
                             </SelectTrigger>
                             <SelectContent>
-                                {QUIZ_CONFIG.topics.map((topic) => (
+                                {configOptions.topics.map((topic) => (
                                     <SelectItem key={topic} value={topic.toLowerCase()}>
                                         {topic}
                                     </SelectItem>
@@ -106,13 +124,13 @@ export function QuizConfigForm() {
                         <label className="text-sm font-medium">Difficulty Level</label>
                         <Select
                             value={formData.difficulty}
-                            onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value }))}
+                            onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value as Difficulty }))}
                         >
                             <SelectTrigger>
                                 <SelectValue placeholder="Select difficulty" />
                             </SelectTrigger>
                             <SelectContent>
-                                {QUIZ_CONFIG.difficulties.map((difficulty) => (
+                                {configOptions.difficulties.map((difficulty) => (
                                     <SelectItem key={difficulty} value={difficulty.toLowerCase()}>
                                         {difficulty}
                                     </SelectItem>
@@ -132,7 +150,7 @@ export function QuizConfigForm() {
                                 <SelectValue placeholder="Select time limit" />
                             </SelectTrigger>
                             <SelectContent>
-                                {QUIZ_CONFIG.timeLimits.map((timeLimit) => (
+                                {configOptions.timeLimits.map((timeLimit) => (
                                     <SelectItem key={timeLimit} value={timeLimit.toString()}>
                                         {timeLimit} seconds per question
                                     </SelectItem>
@@ -152,7 +170,7 @@ export function QuizConfigForm() {
                                 <SelectValue placeholder="Select number of questions" />
                             </SelectTrigger>
                             <SelectContent>
-                                {QUIZ_CONFIG.numberOfQuestions.map((num) => (
+                                {configOptions.numberOfQuestions.map((num) => (
                                     <SelectItem key={num} value={num.toString()}>
                                         {num} questions
                                     </SelectItem>

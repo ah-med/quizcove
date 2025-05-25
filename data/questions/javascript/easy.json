@@ -2,15 +2,20 @@
   "questions": [
     {
       "id": "js-easy-1",
-      "question": "Which of the following is the correct way to declare a variable in JavaScript?",
-      "options": ["variable x = 5;", "var x = 5;", "v x = 5;", "let x = 5;"],
-      "correctAnswers": ["var x = 5;", "let x = 5;"],
+      "question": "Which of the following are valid ways to declare a variable in JavaScript?",
+      "options": [
+        "Using 'variable' keyword",
+        "Using 'var' keyword",
+        "Using 'v' keyword",
+        "Using 'let' keyword"
+      ],
+      "correctAnswers": ["Using 'var' keyword", "Using 'let' keyword"],
       "type": "multiple",
       "explanation": "In JavaScript, you can declare variables using 'var' or 'let'. 'var' is the older way, while 'let' is the modern way introduced in ES6."
     },
     {
       "id": "js-easy-2",
-      "question": "What is the output of console.log(typeof [])?",
+      "question": "What type does JavaScript return when checking the type of an array?",
       "options": ["array", "object", "undefined", "null"],
       "correctAnswers": ["object"],
       "type": "single",
@@ -26,16 +31,16 @@
     },
     {
       "id": "js-easy-4",
-      "question": "What is the correct way to create an object in JavaScript?",
+      "question": "What are the valid ways to create an object in JavaScript?",
       "options": [
-        "let obj = {};",
-        "let obj = new Object();",
-        "let obj = Object.create(null);",
+        "Using object literal syntax",
+        "Using the Object constructor",
+        "Using Object.create()",
         "All of the above"
       ],
       "correctAnswers": ["All of the above"],
       "type": "multiple",
-      "explanation": "All of these are valid ways to create an object in JavaScript. The object literal syntax ({}) is the most common, but Object constructor and Object.create() are also valid methods."
+      "explanation": "All of these are valid ways to create an object in JavaScript. The object literal syntax is the most common, but Object constructor and Object.create() are also valid methods."
     }
   ]
 }

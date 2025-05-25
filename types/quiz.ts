@@ -14,10 +14,9 @@ export interface QuestionSet {
 }
 
 export type Difficulty = "easy" | "medium" | "hard";
-export type Topic = "javascript" | "python" | "react" | "typescript" | "nodejs";
 
 export interface QuizConfig {
-  topic: Topic;
+  topic: string;
   difficulty: Difficulty;
   timeLimit: number;
   numberOfQuestions: number;
@@ -40,14 +39,6 @@ export interface QuizQuestion {
   explanation: string;
 }
 
-export interface QuizResult {
-  questionId: string;
-  userAnswers: string[];
-  correctAnswers: string[];
-  isCorrect: boolean;
-  timeSpent: number;
-}
-
 export interface QuizState {
   config: QuizConfig | null;
   questions: QuizQuestion[];
@@ -65,3 +56,19 @@ export interface QuizState {
   setIsLoading: (loading: boolean) => void;
   reset: () => void;
 }
+
+export interface QuizResult {
+  score: number
+  correctAnswers: number
+  totalQuestions: number
+  timeTaken: number
+}
+
+export interface QuizHistory {
+  id: string
+  date: string
+  config: QuizConfig
+  results: QuizResult
+  detailedResults: QuestionResult[]
+}
+

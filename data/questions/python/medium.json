@@ -2,19 +2,24 @@
   "questions": [
     {
       "id": "py-medium-1",
-      "question": "What is the output of the following code?\n\ndef outer():\n    x = 1\n    def inner():\n        nonlocal x\n        x = 2\n    inner()\n    print(x)\nouter()",
-      "options": ["1", "2", "Error", "None"],
-      "correctAnswers": ["2"],
+      "question": "What is the purpose of the nonlocal keyword in Python?",
+      "options": [
+        "It allows modifying variables from the outer scope",
+        "It creates a new variable in the current scope",
+        "It makes a variable accessible globally",
+        "It prevents variable modification"
+      ],
+      "correctAnswers": ["It allows modifying variables from the outer scope"],
       "type": "single",
-      "explanation": "The nonlocal keyword allows the inner function to modify the variable from the outer scope. When inner() is called, it changes x to 2, and this change is reflected in the outer scope."
+      "explanation": "The nonlocal keyword allows the inner function to modify the variable from the outer scope. This is useful when you need to change a variable that's not in the global scope."
     },
     {
       "id": "py-medium-2",
       "question": "Which of the following are valid ways to create a dictionary in Python?",
       "options": [
-        "dict = {}",
-        "dict = dict()",
-        "dict = {'key': 'value'}",
+        "Using empty curly braces",
+        "Using the dict() constructor",
+        "Using key-value pairs in curly braces",
         "All of the above"
       ],
       "correctAnswers": ["All of the above"],

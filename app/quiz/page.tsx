@@ -8,18 +8,11 @@ import { QuestionCard } from "@/components/quiz/question-card"
 import { useQuiz } from "@/hooks/useQuiz"
 import { useQuizStore } from "@/store/quizStore"
 import { Loading } from "@/components/ui/loading"
-import { QuizConfig } from "@/types/quiz"
+import { Button } from "@/components/ui/button"
 
 export default function QuizPage() {
     const router = useRouter()
     const { config } = useQuizStore()
-
-    useEffect(() => {
-        if (!config) {
-            router.push('/')
-            return
-        }
-    }, [config, router])
 
     const {
         questions,
@@ -29,7 +22,14 @@ export default function QuizPage() {
         isLoading,
         handleAnswerSelect,
         handleNextQuestion,
-    } = useQuiz(config as QuizConfig)
+    } = useQuiz(config)
+
+    useEffect(() => {
+        if (!config) {
+            router.push('/')
+            return
+        }
+    }, [config, router])
 
     if (!config) {
         return (
@@ -53,6 +53,12 @@ export default function QuizPage() {
                 <div className="text-center">
                     <h1 className="text-2xl font-bold">No questions available</h1>
                     <p className="mt-2">Please try a different topic or difficulty.</p>
+                    <Button
+                        onClick={() => router.push('/')}
+                        variant="outline"
+                    >
+                        Start New Quiz
+                    </Button>
                 </div>
             </Layout>
         )

@@ -23,7 +23,6 @@ export async function POST(request: Request): Promise<NextResponse<QuizQuestion[
             )
         }
 
-        // Read and parse questions
         const fileContent = fs.readFileSync(filePath, "utf-8")
         const { questions } = JSON.parse(fileContent) as { questions: QuizQuestion[] }
 
@@ -34,7 +33,6 @@ export async function POST(request: Request): Promise<NextResponse<QuizQuestion[
             )
         }
 
-        // Shuffle questions and select the requested number
         const shuffledQuestions = [...questions]
             .sort(() => Math.random() - 0.5)
             .slice(0, numberOfQuestions)

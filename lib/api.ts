@@ -1,7 +1,7 @@
-import type { QuizConfig, QuizQuestion, Topic, Difficulty } from "@/types/quiz";
+import type { QuizConfig, QuizQuestion, Difficulty } from "@/types/quiz";
 
 export interface ConfigResponse {
-  topics: Topic[];
+  topics: string[];
   difficulties: Difficulty[];
   timeLimits: number[];
   numberOfQuestions: number[];

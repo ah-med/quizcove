@@ -5,5 +5,4 @@ export const STORAGE_KEYS = {
   QUIZ_HISTORY: "quizHistory",
 } as const;
 
-// Type for the storage keys
 export type StorageKey = keyof typeof STORAGE_KEYS;

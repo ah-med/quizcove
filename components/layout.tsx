@@ -7,11 +7,10 @@ export default function Layout({
 }) {
     return (
         <div className="min-h-screen flex flex-col">
-            {/* Header */}
             <header className="border-b">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <Link href="/" className="text-xl font-bold">
-                        Quiz App
+                        Quiz Cove
                     </Link>
                     <Link
                         href="https://github.com/ah-med/quiz-app"
@@ -38,18 +37,16 @@ export default function Layout({
                 </div>
             </header>
 
-            {/* Main Content */}
             <main className="flex-1 container mx-auto px-4 py-8">
                 <div className="max-w-4xl mx-auto">
                     {children}
                 </div>
             </main>
 
-            {/* Footer */}
             <footer className="border-t">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-center">
                     <p className="text-sm text-gray-500">
-                        © {new Date().getFullYear()} Quiz App. Made with ☕️ by <Link href="https://github.com/ah-med" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700">@ah-med</Link>
+                        © {new Date().getFullYear()} Quiz Cove. Made with ☕️ by <Link href="https://github.com/ah-med" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700">@ah-med</Link>
                     </p>
                 </div>
             </footer>

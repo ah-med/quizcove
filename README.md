@@ -1,131 +1,101 @@
-# Quiz App
+# QuizCove
 
-## Goal
+A modern, interactive quiz application built with Next.js that allows users to test their knowledge on various topics with customizable settings and detailed analytics.
 
-Goal is to get an idea of how much you know about a topic.
+![QuizCove Screenshot](public/screenshot.png)
+_Configure your quiz and start testing your knowledge!_
 
-## Requirements
+🚀 Features
 
-- Test your knowledge on a topic
-- Choose a topic (required)
-- Choose a difficulty level (defaults to medium)
-- Choose a time limit (required)
-- Choose number of questions (required)
-- Multiple choice questions with more than one correct answers or one answer is correct kind of question
-- Quiz should auto submit after the time limit
-- Quiz should auto submit after answering all the questions
-- When you quit the quiz your session will not be saved.
-- See results after completion
-  - displays your score, correct answers count, total questions count, time taken to complete the quiz.
-  - see correct answers vs your options
-  - see explanation of the correct answer(s).
-- Topic results are saved in the browser local storage
-- See quiz analytics of your performance for each topic
+- **Customizable Quiz Settings**
 
+  - Choose from multiple topics
+  - Select difficulty levels (Easy, Medium, Hard)
+  - Set custom time limits
+  - Configure number of questions
+  - Multiple choice questions with single or multiple correct answers
 
-## Tech Stack
+- **Smart Quiz Management**
 
-- React (Next.js)
-- Tailwind CSS
-- Shadcn UI
-- TypeScript
-- Storage: Browser Local Storage for storing quiz results and history
-- API: Questions loaded from a JSON file
+  - Auto-submission when time limit is reached
+  - Auto-submission after answering all questions
+  - Real-time progress tracking
+  - Browser local storage for persistent data
 
+- **Comprehensive Results**
 
-## UI
+  - Detailed score breakdown
+  - Correct answers count
+  - Total questions count
+  - Total time taken to complete the quiz
+  - Comparison of your answers vs correct answers
+  - Explanations for correct answers
 
-### Layout
-There is only one page layout for the app.
-i.e every page has the same layout. on the the main content area is dynamic.
+- **Performance Analytics (Coming Soon)**
+  - Topic-wise performance tracking
+  - Historical quiz results
+  - Performance trends over time
 
-- Header
-  - logo or name of app on the left (link to home page)
-  - star on github icon on the right (link to github repo)
+## 🛠️ Tech Stack
 
-- Main (dynamic content area)
-  - middle content area (dynamic content area)
-  - with a reasonable/suitable max-width
+- **Frontend Framework**: [Next.js](https://nextjs.org/) 15.3.2
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [Shadcn UI](https://ui.shadcn.com/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Data Storage**: Browser Local Storage
+- **Questions Source**: JSON file-based API
 
-- Footer
-  - content is centered
-  - copyright message
-  - made with ☕️ by [your github username link to your github profile]
+## 📋 Prerequisites
 
-### Pages
-- Home Page Content Area
-  - Hero section
-    - title: 'hero text for what the app is about'
-    - subtitle: 'main catching feature of the app'
-  - Form Area To Start Quiz
-    - Select a Topic from dropdown list of available topics
-      - Topic 1
-      - Topic 2
-      - Topic 3
-    - Select a difficulty level from dropdown list of available difficulty levels
-      - Easy
-      - Medium
-      - Hard
-    - Select a time limit from dropdown list of available time limits
-      - 60 seconds per question
-      - 45 seconds per question
-      - 30 seconds per question
-      - 15 seconds per question
-    - Select a number of questions from dropdown list of available number of questions
-      - 10 questions
-      - 20 questions
-      - 30 questions
-    - Button to start the quiz
+Before you begin, ensure you have the following installed:
 
+- Node.js (v18.0.0 or higher)
+- npm (v9.0.0 or higher) or yarn (v1.22.0 or higher)
+- Git
 
-- Quiz Page Content Area
-  - Component/Elements
-    - quizTitle: title of the quiz in the format of 'Topic - Difficulty Level'
-    - timeRemaining: time remaining counter alert at the top right corner of the content area (Client Side component due to it's dynamic nature)
-    - questionCounter: question counter alert at the top left corner of the content area (Client Side component due to it's dynamic nature)
-    - QuestionCard: card with the question and the answer options (Client Side component due to it's dynamic nature)
-      - question: question text (aligned left)
-      - answerOptions: list of answer options (aligned left)
-  - Layout for content area
-    - quizTitle: place at the top center of the content area
-    - timeRemaining: place at the top right corner just below the quizTitle the same row as questionCounter
-    - questionCounter: place at the top left corner just below the quizTitle the same row as timeRemaining
-    - QuestionCard: place at the center of the content area below the timeRemaining/questionCounter row
+## 🚀 Getting Started
 
-- Result Page Content Area
-  - Component/Elements
-    - ResultCard: card with the result of the quiz
-      - score: score of the quiz - % of correct answers
-      - correctAnswers: number of correct answers
-      - totalQuestions: total number of questions
-    - Go Home Button: button to go back to the home page
-    - More Details Section: section to see more details about the quiz and your performance
-      - Array of accordion items with the question, correct answer, your answer, and explanation of the correct answer
-  - Layout for content area
-    - ResultCard: place at the top center of the content area
-    - Go Home Button: place at the top right corner of the content area
-    - More Details Section: place at the center of the content area below the ResultCard
+1. **Clone the repository**
 
-### Components Interaction (Events, Actions and State Management)
+   ```bash
+   git clone https://github.com/yourusername/quizcove.git
+   cd quizcove
+   ```
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+2. **Install dependencies**
 
-## Getting Started
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-First, run the development server:
+3. **Run the development server**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. **Open your browser**
+   Visit [http://localhost:3000](http://localhost:3000) to see the application.
+
+## 🏗️ Project Structure
+
+```
+quizcove/
+├── app/              # Next.js app directory
+├── components/       # Reusable UI components
+├── data/            # Quiz questions and data
+├── hooks/           # Custom React hooks
+├── lib/             # Utility functions
+├── store/           # State management
+├── types/           # TypeScript type definitions
+└── public/          # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📝 License
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

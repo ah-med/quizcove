@@ -4,7 +4,7 @@ import { useQuizTimer } from "./useQuizTimer";
 import { useQuizStore } from "@/store/quizStore";
 import type { QuizConfig } from "@/types/quiz";
 
-export const useQuiz = (config: QuizConfig) => {
+export const useQuiz = (config: QuizConfig | null) => {
   const router = useRouter();
   const [shouldSaveAndNext, setShouldSaveAndNext] = useState(false);
   const {
@@ -21,8 +21,8 @@ export const useQuiz = (config: QuizConfig) => {
   } = useQuizStore();
 
   const { timeRemaining, getTimeTaken } = useQuizTimer({
-    timeLimit: config.timeLimit,
-    numberOfQuestions: config.numberOfQuestions,
+    timeLimit: config?.timeLimit ?? 0,
+    numberOfQuestions: config?.numberOfQuestions ?? 0,
     onTimeUp: () => {
       const timeTaken = getTimeTaken();
       setTimeTaken(timeTaken);
@@ -32,6 +32,8 @@ export const useQuiz = (config: QuizConfig) => {
   });
 
   useEffect(() => {
+    if (!config) return;
+
     const fetchQuestions = async () => {
       try {
         const response = await fetch("/api/questions", {
