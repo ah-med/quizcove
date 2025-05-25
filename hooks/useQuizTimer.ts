@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 interface UseQuizTimerProps {
@@ -15,11 +15,13 @@ export const useQuizTimer = ({
   const router = useRouter();
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
   const [quizStartTime, setQuizStartTime] = useState<number>(0);
+  const hasCalledOnTimeUp = useRef(false);
 
   useEffect(() => {
     const totalTime = timeLimit * numberOfQuestions;
     setTimeRemaining(totalTime);
     setQuizStartTime(Date.now());
+    hasCalledOnTimeUp.current = false;
   }, [timeLimit, numberOfQuestions]);
 
   useEffect(() => {
@@ -29,9 +31,10 @@ export const useQuizTimer = ({
       setTimeRemaining((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          if (onTimeUp) {
+          if (onTimeUp && !hasCalledOnTimeUp.current) {
+            hasCalledOnTimeUp.current = true;
             onTimeUp();
-          } else {
+          } else if (!onTimeUp) {
             router.push("/result");
           }
           return 0;

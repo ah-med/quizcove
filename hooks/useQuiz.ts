@@ -27,6 +27,24 @@ export const useQuiz = (config: QuizConfig | null) => {
       const timeTaken = getTimeTaken();
       setTimeTaken(timeTaken);
       localStorage.setItem("quizTimeTaken", timeTaken.toString());
+
+      const unansweredQuestions = questions.slice(currentQuestionIndex);
+      unansweredQuestions.forEach((question) => {
+        const result = {
+          id: question.id,
+          question: question.question,
+          correctAnswers: question.correctAnswers,
+          userAnswers: [],
+          explanation: question.explanation,
+        };
+        addResult(result);
+      });
+
+      localStorage.setItem(
+        "quizResults",
+        JSON.stringify([...useQuizStore.getState().results])
+      );
+
       router.push("/result");
     },
   });
