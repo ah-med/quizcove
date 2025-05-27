@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 
 interface UseQuizTimerProps {
   timeLimit: number;
@@ -12,47 +11,60 @@ export const useQuizTimer = ({
   numberOfQuestions,
   onTimeUp,
 }: UseQuizTimerProps) => {
-  const router = useRouter();
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
-  const [quizStartTime, setQuizStartTime] = useState<number>(0);
   const hasCalledOnTimeUp = useRef(false);
+  const timerRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const quizStartTime = useRef<number>(Date.now());
 
   useEffect(() => {
     const totalTime = timeLimit * numberOfQuestions;
     setTimeRemaining(totalTime);
-    setQuizStartTime(Date.now());
     hasCalledOnTimeUp.current = false;
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
   }, [timeLimit, numberOfQuestions]);
 
   useEffect(() => {
     if (!timeRemaining) return;
 
-    const timer = setInterval(() => {
+    timerRef.current = setInterval(() => {
       setTimeRemaining((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
+        const newTime = prev - 1;
+
+        if (newTime <= 0) {
+          if (timerRef.current) {
+            clearInterval(timerRef.current);
+          }
+
           if (onTimeUp && !hasCalledOnTimeUp.current) {
             hasCalledOnTimeUp.current = true;
             onTimeUp();
-          } else if (!onTimeUp) {
-            router.push("/result");
           }
           return 0;
         }
-        return prev - 1;
+
+        return newTime;
       });
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, [timeRemaining, router, onTimeUp]);
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [timeRemaining, onTimeUp]);
 
   const getTimeTaken = () => {
-    return Math.floor((Date.now() - quizStartTime) / 1000);
+    return Math.floor((Date.now() - quizStartTime.current) / 1000);
   };
 
   return {
     timeRemaining,
-    quizStartTime,
+    quizStartTime: quizStartTime.current,
     getTimeTaken,
   };
 };
