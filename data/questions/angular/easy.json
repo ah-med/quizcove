@@ -1,0 +1,51 @@
+{
+  "questions": [
+    {
+      "id": "angular-easy-1",
+      "question": "What are the three essential parts of an Angular component?",
+      "options": [
+        "TypeScript class, HTML template, and CSS selector",
+        "JavaScript file, HTML file, and CSS file",
+        "Controller, View, and Model",
+        "Service, Module, and Component"
+      ],
+      "correctAnswers": ["TypeScript class, HTML template, and CSS selector"],
+      "type": "single",
+      "explanation": "Every Angular component must have a TypeScript class for behavior, an HTML template for rendering, and a CSS selector to define how the component is used in HTML."
+    },
+    {
+      "id": "angular-easy-2",
+      "question": "Which decorator is used to define an Angular component?",
+      "options": ["@Component", "@NgModule", "@Injectable", "@Directive"],
+      "correctAnswers": ["@Component"],
+      "type": "single",
+      "explanation": "The @Component decorator is used to define an Angular component. It provides Angular-specific information about the component through its metadata."
+    },
+    {
+      "id": "angular-easy-3",
+      "question": "What are the valid ways to define a component's template in Angular?",
+      "options": [
+        "Using template property",
+        "Using templateUrl property",
+        "Using inline HTML",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular components can define their templates using the template property for inline HTML, templateUrl property for external files, or by directly writing HTML in the template property."
+    },
+    {
+      "id": "angular-easy-4",
+      "question": "What is the object passed to the @Component decorator called?",
+      "options": [
+        "Component metadata",
+        "Component configuration",
+        "Component options",
+        "Component settings"
+      ],
+      "correctAnswers": ["Component metadata"],
+      "type": "single",
+      "explanation": "The object passed to the @Component decorator is called the component's metadata. This metadata includes properties like selector, template, and styles that define how the component behaves and appears."
+    }
+  ]
+}

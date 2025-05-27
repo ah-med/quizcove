@@ -1,0 +1,60 @@
+{
+  "questions": [
+    {
+      "id": "angular-medium-1",
+      "question": "What is the purpose of the imports array in the @Component decorator?",
+      "options": [
+        "To import other components that can be used in the template",
+        "To import services that the component needs",
+        "To import styles for the component",
+        "To import third-party libraries"
+      ],
+      "correctAnswers": [
+        "To import other components that can be used in the template"
+      ],
+      "type": "single",
+      "explanation": "The imports array in the @Component decorator is used to specify which components, directives, or pipes can be used in the component's template. This is part of Angular's standalone components feature."
+    },
+    {
+      "id": "angular-medium-2",
+      "question": "Which of the following are true about component selectors in Angular?",
+      "options": [
+        "They can be element selectors",
+        "They can be attribute selectors",
+        "They can be class selectors",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular component selectors can be defined as element selectors (e.g., 'app-root'), attribute selectors (e.g., '[app-root]'), or class selectors (e.g., '.app-root')."
+    },
+    {
+      "id": "angular-medium-3",
+      "question": "What is the difference between template and templateUrl in Angular components?",
+      "options": [
+        "template is for inline HTML, templateUrl is for external files",
+        "templateUrl is more performant than template",
+        "template can only be used for simple components",
+        "templateUrl is required for large components"
+      ],
+      "correctAnswers": [
+        "template is for inline HTML, templateUrl is for external files"
+      ],
+      "type": "single",
+      "explanation": "The template property is used for inline HTML directly in the component decorator, while templateUrl is used to reference an external HTML file. Both approaches are valid and the choice depends on the component's complexity and team preferences."
+    },
+    {
+      "id": "angular-medium-4",
+      "question": "Which of the following are required metadata properties for an Angular component?",
+      "options": [
+        "selector",
+        "template or templateUrl",
+        "styles or styleUrls",
+        "standalone"
+      ],
+      "correctAnswers": ["selector", "template or templateUrl"],
+      "type": "multiple",
+      "explanation": "The required metadata properties for an Angular component are 'selector' and either 'template' or 'templateUrl'. The selector defines how the component is used in HTML, while the template defines what the component renders."
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "questions": [
+    {
+      "id": "angular-hard-1",
+      "question": "What is the difference between standalone components and NgModule-based components in Angular?",
+      "options": [
+        "Standalone components don't require NgModule declarations",
+        "Standalone components can't use services",
+        "NgModule-based components are more performant",
+        "Standalone components can't be lazy loaded"
+      ],
+      "correctAnswers": [
+        "Standalone components don't require NgModule declarations"
+      ],
+      "type": "single",
+      "explanation": "Standalone components are a newer feature in Angular that don't require NgModule declarations. They can directly import their dependencies in the @Component decorator, making them more self-contained and easier to maintain."
+    },
+    {
+      "id": "angular-hard-2",
+      "question": "Which of the following are true about component inheritance in Angular?",
+      "options": [
+        "A component can inherit from another component",
+        "Inherited components can override parent component's template",
+        "Inherited components can access parent's private members",
+        "Inherited components must use the same selector"
+      ],
+      "correctAnswers": [
+        "A component can inherit from another component",
+        "Inherited components can override parent component's template"
+      ],
+      "type": "multiple",
+      "explanation": "Angular components can inherit from other components, allowing for code reuse. Inherited components can override the parent's template and behavior, but they can't access private members and can use different selectors."
+    },
+    {
+      "id": "angular-hard-3",
+      "question": "What is the purpose of the host element in an Angular component?",
+      "options": [
+        "It's the DOM element that matches the component's selector",
+        "It's the parent component that contains this component",
+        "It's the root element of the application",
+        "It's the element that hosts the component's styles"
+      ],
+      "correctAnswers": [
+        "It's the DOM element that matches the component's selector"
+      ],
+      "type": "single",
+      "explanation": "The host element is the DOM element that matches the component's selector. The component's template is rendered inside this host element, and the component's styles can be applied to it using the :host selector."
+    },
+    {
+      "id": "angular-hard-4",
+      "question": "Which of the following are optional metadata properties for an Angular component?",
+      "options": [
+        "styles or styleUrls",
+        "animations",
+        "providers",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "All of these are optional metadata properties. 'styles' or 'styleUrls' define component-specific styles, 'animations' define component animations, and 'providers' define services available to the component and its children."
+    },
+    {
+      "id": "angular-hard-5",
+      "question": "What is the purpose of the 'changeDetection' metadata property in Angular components?",
+      "options": [
+        "To control how Angular detects changes in the component",
+        "To define when the component should be re-rendered",
+        "To specify the component's update strategy",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "The 'changeDetection' property is an optional metadata property that controls how Angular detects changes in the component. It can be set to ChangeDetectionStrategy.OnPush for better performance by only checking for changes when inputs change or events occur."
+    }
+  ]
+}
