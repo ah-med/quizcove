@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import fs from "fs"
 import path from "path"
 import type { QuizConfig, QuizQuestion } from "@/types/quiz"
+import { shuffle } from "@/lib/utils"
 
 export async function POST(request: Request): Promise<NextResponse<QuizQuestion[] | { error: string }>> {
     try {
@@ -33,9 +34,12 @@ export async function POST(request: Request): Promise<NextResponse<QuizQuestion[
             )
         }
 
-        const shuffledQuestions = [...questions]
-            .sort(() => Math.random() - 0.5)
-            .slice(0, numberOfQuestions)
+    const shuffledQuestions = shuffle(questions)
+      .slice(0, numberOfQuestions)
+      .map((question) => ({
+        ...question,
+        options: shuffle(question.options),
+      }));
 
         return NextResponse.json(shuffledQuestions)
     } catch (error) {
