@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { formatTime } from "@/lib/utils"
 
 interface ResultCardProps {
     score: number
@@ -18,13 +19,6 @@ export function ResultCard({
     timeTaken,
     onStartNewQuiz
 }: ResultCardProps) {
-
-    const formatTime = (seconds: number) => {
-        const minutes = Math.floor(seconds / 60)
-        const remainingSeconds = seconds % 60
-        return `${minutes}m ${remainingSeconds}s`
-    }
-
     return (
         <div className="space-y-4">
             <div className="flex justify-end">
