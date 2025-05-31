@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 
 interface UseQuizTimerProps {
   timeLimit: number;
@@ -6,11 +6,7 @@ interface UseQuizTimerProps {
   onTimeUp?: () => void;
 }
 
-export const useQuizTimer = ({
-  timeLimit,
-  numberOfQuestions,
-  onTimeUp,
-}: UseQuizTimerProps) => {
+export const useQuizTimer = ({ timeLimit, numberOfQuestions, onTimeUp }: UseQuizTimerProps) => {
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
   const hasCalledOnTimeUp = useRef(false);
   const timerRef = useRef<NodeJS.Timeout | undefined>(undefined);
@@ -32,7 +28,7 @@ export const useQuizTimer = ({
     if (!timeRemaining) return;
 
     timerRef.current = setInterval(() => {
-      setTimeRemaining((prev) => {
+      setTimeRemaining(prev => {
         const newTime = prev - 1;
 
         if (newTime <= 0) {

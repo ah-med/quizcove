@@ -1,4 +1,4 @@
-export type QuestionType = "single" | "multiple";
+export type QuestionType = 'single' | 'multiple';
 
 export interface Question {
   id: string;
@@ -13,7 +13,7 @@ export interface QuestionSet {
   questions: Question[];
 }
 
-export type Difficulty = "easy" | "medium" | "hard";
+export type Difficulty = 'easy' | 'medium' | 'hard';
 
 export interface QuizConfig {
   topic: string;
@@ -35,7 +35,7 @@ export interface QuizQuestion {
   question: string;
   options: string[];
   correctAnswers: string[];
-  type: "single" | "multiple";
+  type: 'single' | 'multiple';
   explanation: string;
 }
 
@@ -58,17 +58,16 @@ export interface QuizState {
 }
 
 export interface QuizResult {
-  score: number
-  correctAnswers: number
-  totalQuestions: number
-  timeTaken: number
+  score: number;
+  correctAnswers: number;
+  totalQuestions: number;
+  timeTaken: number;
 }
 
 export interface QuizHistory {
-  id: string
-  date: string
-  config: QuizConfig
-  results: QuizResult
-  detailedResults: QuestionResult[]
+  id: string;
+  date: string;
+  config: QuizConfig;
+  results: QuizResult;
+  detailedResults: QuestionResult[];
 }
-

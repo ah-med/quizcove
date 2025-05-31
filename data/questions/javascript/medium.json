@@ -51,9 +51,7 @@
         "It only transforms the elements",
         "It only filters the elements"
       ],
-      "correctAnswers": [
-        "It transforms each element and then filters the results"
-      ],
+      "correctAnswers": ["It transforms each element and then filters the results"],
       "type": "single",
       "explanation": "When chaining map() and filter(), map() first transforms each element in the array, and then filter() processes the transformed array to keep only elements that match the filter condition."
     }

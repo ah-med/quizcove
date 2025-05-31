@@ -1,6 +1,5 @@
-import { create } from "zustand";
-import type { QuizState, QuizConfig, QuizQuestion, QuestionResult } from "@/types/quiz";
-
+import { create } from 'zustand';
+import type { QuizState, QuizConfig, QuizQuestion, QuestionResult } from '@/types/quiz';
 
 const initialState = {
   config: null,
@@ -12,13 +11,12 @@ const initialState = {
   isLoading: true,
 };
 
-export const useQuizStore = create<QuizState>()((set) => ({
+export const useQuizStore = create<QuizState>()(set => ({
   ...initialState,
 
   setConfig: (config: QuizConfig) => set({ config }),
   setQuestions: (questions: QuizQuestion[]) => set({ questions }),
-  setCurrentQuestionIndex: (currentQuestionIndex: number) =>
-    set({ currentQuestionIndex }),
+  setCurrentQuestionIndex: (currentQuestionIndex: number) => set({ currentQuestionIndex }),
   setSelectedAnswers: (selectedAnswers: string[]) => set({ selectedAnswers }),
   addResult: (result: QuestionResult) =>
     set((state: QuizState) => ({ results: [...state.results, result] })),

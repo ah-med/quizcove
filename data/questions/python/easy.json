@@ -9,10 +9,7 @@
         "Using the new List() constructor",
         "Using the Array() constructor"
       ],
-      "correctAnswers": [
-        "Using square brackets",
-        "Using the list() constructor"
-      ],
+      "correctAnswers": ["Using square brackets", "Using the list() constructor"],
       "type": "multiple",
       "explanation": "In Python, you can create an empty list using either square brackets [] or the list() constructor. Both methods are valid."
     },

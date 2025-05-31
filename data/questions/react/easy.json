@@ -1,69 +1,73 @@
 {
-    "questions": [
-      {
-        "id": "react-basics-1",
-        "question": "What are the three key concepts in React that almost everything in a React app can be classified into?",
-        "options": [
-          "Components, Events, and Hooks",
-          "Props, JSX, and State",
-          "Components, Props, and State",
-          "Classes, Functions, and JSX"
-        ],
-        "correctAnswers": ["Components, Props, and State"],
-        "type": "single",
-        "explanation": "Components, props, and state are the foundational elements in React apps, defining structure, data flow, and UI behavior."
-      },
-      {
-        "id": "design-patterns-1",
-        "question": "What is the main advantage of using the Singleton Pattern in JavaScript applications?",
-        "options": [
-          "It allows creating multiple instances of a class for modular behavior",
-          "It enables multiple objects to inherit the same properties",
-          "It provides a global, single instance that can be shared throughout the app",
-          "It facilitates dynamic rendering of UI elements based on user input"
-        ],
-        "correctAnswers": ["It provides a global, single instance that can be shared throughout the app"],
-        "type": "single",
-        "explanation": "Singletons ensure that only one instance of a class is used across an application, which helps with global state management."
-      },
-      {
-        "id": "react-class-1",
-        "question": "Which method in a React class component is required and is responsible for rendering the UI?",
-        "options": [
-          "componentDidMount()",
-          "render()",
-          "shouldComponentUpdate()",
-          "componentWillUnmount()"
-        ],
-        "correctAnswers": ["render()"],
-        "type": "single",
-        "explanation": "The render() method is required in every React class component and defines the UI output."
-      },
-      {
-        "id": "react-advanced-1",
-        "question": "What is a render prop in React?",
-        "options": [
-          "A way to add lifecycle methods to class components",
-          "A prop that holds a function returning JSX to control component rendering",
-          "A special prop used to dynamically import other modules",
-          "A method for combining multiple reducers in Redux"
-        ],
-        "correctAnswers": ["A prop that holds a function returning JSX to control component rendering"],
-        "type": "single",
-        "explanation": "Render props are used to dynamically control what a component renders by passing a function as a prop."
-      },
-      {
-        "id": "react-context-1",
-        "question": "Which pattern helps avoid prop drilling by allowing multiple components to access the same data without explicitly passing it down through every level?",
-        "options": [
-          "Singleton Pattern",
-          "Higher-Order Component",
-          "Provider Pattern",
-          "Module Pattern"
-        ],
-        "correctAnswers": ["Provider Pattern"],
-        "type": "single",
-        "explanation": "The Provider Pattern uses React Context to share data across components without manual prop passing, reducing code complexity."
-      }
-    ]
+  "questions": [
+    {
+      "id": "react-basics-1",
+      "question": "What are the three key concepts in React that almost everything in a React app can be classified into?",
+      "options": [
+        "Components, Events, and Hooks",
+        "Props, JSX, and State",
+        "Components, Props, and State",
+        "Classes, Functions, and JSX"
+      ],
+      "correctAnswers": ["Components, Props, and State"],
+      "type": "single",
+      "explanation": "Components, props, and state are the foundational elements in React apps, defining structure, data flow, and UI behavior."
+    },
+    {
+      "id": "design-patterns-1",
+      "question": "What is the main advantage of using the Singleton Pattern in JavaScript applications?",
+      "options": [
+        "It allows creating multiple instances of a class for modular behavior",
+        "It enables multiple objects to inherit the same properties",
+        "It provides a global, single instance that can be shared throughout the app",
+        "It facilitates dynamic rendering of UI elements based on user input"
+      ],
+      "correctAnswers": [
+        "It provides a global, single instance that can be shared throughout the app"
+      ],
+      "type": "single",
+      "explanation": "Singletons ensure that only one instance of a class is used across an application, which helps with global state management."
+    },
+    {
+      "id": "react-class-1",
+      "question": "Which method in a React class component is required and is responsible for rendering the UI?",
+      "options": [
+        "componentDidMount()",
+        "render()",
+        "shouldComponentUpdate()",
+        "componentWillUnmount()"
+      ],
+      "correctAnswers": ["render()"],
+      "type": "single",
+      "explanation": "The render() method is required in every React class component and defines the UI output."
+    },
+    {
+      "id": "react-advanced-1",
+      "question": "What is a render prop in React?",
+      "options": [
+        "A way to add lifecycle methods to class components",
+        "A prop that holds a function returning JSX to control component rendering",
+        "A special prop used to dynamically import other modules",
+        "A method for combining multiple reducers in Redux"
+      ],
+      "correctAnswers": [
+        "A prop that holds a function returning JSX to control component rendering"
+      ],
+      "type": "single",
+      "explanation": "Render props are used to dynamically control what a component renders by passing a function as a prop."
+    },
+    {
+      "id": "react-context-1",
+      "question": "Which pattern helps avoid prop drilling by allowing multiple components to access the same data without explicitly passing it down through every level?",
+      "options": [
+        "Singleton Pattern",
+        "Higher-Order Component",
+        "Provider Pattern",
+        "Module Pattern"
+      ],
+      "correctAnswers": ["Provider Pattern"],
+      "type": "single",
+      "explanation": "The Provider Pattern uses React Context to share data across components without manual prop passing, reducing code complexity."
+    }
+  ]
 }

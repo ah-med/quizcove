@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useQuizTimer } from "./useQuizTimer";
-import { useQuizStore } from "@/store/quizStore";
-import type { QuizConfig } from "@/types/quiz";
+import { useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useQuizTimer } from './useQuizTimer';
+import { useQuizStore } from '@/store/quizStore';
+import type { QuizConfig } from '@/types/quiz';
 
 export const useQuiz = (config: QuizConfig | null) => {
   const router = useRouter();
@@ -26,10 +26,10 @@ export const useQuiz = (config: QuizConfig | null) => {
     onTimeUp: () => {
       const timeTaken = getTimeTaken();
       setTimeTaken(timeTaken);
-      localStorage.setItem("quizTimeTaken", timeTaken.toString());
+      localStorage.setItem('quizTimeTaken', timeTaken.toString());
 
       const unansweredQuestions = questions.slice(currentQuestionIndex);
-      unansweredQuestions.forEach((question) => {
+      unansweredQuestions.forEach(question => {
         const result = {
           id: question.id,
           question: question.question,
@@ -40,12 +40,9 @@ export const useQuiz = (config: QuizConfig | null) => {
         addResult(result);
       });
 
-      localStorage.setItem(
-        "quizResults",
-        JSON.stringify([...useQuizStore.getState().results])
-      );
+      localStorage.setItem('quizResults', JSON.stringify([...useQuizStore.getState().results]));
 
-      router.push("/result");
+      router.push('/result');
     },
   });
 
@@ -54,21 +51,21 @@ export const useQuiz = (config: QuizConfig | null) => {
 
     const fetchQuestions = async () => {
       try {
-        const response = await fetch("/api/questions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const response = await fetch('/api/questions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(config),
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch questions");
+          throw new Error('Failed to fetch questions');
         }
 
         const data = await response.json();
         setQuestions(data);
       } catch (error) {
-        console.error("Error fetching questions:", error);
-        router.push("/");
+        console.error('Error fetching questions:', error);
+        router.push('/');
       } finally {
         setIsLoading(false);
       }
@@ -91,14 +88,11 @@ export const useQuiz = (config: QuizConfig | null) => {
     };
 
     addResult(result);
-    localStorage.setItem(
-      "quizResults",
-      JSON.stringify([...useQuizStore.getState().results])
-    );
+    localStorage.setItem('quizResults', JSON.stringify([...useQuizStore.getState().results]));
   }, [currentQuestion, selectedAnswers, addResult]);
 
   const handleNextQuestion = useCallback(() => {
-    if (currentQuestion?.type === "multiple") {
+    if (currentQuestion?.type === 'multiple') {
       saveQuestionResult();
     }
 
@@ -108,8 +102,8 @@ export const useQuiz = (config: QuizConfig | null) => {
     } else {
       const timeTaken = getTimeTaken();
       setTimeTaken(timeTaken);
-      localStorage.setItem("quizTimeTaken", timeTaken.toString());
-      router.push("/result");
+      localStorage.setItem('quizTimeTaken', timeTaken.toString());
+      router.push('/result');
     }
   }, [
     currentQuestion,
@@ -124,21 +118,16 @@ export const useQuiz = (config: QuizConfig | null) => {
   ]);
 
   useEffect(() => {
-    if (shouldSaveAndNext && currentQuestion?.type === "single") {
+    if (shouldSaveAndNext && currentQuestion?.type === 'single') {
       saveQuestionResult();
       handleNextQuestion();
       setShouldSaveAndNext(false);
     }
-  }, [
-    shouldSaveAndNext,
-    currentQuestion,
-    saveQuestionResult,
-    handleNextQuestion,
-  ]);
+  }, [shouldSaveAndNext, currentQuestion, saveQuestionResult, handleNextQuestion]);
 
   const handleAnswerSelect = useCallback(
     (answer: string) => {
-      if (currentQuestion?.type === "single") {
+      if (currentQuestion?.type === 'single') {
         setSelectedAnswers([answer]);
         setShouldSaveAndNext(true);
       } else {

@@ -9,9 +9,7 @@
         "To import styles for the component",
         "To import third-party libraries"
       ],
-      "correctAnswers": [
-        "To import other components that can be used in the template"
-      ],
+      "correctAnswers": ["To import other components that can be used in the template"],
       "type": "single",
       "explanation": "The imports array in the @Component decorator is used to specify which components, directives, or pipes can be used in the component's template. This is part of Angular's standalone components feature."
     },
@@ -37,21 +35,14 @@
         "template can only be used for simple components",
         "templateUrl is required for large components"
       ],
-      "correctAnswers": [
-        "template is for inline HTML, templateUrl is for external files"
-      ],
+      "correctAnswers": ["template is for inline HTML, templateUrl is for external files"],
       "type": "single",
       "explanation": "The template property is used for inline HTML directly in the component decorator, while templateUrl is used to reference an external HTML file. Both approaches are valid and the choice depends on the component's complexity and team preferences."
     },
     {
       "id": "angular-medium-4",
       "question": "Which of the following are required metadata properties for an Angular component?",
-      "options": [
-        "selector",
-        "template or templateUrl",
-        "styles or styleUrls",
-        "standalone"
-      ],
+      "options": ["selector", "template or templateUrl", "styles or styleUrls", "standalone"],
       "correctAnswers": ["selector", "template or templateUrl"],
       "type": "multiple",
       "explanation": "The required metadata properties for an Angular component are 'selector' and either 'template' or 'templateUrl'. The selector defines how the component is used in HTML, while the template defines what the component renders."
