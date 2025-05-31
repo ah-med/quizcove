@@ -36,10 +36,28 @@ export async function POST(request: Request): Promise<NextResponse<QuizQuestion[
 
     const shuffledQuestions = shuffle(questions)
       .slice(0, numberOfQuestions)
-      .map((question) => ({
-        ...question,
-        options: shuffle(question.options),
-      }));
+      .map((question) => {
+        const options = [...question.options];
+        const allOfTheAboveIndex = options.findIndex(
+          (option) => option.toLowerCase() === "all of the above"
+        );
+
+        let allOfTheAbove: string | undefined;
+        if (allOfTheAboveIndex !== -1) {
+          allOfTheAbove = options.splice(allOfTheAboveIndex, 1)[0];
+        }
+
+        const shuffledOptions = shuffle(options);
+
+        if (allOfTheAbove) {
+          shuffledOptions.push(allOfTheAbove);
+        }
+
+        return {
+          ...question,
+          options: shuffledOptions,
+        };
+      });
 
         return NextResponse.json(shuffledQuestions)
     } catch (error) {
