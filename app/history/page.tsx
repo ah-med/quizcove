@@ -72,7 +72,7 @@ export default function HistoryPage() {
   };
 
   // Get unique topics for the selector
-  const topics = Array.from(new Set(history.map(quiz => quiz.config.topic)));
+  const topics = Array.from(new Set(history.map(quiz => quiz.config.topic))).filter(topic => topic);
 
   if (isLoading) {
     return (
