@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { QuizQuestion } from '@/types/quiz';
+import { Code } from '@/components/ui/code';
+import { QuizQuestion, Option } from '@/types/quiz';
 
 interface QuestionCardProps {
   question: QuizQuestion;
@@ -14,37 +15,70 @@ interface QuestionCardProps {
   onNextQuestion?: () => void;
 }
 
+function OptionLabel({ option }: { option: Option }) {
+  if (typeof option === 'string') {
+    return <span>{option}</span>;
+  }
+
+  return (
+    <div className="space-y-2">
+      <span>{option.text}</span>
+      {option.code && (
+        <Code variant="block" language={option.code.language}>
+          {option.code.code}
+        </Code>
+      )}
+    </div>
+  );
+}
+
 export function QuestionCard({
   question,
   selectedAnswers,
   onAnswerSelect,
   onNextQuestion,
 }: QuestionCardProps) {
+  const getOptionValue = (option: Option): string => {
+    return typeof option === 'string' ? option : option.text;
+  };
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>{question.question}</CardTitle>
+        {question.code && (
+          <Code variant="block" language={question.code.language}>
+            {question.code.code}
+          </Code>
+        )}
       </CardHeader>
       <CardContent className="space-y-6">
         {question.type === 'single' ? (
           <RadioGroup value={selectedAnswers[0]} onValueChange={onAnswerSelect}>
-            {question.options.map(option => (
-              <div key={option} className="flex items-center space-x-2">
-                <RadioGroupItem value={option} id={option} />
-                <Label htmlFor={option}>{option}</Label>
+            {question.options.map((option, index) => (
+              <div key={index} className="flex items-center space-x-2">
+                <RadioGroupItem
+                  value={getOptionValue(option)}
+                  id={`option-${index}`}
+                />
+                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
+                  <OptionLabel option={option} />
+                </Label>
               </div>
             ))}
           </RadioGroup>
         ) : (
           <div className="space-y-4">
-            {question.options.map(option => (
-              <div key={option} className="flex items-center space-x-2">
+            {question.options.map((option, index) => (
+              <div key={index} className="flex items-center space-x-2">
                 <Checkbox
-                  id={option}
-                  checked={selectedAnswers.includes(option)}
-                  onCheckedChange={() => onAnswerSelect(option)}
+                  id={`option-${index}`}
+                  checked={selectedAnswers.includes(getOptionValue(option))}
+                  onCheckedChange={() => onAnswerSelect(getOptionValue(option))}
                 />
-                <Label htmlFor={option}>{option}</Label>
+                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
+                  <OptionLabel option={option} />
+                </Label>
               </div>
             ))}
             {onNextQuestion && (

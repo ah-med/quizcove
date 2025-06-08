@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import type { QuizConfig, QuizQuestion } from '@/types/quiz';
+import type { QuizConfig, QuizQuestion, Option } from '@/types/quiz';
 import { shuffle } from '@/lib/utils';
 
 export async function POST(
@@ -11,7 +11,7 @@ export async function POST(
     const { topic, difficulty, numberOfQuestions } = (await request.json()) as QuizConfig;
 
     if (!topic || !difficulty || !numberOfQuestions) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 }); // hello world
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     const filePath = path.join(process.cwd(), 'data', 'questions', topic, `${difficulty}.json`);
@@ -34,11 +34,12 @@ export async function POST(
       .slice(0, numberOfQuestions)
       .map(question => {
         const options = [...question.options];
-        const allOfTheAboveIndex = options.findIndex(
-          option => option.toLowerCase() === 'all of the above'
-        );
+        const allOfTheAboveIndex = options.findIndex(option => {
+          const optionText = typeof option === 'string' ? option : option.text;
+          return optionText.toLowerCase() === 'all of the above';
+        });
 
-        let allOfTheAbove: string | undefined;
+        let allOfTheAbove: Option | undefined;
         if (allOfTheAboveIndex !== -1) {
           allOfTheAbove = options.splice(allOfTheAboveIndex, 1)[0];
         }

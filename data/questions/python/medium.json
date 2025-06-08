@@ -45,7 +45,11 @@
     },
     {
       "id": "py-medium-4",
-      "question": "What will be the output of:\n\nfrom collections import defaultdict\nd = defaultdict(list)\nd['key'].append(1)\nprint(d['nonexistent'])",
+      "question": "What will be the output of the following code?",
+      "code": {
+        "code": "from collections import defaultdict\nd = defaultdict(list)\nd['key'].append(1)\nprint(d['nonexistent'])",
+        "language": "python"
+      },
       "options": ["[]", "None", "KeyError", "[1]"],
       "correctAnswers": ["[]"],
       "type": "single",

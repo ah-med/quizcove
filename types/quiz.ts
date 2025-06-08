@@ -1,9 +1,24 @@
 export type QuestionType = 'single' | 'multiple';
 
+// New type for code snippets
+export interface CodeSnippet {
+  code: string;
+  language?: string;
+}
+
+// New type for options that can contain code
+export type Option =
+  | string
+  | {
+      text: string;
+      code?: CodeSnippet;
+    };
+
 export interface Question {
   id: string;
   question: string;
-  options: string[];
+  code?: CodeSnippet;
+  options: Option[];
   correctAnswers: string[];
   type: QuestionType;
   explanation: string;
@@ -25,6 +40,7 @@ export interface QuizConfig {
 export interface QuestionResult {
   id: string;
   question: string;
+  code?: CodeSnippet;
   correctAnswers: string[];
   userAnswers: string[];
   explanation: string;
@@ -33,7 +49,8 @@ export interface QuestionResult {
 export interface QuizQuestion {
   id: string;
   question: string;
-  options: string[];
+  code?: CodeSnippet;
+  options: Option[];
   correctAnswers: string[];
   type: 'single' | 'multiple';
   explanation: string;
