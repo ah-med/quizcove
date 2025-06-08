@@ -5,7 +5,7 @@
       "question": "What are the three essential parts of an Angular component?",
       "options": [
         "TypeScript class, HTML template, and CSS selector",
-        "JavaScript file, HTML file, and CSS file",
+        "TypeScript class, HTML file, and CSS file",
         "Controller, View, and Model",
         "Service, Module, and Component"
       ],

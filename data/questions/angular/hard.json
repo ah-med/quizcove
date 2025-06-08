@@ -62,6 +62,233 @@
       "correctAnswers": ["All of the above"],
       "type": "multiple",
       "explanation": "The 'changeDetection' property is an optional metadata property that controls how Angular detects changes in the component. It can be set to ChangeDetectionStrategy.OnPush for better performance by only checking for changes when inputs change or events occur."
+    },
+    {
+      "id": "angular-hard-6",
+      "question": "When Angular encounters multiple instances of the same component selector in a template, what happens?",
+      "options": [
+        "A single instance is shared across all occurrences",
+        "A new instance of the component is created for each occurrence",
+        "Only the first occurrence creates an instance",
+        "The component is rendered only once and cloned"
+      ],
+      "correctAnswers": ["A new instance of the component is created for each occurrence"],
+      "type": "single",
+      "explanation": "Angular creates a separate instance of the component class for each matching HTML element it encounters. This means each instance maintains its own state and lifecycle, allowing for independent behavior and data management."
+    },
+    {
+      "id": "angular-hard-7",
+      "question": "What is the relationship between a component's host element and its template content?",
+      "options": [
+        "The host element replaces the template content",
+        "The template content is rendered as a sibling of the host element",
+        "The template content is rendered inside the host element",
+        "The host element and template content are unrelated"
+      ],
+      "correctAnswers": ["The template content is rendered inside the host element"],
+      "type": "single",
+      "explanation": "The host element serves as a container for the component's template content. When Angular renders a component, it places all the template content inside the host element, creating a parent-child relationship in the DOM."
+    },
+    {
+      "id": "angular-hard-8",
+      "question": "Which of the following statements about component selectors and host elements are correct?",
+      "options": [
+        "The host element is determined by the component's selector",
+        "A component can have multiple host elements",
+        "The host element must be a custom HTML element",
+        "The host element can be any valid HTML element that matches the selector"
+      ],
+      "correctAnswers": [
+        "The host element is determined by the component's selector",
+        "The host element can be any valid HTML element that matches the selector"
+      ],
+      "type": "multiple",
+      "explanation": "The host element is the DOM element that matches the component's selector. Angular components can use various selector types (element, attribute, class) to define their host element, making it flexible in how components can be used in templates."
+    },
+    {
+      "id": "angular-hard-9",
+      "question": "Which of the following statements about Angular component selectors are correct?",
+      "options": [
+        "Component selectors are matched at runtime",
+        "An element can match multiple component selectors",
+        "The :not pseudo-class is supported in component selectors",
+        "Component selectors can use any CSS selector syntax",
+        "Custom element selectors must include a hyphen"
+      ],
+      "correctAnswers": [
+        "The :not pseudo-class is supported in component selectors",
+        "Custom element selectors must include a hyphen"
+      ],
+      "type": "multiple",
+      "explanation": "Angular component selectors are matched statically at compile-time, not runtime. An element can only match one component selector. While Angular supports the :not pseudo-class, it doesn't support all CSS selector syntax. Custom element selectors must include a hyphen as per HTML specification."
+    },
+    {
+      "id": "angular-hard-10",
+      "question": "Which of the following scenarios will NOT render an Angular component correctly?",
+      "options": [
+        "Using a component selector in a template string",
+        "Dynamically adding a component selector via innerHTML",
+        "Using a component selector in an *ngIf directive",
+        "Using a component selector in a template literal",
+        "Using a component selector in a static template"
+      ],
+      "correctAnswers": ["Dynamically adding a component selector via innerHTML"],
+      "type": "single",
+      "explanation": "Angular components are matched statically at compile-time, not runtime. When using innerHTML to dynamically add content, the component selector will be treated as plain HTML and won't be recognized as an Angular component. This is because Angular has already done its component matching during compilation, and runtime DOM changes don't trigger component instantiation. All other options (template strings, *ngIf, template literals, and static templates) are processed during compilation and will work correctly."
+    },
+    {
+      "id": "angular-hard-11",
+      "question": "Which selector type would be most appropriate for creating a reusable button component that extends the native button element?",
+      "options": [
+        "button[app-custom-button]",
+        "app-custom-button",
+        ".custom-button",
+        "button.custom-button",
+        "app-button"
+      ],
+      "correctAnswers": ["button[app-custom-button]"],
+      "type": "single",
+      "explanation": "Using an attribute selector on a native button element is the best approach because it: 1) Preserves all native button functionality and accessibility features, 2) Allows the component to be used on standard button elements, 3) Maintains semantic HTML structure, 4) Enables easy styling and behavior extension of the native button."
+    },
+    {
+      "id": "angular-hard-12",
+      "question": "In which scenario would using a class selector for a component be most appropriate?",
+      "options": [
+        "Creating a standalone component that represents a complete UI element",
+        "Adding behavior to existing elements without changing their structure",
+        "Creating a component that must be used on specific HTML elements",
+        "Creating a component that needs to be used multiple times on the same element",
+        "Creating a component that must be used as a child of another component"
+      ],
+      "correctAnswers": ["Adding behavior to existing elements without changing their structure"],
+      "type": "single",
+      "explanation": "Class selectors are best used when you want to add behavior to existing elements without changing their structure. This is particularly useful for adding functionality to elements that already have a specific role or structure in your application, such as adding drag-and-drop behavior to existing list items."
+    },
+    {
+      "id": "angular-hard-13",
+      "question": "Which of the following is a valid use case for combining multiple selectors in an Angular component?",
+      "options": [
+        "To create a component that can be used in multiple different contexts",
+        "To improve component performance",
+        "To allow a component to match multiple elements at once",
+        "To create a component that can be used as both a directive and a component",
+        "To allow a component to be used without importing it"
+      ],
+      "correctAnswers": ["To create a component that can be used in multiple different contexts"],
+      "type": "single",
+      "explanation": "Combining multiple selectors allows a component to be used in different contexts while maintaining the same functionality. For example, a component could be used both as a custom element and as an attribute, making it more flexible in how it can be integrated into different parts of an application."
+    },
+    {
+      "id": "angular-hard-14",
+      "question": "Which of the following selector combinations would be most appropriate for a component that should only work on buttons but not on submit buttons?",
+      "options": [
+        "button:not([type='submit'])",
+        "button[type!='submit']",
+        "button:not(.submit)",
+        "button:not(#submit)",
+        "button:not(submit)"
+      ],
+      "correctAnswers": ["button:not([type='submit'])"],
+      "type": "single",
+      "explanation": "The :not pseudo-class with an attribute selector is the correct way to exclude specific button types. This selector will match any button element that doesn't have type='submit', allowing the component to work on all other button types while explicitly excluding submit buttons."
+    },
+    {
+      "id": "angular-hard-15",
+      "question": "Which of the following statements about selector types in Angular components are correct?",
+      "options": [
+        "Element selectors are best for creating new, standalone UI components",
+        "Attribute selectors are best for extending existing HTML elements",
+        "Class selectors are best for adding behavior to existing elements",
+        "Combined selectors can improve component reusability",
+        "The :not pseudo-class can be used to exclude specific elements"
+      ],
+      "correctAnswers": [
+        "Element selectors are best for creating new, standalone UI components",
+        "Attribute selectors are best for extending existing HTML elements",
+        "Class selectors are best for adding behavior to existing elements",
+        "Combined selectors can improve component reusability",
+        "The :not pseudo-class can be used to exclude specific elements"
+      ],
+      "type": "multiple",
+      "explanation": "Each selector type has its specific use case: Element selectors are ideal for new components, attribute selectors for extending existing elements, class selectors for adding behavior, combined selectors for flexibility, and :not for exclusions. Understanding these use cases helps in choosing the right selector type for each component."
+    },
+    {
+      "id": "angular-hard-16",
+      "question": "Which of the following statements about Angular's view encapsulation are correct?",
+      "options": [
+        "View encapsulation prevents styles from leaking into other components",
+        "View encapsulation can be disabled using ViewEncapsulation.None",
+        "View encapsulation is always enabled by default",
+        "View encapsulation only works with component-specific styles",
+        "View encapsulation can be configured per component"
+      ],
+      "correctAnswers": [
+        "View encapsulation prevents styles from leaking into other components",
+        "View encapsulation can be disabled using ViewEncapsulation.None",
+        "View encapsulation can be configured per component"
+      ],
+      "type": "multiple",
+      "explanation": "Angular's view encapsulation is a key feature that scopes styles to components. It can be configured using ViewEncapsulation enum (Emulated, None, ShadowDom) and helps prevent style conflicts between components. While it's enabled by default, it can be disabled or modified as needed."
+    },
+    {
+      "id": "angular-hard-17",
+      "question": "Which of the following is the correct way to apply styles to a component's host element?",
+      "options": [
+        "Using the :host selector in the component's styles",
+        "Using the host element's tag name in the component's styles",
+        "Using the component's selector in the component's styles",
+        "Using the :root selector in the component's styles",
+        "Using the :component selector in the component's styles"
+      ],
+      "correctAnswers": ["Using the :host selector in the component's styles"],
+      "type": "single",
+      "explanation": "The :host selector is a special selector in Angular that targets the component's host element. It's the correct way to style the component's host element because it works with view encapsulation and ensures styles are properly scoped to the component."
+    },
+    {
+      "id": "angular-hard-18",
+      "question": "Which of the following approaches would be most appropriate for creating a theme system in an Angular application?",
+      "options": [
+        "Using CSS custom properties (variables) in a global stylesheet",
+        "Using component-specific styles with ViewEncapsulation.None",
+        "Using inline styles in each component",
+        "Using a separate CSS file for each theme",
+        "Using JavaScript to dynamically change styles"
+      ],
+      "correctAnswers": ["Using CSS custom properties (variables) in a global stylesheet"],
+      "type": "single",
+      "explanation": "CSS custom properties (variables) in a global stylesheet are ideal for theming because they: 1) Can be overridden at runtime, 2) Work with Angular's view encapsulation, 3) Provide a centralized way to manage theme values, 4) Allow for dynamic theme switching without reloading the application."
+    },
+    {
+      "id": "angular-hard-19",
+      "question": "Which of the following statements about Angular's style loading strategies are correct?",
+      "options": [
+        "Styles can be loaded globally in angular.json",
+        "Styles can be defined inline in the component decorator",
+        "Styles can be loaded from external files using styleUrls",
+        "Styles can be loaded conditionally based on component state",
+        "Styles can be loaded dynamically at runtime"
+      ],
+      "correctAnswers": [
+        "Styles can be loaded globally in angular.json",
+        "Styles can be defined inline in the component decorator",
+        "Styles can be loaded from external files using styleUrls"
+      ],
+      "type": "multiple",
+      "explanation": "Angular provides multiple ways to load styles: globally through angular.json, inline in the component decorator using the styles property, and from external files using styleUrls. These styles are processed at build time and bundled with the application."
+    },
+    {
+      "id": "angular-hard-20",
+      "question": "Which of the following is the recommended approach for styling child components from a parent component in modern Angular applications?",
+      "options": [
+        "Using ::ng-deep in the parent component's styles",
+        "Using CSS custom properties (variables) for shared styles",
+        "Using ViewEncapsulation.None in the parent component",
+        "Using global styles in styles.css",
+        "Using :host-context in the child component's styles"
+      ],
+      "correctAnswers": ["Using CSS custom properties (variables) for shared styles"],
+      "type": "single",
+      "explanation": "While ::ng-deep was previously used to style child components, it is now deprecated. The recommended approach is to use CSS custom properties (variables) for shared styles. This approach: 1) Maintains proper encapsulation, 2) Provides better maintainability, 3) Allows for dynamic style updates, 4) Works with Angular's view encapsulation, and 5) Follows modern best practices. The parent component can define the variables, and child components can use them while maintaining their own style boundaries."
     }
   ]
 }
