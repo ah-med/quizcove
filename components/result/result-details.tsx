@@ -24,8 +24,20 @@ interface ResultDetailsProps {
 
 export function ResultDetails({ results }: ResultDetailsProps) {
   const isAnswerCorrect = (result: QuestionResult) => {
+    if (result.correctAnswers.includes('All of the above')) {
+      return (
+        result.userAnswers.includes('All of the above') ||
+        result.correctAnswers
+          .filter(answer => answer !== 'All of the above')
+          .every(answer => result.userAnswers.includes(answer))
+      );
+    }
+
     if (result.userAnswers.length !== result.correctAnswers.length) return false;
-    return result.correctAnswers.every(answer => result.userAnswers.includes(answer));
+    return (
+      result.correctAnswers.every(answer => result.userAnswers.includes(answer)) &&
+      result.userAnswers.every(answer => result.correctAnswers.includes(answer))
+    );
   };
 
   const totalCorrect = results.filter(result => isAnswerCorrect(result)).length;
@@ -87,7 +99,9 @@ export function ResultDetails({ results }: ResultDetailsProps) {
                       <div className="mt-2 space-y-1">
                         {result.userAnswers.length > 0 ? (
                           result.userAnswers.map((answer, i) => {
-                            const isAnswerCorrect = result.correctAnswers.includes(answer);
+                            const isAnswerCorrect =
+                              result.correctAnswers.includes(answer) ||
+                              result.correctAnswers.includes('All of the above');
                             return (
                               <p
                                 key={i}
