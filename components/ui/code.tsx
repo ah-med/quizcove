@@ -76,7 +76,7 @@ function Code({
     return (
       <code
         className={cn(
-          'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm',
+          'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm break-words',
           className
         )}
         {...props}
@@ -87,10 +87,13 @@ function Code({
   }
 
   return (
-    <div className="relative rounded-lg border bg-muted">
+    <div className="relative rounded-lg border bg-muted w-full">
       <Highlight theme={shadcnTheme} code={children?.toString() || ''} language={language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={cn('p-4 overflow-x-auto', className)} style={style}>
+          <pre
+            className={cn('p-4 overflow-x-auto whitespace-pre-wrap break-words', className)}
+            style={style}
+          >
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line })}>
                 {line.map((token, key) => (

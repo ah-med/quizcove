@@ -45,11 +45,13 @@ export function QuestionCard({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{question.question}</CardTitle>
+        <CardTitle className="break-words">{question.question}</CardTitle>
         {question.code && (
-          <Code variant="block" language={question.code.language}>
-            {question.code.code}
-          </Code>
+          <div className="w-full">
+            <Code variant="block" language={question.code.language}>
+              {question.code.code}
+            </Code>
+          </div>
         )}
       </CardHeader>
       <CardContent className="space-y-6">
@@ -57,11 +59,8 @@ export function QuestionCard({
           <RadioGroup value={selectedAnswers[0]} onValueChange={onAnswerSelect}>
             {question.options.map((option, index) => (
               <div key={index} className="flex items-center space-x-2">
-                <RadioGroupItem
-                  value={getOptionValue(option)}
-                  id={`option-${index}`}
-                />
-                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
+                <RadioGroupItem value={getOptionValue(option)} id={`option-${index}`} />
+                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer break-words">
                   <OptionLabel option={option} />
                 </Label>
               </div>
@@ -76,7 +75,7 @@ export function QuestionCard({
                   checked={selectedAnswers.includes(getOptionValue(option))}
                   onCheckedChange={() => onAnswerSelect(getOptionValue(option))}
                 />
-                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
+                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer break-words">
                   <OptionLabel option={option} />
                 </Label>
               </div>
