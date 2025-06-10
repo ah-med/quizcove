@@ -46,6 +46,1026 @@
       "correctAnswers": ["selector", "template or templateUrl"],
       "type": "multiple",
       "explanation": "The required metadata properties for an Angular component are 'selector' and either 'template' or 'templateUrl'. The selector defines how the component is used in HTML, while the template defines what the component renders."
+    },
+    {
+      "id": "angular-medium-5",
+      "question": "What is the correct syntax for adding a click event listener in an Angular template?",
+      "options": [
+        "(click)=\"handleClick()\"",
+        "on-click=\"handleClick()\"",
+        "@click=\"handleClick()\"",
+        "click=\"handleClick()\""
+      ],
+      "correctAnswers": ["(click)=\"handleClick()\""],
+      "type": "single",
+      "explanation": "In Angular, event binding uses parentheses () around the event name. The correct syntax is (click)=\"handleClick()\" where the event name is in parentheses followed by the method to call."
+    },
+    {
+      "id": "angular-medium-6",
+      "question": "How can you access the event object in an Angular event handler?",
+      "options": [
+        "Using the $event parameter",
+        "Using the event parameter",
+        "Using the this.event property",
+        "Using the @event decorator"
+      ],
+      "correctAnswers": ["Using the $event parameter"],
+      "type": "single",
+      "explanation": "In Angular, you can access the event object by using the $event parameter in your template. For example: (click)=\"handleClick($event)\" will pass the event object to your handler method."
+    },
+    {
+      "id": "angular-medium-7",
+      "question": "Which of the following are valid key modifiers in Angular event binding?",
+      "options": ["keyup.enter", "keydown.space", "keypress.escape", "All of the above"],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular supports various key modifiers for keyboard events. You can use keyup, keydown, or keypress followed by a dot and the key name (enter, space, escape, etc.) to filter specific key events."
+    },
+    {
+      "id": "angular-medium-8",
+      "question": "What is the purpose of using event modifiers like .stop and .prevent in Angular templates?",
+      "options": [
+        "To stop event propagation",
+        "To prevent default browser behavior",
+        "To improve performance",
+        "To add custom event handling"
+      ],
+      "correctAnswers": ["To stop event propagation", "To prevent default browser behavior"],
+      "type": "multiple",
+      "explanation": "Event modifiers in Angular templates serve specific purposes: .stop prevents event propagation (equivalent to event.stopPropagation()), and .prevent prevents the default browser behavior (equivalent to event.preventDefault())."
+    },
+    {
+      "id": "angular-medium-9",
+      "question": "What is the correct syntax for two-way binding in Angular templates?",
+      "options": ["[(property)]", "(property)", "[property]", "{{property}}"],
+      "correctAnswers": ["[(property)]"],
+      "type": "single",
+      "explanation": "Two-way binding in Angular uses the 'banana-in-a-box' syntax [(property)], which combines property binding [] and event binding (). This syntax allows for bidirectional data flow between the component and the template."
+    },
+    {
+      "id": "angular-medium-10",
+      "question": "What are the requirements for using two-way binding with form controls in Angular?",
+      "options": [
+        "Import FormsModule from @angular/forms",
+        "Use the ngModel directive",
+        "Define a property in the component",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "To use two-way binding with form controls, you need to: 1) Import FormsModule from @angular/forms, 2) Use the ngModel directive with the two-way binding syntax [(ngModel)], and 3) Define a property in the component to store the value."
+    },
+    {
+      "id": "angular-medium-11",
+      "question": "What is required in a child component to enable two-way binding with its parent?",
+      "options": [
+        "A model property using the model() function",
+        "An @Input() decorator",
+        "An @Output() decorator",
+        "A custom event emitter"
+      ],
+      "correctAnswers": ["A model property using the model() function"],
+      "type": "single",
+      "explanation": "In Angular, to enable two-way binding between components, the child component must use the model() function to create a model property. This is part of Angular's new model-based approach to two-way binding."
+    },
+    {
+      "id": "angular-medium-12",
+      "question": "Which of the following statements about two-way binding in Angular are true?",
+      "options": [
+        "It combines property binding and event binding",
+        "It can be used with both form controls and custom components",
+        "It requires the FormsModule for form controls",
+        "It automatically updates both the view and the model"
+      ],
+      "correctAnswers": [
+        "It combines property binding and event binding",
+        "It can be used with both form controls and custom components",
+        "It requires the FormsModule for form controls",
+        "It automatically updates both the view and the model"
+      ],
+      "type": "multiple",
+      "explanation": "Two-way binding in Angular combines property binding [] and event binding () to create bidirectional data flow. It works with both form controls (requiring FormsModule) and custom components (using model properties). The binding automatically keeps the view and model in sync."
+    },
+    {
+      "id": "angular-medium-13",
+      "question": "What is the correct syntax for a basic @if condition in Angular templates?",
+      "options": [
+        "@if (condition) { content }",
+        "*ngIf=\"condition\"",
+        "if (condition) { content }",
+        "@if condition { content }"
+      ],
+      "correctAnswers": ["@if (condition) { content }"],
+      "type": "single",
+      "explanation": "The @if block in Angular uses the syntax @if (condition) { content } where the condition is in parentheses and the content is in curly braces. This is part of Angular's new control flow syntax."
+    },
+    {
+      "id": "angular-medium-14",
+      "question": "Which of the following are valid contextual variables available in an @for block?",
+      "options": ["$index", "$first", "$last", "All of the above"],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular's @for block provides several contextual variables: $index (current index), $first (whether it's the first item), $last (whether it's the last item), $even (whether index is even), $odd (whether index is odd), and $count (total items)."
+    },
+    {
+      "id": "angular-medium-15",
+      "question": "What is the purpose of the 'track' expression in an @for block?",
+      "options": [
+        "To uniquely identify each item in the collection",
+        "To sort the items in the collection",
+        "To filter the items in the collection",
+        "To limit the number of items displayed"
+      ],
+      "correctAnswers": ["To uniquely identify each item in the collection"],
+      "type": "single",
+      "explanation": "The track expression in @for blocks helps Angular maintain a relationship between data and DOM nodes. It should use a unique identifier (like id or uuid) to optimize performance by minimizing DOM operations when data changes."
+    },
+    {
+      "id": "angular-medium-16",
+      "question": "Which of the following statements about @switch blocks in Angular are true?",
+      "options": [
+        "They use strict equality (===) for comparison",
+        "They don't have fallthrough behavior",
+        "They can include a @default block",
+        "They can have multiple @case blocks"
+      ],
+      "correctAnswers": [
+        "They use strict equality (===) for comparison",
+        "They don't have fallthrough behavior",
+        "They can include a @default block",
+        "They can have multiple @case blocks"
+      ],
+      "type": "multiple",
+      "explanation": "Angular's @switch blocks use strict equality (===) for comparisons, don't have fallthrough behavior (no need for break statements), can include a @default block for unmatched cases, and can have multiple @case blocks for different conditions."
+    },
+    {
+      "id": "angular-medium-17",
+      "question": "How can you save the result of a conditional expression in an @if block?",
+      "options": [
+        "Using the 'as' keyword",
+        "Using a let statement",
+        "Using a const declaration",
+        "Using a variable assignment"
+      ],
+      "correctAnswers": ["Using the 'as' keyword"],
+      "type": "single",
+      "explanation": "In Angular's @if blocks, you can save the result of a conditional expression using the 'as' keyword. For example: @if (user.profile.settings.startDate; as startDate) { ... }. This is useful for referencing longer expressions within the template."
+    },
+    {
+      "id": "angular-medium-18",
+      "question": "What is the correct syntax for using a pipe in an Angular template?",
+      "options": [
+        "{{ value | pipeName }}",
+        "{{ value -> pipeName }}",
+        "{{ value : pipeName }}",
+        "{{ value => pipeName }}"
+      ],
+      "correctAnswers": ["{{ value | pipeName }}"],
+      "type": "single",
+      "explanation": "Angular pipes use the vertical bar (|) character to transform values in templates. The syntax is {{ value | pipeName }} where value is the input and pipeName is the transformation to apply."
+    },
+    {
+      "id": "angular-medium-19",
+      "question": "Which of the following are built-in pipes in Angular?",
+      "options": ["DatePipe", "CurrencyPipe", "AsyncPipe", "All of the above"],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular provides several built-in pipes in the @angular/common package, including DatePipe for date formatting, CurrencyPipe for currency formatting, and AsyncPipe for handling async data from Promises or Observables."
+    },
+    {
+      "id": "angular-medium-20",
+      "question": "How do you pass parameters to a pipe in Angular?",
+      "options": [
+        "Using colons after the pipe name",
+        "Using parentheses after the pipe name",
+        "Using square brackets after the pipe name",
+        "Using curly braces after the pipe name"
+      ],
+      "correctAnswers": ["Using colons after the pipe name"],
+      "type": "single",
+      "explanation": "To pass parameters to a pipe in Angular, use the colon (:) character after the pipe name. For example: {{ value | date:'short' }} or {{ value | currency:'USD' }}. Multiple parameters are separated by additional colons."
+    },
+    {
+      "id": "angular-medium-21",
+      "question": "What are the requirements for creating a custom pipe in Angular?",
+      "options": [
+        "Use the @Pipe decorator",
+        "Implement the PipeTransform interface",
+        "Define a transform method",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "To create a custom pipe in Angular, you need to: 1) Use the @Pipe decorator with a name, 2) Implement the PipeTransform interface, and 3) Define a transform method that handles the value transformation."
+    },
+    {
+      "id": "angular-medium-22",
+      "question": "What is the difference between pure and impure pipes in Angular?",
+      "options": [
+        "Pure pipes only execute when primitive values change",
+        "Impure pipes execute on every change detection cycle",
+        "Pure pipes are more performant",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Pure pipes only execute when primitive values or object references change, making them more performant. Impure pipes execute on every change detection cycle and can detect changes within objects or arrays, but at the cost of performance."
+    },
+    {
+      "id": "angular-medium-23",
+      "question": "What is the correct way to chain multiple pipes in Angular?",
+      "options": [
+        "{{ value | pipe1 | pipe2 }}",
+        "{{ value | pipe1, pipe2 }}",
+        "{{ value | pipe1 + pipe2 }}",
+        "{{ value | pipe1 && pipe2 }}"
+      ],
+      "correctAnswers": ["{{ value | pipe1 | pipe2 }}"],
+      "type": "single",
+      "explanation": "To chain multiple pipes in Angular, use multiple pipe operators (|) in sequence. The pipes are executed from left to right, with each pipe receiving the output of the previous pipe as its input."
+    },
+    {
+      "id": "angular-medium-24",
+      "question": "What is the purpose of the ng-template element in Angular?",
+      "options": [
+        "To declare a template fragment that can be rendered dynamically",
+        "To create a reusable component",
+        "To define a service",
+        "To create a module"
+      ],
+      "correctAnswers": ["To declare a template fragment that can be rendered dynamically"],
+      "type": "single",
+      "explanation": "The ng-template element in Angular is used to declare a template fragment - a section of content that can be rendered dynamically or programmatically. The content inside ng-template is not rendered by default until explicitly rendered."
+    },
+    {
+      "id": "angular-medium-25",
+      "question": "Which of the following are ways to get a reference to a template fragment in Angular?",
+      "options": [
+        "Using a template reference variable",
+        "Using @ViewChild query",
+        "Injecting TemplateRef in a directive",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "There are three main ways to get a reference to a template fragment: 1) Using a template reference variable (#myFragment), 2) Using @ViewChild query in the component, and 3) Injecting TemplateRef in a directive applied to the ng-template element."
+    },
+    {
+      "id": "angular-medium-26",
+      "question": "How can you render a template fragment in Angular?",
+      "options": [
+        "Using NgTemplateOutlet directive",
+        "Using ViewContainerRef.createEmbeddedView()",
+        "Using *ngIf directive",
+        "Using *ngFor directive"
+      ],
+      "correctAnswers": [
+        "Using NgTemplateOutlet directive",
+        "Using ViewContainerRef.createEmbeddedView()"
+      ],
+      "type": "multiple",
+      "explanation": "Template fragments can be rendered in two ways: 1) Using the NgTemplateOutlet directive from @angular/common, which renders the fragment as a sibling to the element with the outlet, and 2) Using ViewContainerRef.createEmbeddedView() to programmatically render the fragment."
+    },
+    {
+      "id": "angular-medium-27",
+      "question": "How do you pass parameters to a template fragment in Angular?",
+      "options": [
+        "Using let- prefix in the template",
+        "Using ngTemplateOutletContext",
+        "Using createEmbeddedView context parameter",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "To pass parameters to a template fragment, you can: 1) Declare parameters in the template using let- prefix (e.g., let-pizzaTopping=\"topping\"), 2) Pass context using ngTemplateOutletContext when using NgTemplateOutlet, or 3) Pass context as the second argument to createEmbeddedView."
+    },
+    {
+      "id": "angular-medium-28",
+      "question": "What is the relationship between structural directives and ng-template?",
+      "options": [
+        "Structural directives use ng-template internally",
+        "The * syntax is shorthand for ng-template",
+        "Structural directives inject TemplateRef and ViewContainerRef",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Structural directives are closely related to ng-template. When you use the * syntax (e.g., *ngIf), Angular converts it to an ng-template. Structural directives typically inject both TemplateRef and ViewContainerRef to manage the rendering of template fragments."
+    },
+    {
+      "id": "angular-medium-29",
+      "question": "What happens to the content inside ng-template by default?",
+      "options": [
+        "It is not rendered",
+        "It is rendered immediately",
+        "It is rendered after a delay",
+        "It is rendered conditionally"
+      ],
+      "correctAnswers": ["It is not rendered"],
+      "type": "single",
+      "explanation": "By default, the content inside ng-template is not rendered to the DOM. It only becomes visible when explicitly rendered using NgTemplateOutlet or ViewContainerRef.createEmbeddedView(). This allows for dynamic and programmatic control over when and how the content is displayed."
+    },
+    {
+      "id": "angular-medium-30",
+      "question": "What is the main purpose of ng-container in Angular?",
+      "options": [
+        "To group elements without adding an extra DOM element",
+        "To create a new component",
+        "To define a service",
+        "To create a module"
+      ],
+      "correctAnswers": ["To group elements without adding an extra DOM element"],
+      "type": "single",
+      "explanation": "ng-container is a special element in Angular that groups multiple elements together or marks a location in a template without rendering a real element in the DOM. It's useful for applying structural directives without adding unnecessary wrapper elements."
+    },
+    {
+      "id": "angular-medium-31",
+      "question": "Which of the following are valid uses of ng-container?",
+      "options": [
+        "With structural directives like *ngIf and *ngFor",
+        "With NgComponentOutlet for dynamic component rendering",
+        "With NgTemplateOutlet for template fragment rendering",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "ng-container can be used with structural directives, NgComponentOutlet for dynamic component rendering, and NgTemplateOutlet for template fragment rendering. It's a versatile element that helps organize template structure without adding extra DOM elements."
+    },
+    {
+      "id": "angular-medium-32",
+      "question": "What happens to attribute bindings and event listeners on ng-container?",
+      "options": [
+        "They are ignored by Angular",
+        "They are applied to the first child element",
+        "They are applied to the parent element",
+        "They are stored for later use"
+      ],
+      "correctAnswers": ["They are ignored by Angular"],
+      "type": "single",
+      "explanation": "Angular ignores all attribute bindings and event listeners applied to ng-container, including those applied via directives. This is because ng-container is not rendered as a real DOM element."
+    },
+    {
+      "id": "angular-medium-33",
+      "question": "How can ng-container be used for dependency injection in templates?",
+      "options": [
+        "By applying directives to it",
+        "By using it as a service provider",
+        "By creating a new module",
+        "By defining a component"
+      ],
+      "correctAnswers": ["By applying directives to it"],
+      "type": "single",
+      "explanation": "When you apply a directive to ng-container, descendant elements can inject the directive or anything that the directive provides. This is useful for declaratively providing values to specific parts of your template."
+    },
+    {
+      "id": "angular-medium-34",
+      "question": "What is the difference between ng-container and ng-template?",
+      "options": [
+        "ng-container is rendered immediately while ng-template is not",
+        "ng-container doesn't create a DOM element while ng-template does",
+        "ng-container can't be referenced while ng-template can",
+        "ng-container is for grouping while ng-template is for templating"
+      ],
+      "correctAnswers": ["ng-container is for grouping while ng-template is for templating"],
+      "type": "single",
+      "explanation": "The main difference is their purpose: ng-container is primarily for grouping elements and applying structural directives without adding DOM elements, while ng-template is for creating template fragments that can be rendered dynamically."
+    },
+    {
+      "id": "angular-medium-35",
+      "question": "Which of the following statements about ng-container are true?",
+      "options": [
+        "It can be used to avoid unnecessary DOM elements",
+        "It can be used with structural directives",
+        "It can be used for dynamic component rendering",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "ng-container is a versatile element that can be used to avoid unnecessary DOM elements, work with structural directives, and render dynamic content. It's particularly useful when you need to apply multiple structural directives or group elements without adding extra markup."
+    },
+    {
+      "id": "angular-medium-36",
+      "question": "What are the two types of variable declarations in Angular templates?",
+      "options": [
+        "Local template variables and template reference variables",
+        "Global variables and local variables",
+        "Component variables and service variables",
+        "Static variables and dynamic variables"
+      ],
+      "correctAnswers": ["Local template variables and template reference variables"],
+      "type": "single",
+      "explanation": "Angular templates support two types of variables: local template variables (declared with @let) and template reference variables (declared with #). Each serves different purposes in template organization and data access."
+    },
+    {
+      "id": "angular-medium-37",
+      "question": "Which of the following statements about @let variables are true?",
+      "options": [
+        "They cannot be reassigned after declaration",
+        "They are automatically updated with expression changes",
+        "They are scoped to the current view and its descendants",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "@let variables in Angular templates cannot be reassigned after declaration, are automatically kept up-to-date with their expressions, and are scoped to the current view and its descendants. They cannot be accessed by parent views or siblings."
+    },
+    {
+      "id": "angular-medium-38",
+      "question": "What can template reference variables (#) refer to in Angular?",
+      "options": [
+        "DOM elements",
+        "Angular components",
+        "Directives with exportAs",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Template reference variables can refer to DOM elements, Angular components, directives with exportAs property, and TemplateRef instances from ng-template elements. They provide a way to access these elements from different parts of the template."
+    },
+    {
+      "id": "angular-medium-39",
+      "question": "How do you declare a template reference variable for a directive with exportAs?",
+      "options": [
+        "#variableName=\"exportAsName\"",
+        "#variableName:exportAsName",
+        "#variableName->exportAsName",
+        "#variableName@exportAsName"
+      ],
+      "correctAnswers": ["#variableName=\"exportAsName\""],
+      "type": "single",
+      "explanation": "To declare a template reference variable for a directive with exportAs, use the syntax #variableName=\"exportAsName\". For example: <section dropZone #firstZone=\"dropZone\">. The exportAs name must match what's defined in the directive."
+    },
+    {
+      "id": "angular-medium-40",
+      "question": "What is the scope of @let variables in Angular templates?",
+      "options": [
+        "Current view and its descendants",
+        "Entire component",
+        "Global application",
+        "Parent view and siblings"
+      ],
+      "correctAnswers": ["Current view and its descendants"],
+      "type": "single",
+      "explanation": "@let variables are scoped to the current view and its descendants. They cannot be accessed by parent views or siblings. A new view is created at component boundaries and where dynamic content might exist (control flow blocks, @defer blocks, or structural directives)."
+    },
+    {
+      "id": "angular-medium-41",
+      "question": "Which of the following are valid uses of template reference variables?",
+      "options": [
+        "Reading values from one part of the template in another",
+        "Marking elements for component queries",
+        "Accessing directive instances",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Template reference variables can be used to read values across the template, mark elements for component queries (like @ViewChild), and access directive instances. They provide a powerful way to interact with elements and their properties within the template."
+    },
+    {
+      "id": "angular-medium-42",
+      "question": "What is the main purpose of @defer blocks in Angular?",
+      "options": [
+        "To reduce initial bundle size by deferring non-critical content",
+        "To improve component organization",
+        "To handle error states",
+        "To manage component lifecycle"
+      ],
+      "correctAnswers": ["To reduce initial bundle size by deferring non-critical content"],
+      "type": "single",
+      "explanation": "@defer blocks reduce the initial bundle size by deferring the loading of code that isn't necessary for initial page rendering. This improves Core Web Vitals metrics like Largest Contentful Paint (LCP) and Time to First Byte (TTFB)."
+    },
+    {
+      "id": "angular-medium-43",
+      "question": "Which of the following are valid triggers for @defer blocks?",
+      "options": ["on idle", "on viewport", "on interaction", "All of the above"],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular's @defer blocks support multiple triggers including: on idle (default), on viewport (when content enters viewport), on interaction (user interaction), on hover, on immediate, and on timer. These triggers control when the deferred content is loaded."
+    },
+    {
+      "id": "angular-medium-44",
+      "question": "What are the requirements for dependencies to be deferred in @defer blocks?",
+      "options": [
+        "They must be standalone",
+        "They cannot be referenced outside @defer blocks",
+        "They must be lazy-loaded",
+        "They must be declared in a module"
+      ],
+      "correctAnswers": [
+        "They must be standalone",
+        "They cannot be referenced outside @defer blocks"
+      ],
+      "type": "multiple",
+      "explanation": "For dependencies to be deferred, they must be standalone components/directives/pipes and cannot be referenced outside of @defer blocks in the same file. Transitive dependencies can still be declared in NgModules."
+    },
+    {
+      "id": "angular-medium-45",
+      "question": "Which of the following are valid sub-blocks in @defer?",
+      "options": ["@placeholder", "@loading", "@error", "All of the above"],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "@defer blocks support three sub-blocks: @placeholder (shown before loading), @loading (shown during loading), and @error (shown if loading fails). Each serves a specific purpose in managing the deferred loading process."
+    },
+    {
+      "id": "angular-medium-46",
+      "question": "How can you prefetch deferred content in Angular?",
+      "options": [
+        "Using the prefetch keyword with triggers",
+        "Using lazy loading",
+        "Using eager loading",
+        "Using static imports"
+      ],
+      "correctAnswers": ["Using the prefetch keyword with triggers"],
+      "type": "single",
+      "explanation": "You can prefetch deferred content by using the prefetch keyword with triggers, separated from the main trigger by a semicolon. For example: @defer (on interaction; prefetch on idle) { ... }. This allows loading resources before they're needed."
+    },
+    {
+      "id": "angular-medium-47",
+      "question": "Which of the following are best practices for using @defer blocks?",
+      "options": [
+        "Avoid cascading loads with nested @defer blocks",
+        "Avoid deferring content visible in initial viewport",
+        "Use different triggers for nested blocks",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Best practices for @defer include: avoiding cascading loads with nested blocks, not deferring content visible in initial viewport (to prevent layout shifts), and using different triggers for nested blocks to prevent simultaneous loading."
+    },
+    {
+      "id": "angular-medium-48",
+      "question": "Which of the following value literals are supported in Angular expressions?",
+      "options": [
+        "String, Boolean, Number",
+        "Object, Array, null",
+        "Template string",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular expressions support various value literals including: strings, booleans, numbers, objects, arrays, null, and template strings. However, they do not support RegExp literals or tagged template strings."
+    },
+    {
+      "id": "angular-medium-49",
+      "question": "Which globals are supported in Angular expressions?",
+      "options": [
+        "undefined and $any",
+        "Number and Boolean",
+        "NaN and Infinity",
+        "parseInt and parseFloat"
+      ],
+      "correctAnswers": ["undefined and $any"],
+      "type": "single",
+      "explanation": "Angular expressions only support two globals: undefined and $any. Common JavaScript globals like Number, Boolean, NaN, Infinity, parseInt, and parseFloat are not supported in Angular expressions."
+    },
+    {
+      "id": "angular-medium-50",
+      "question": "Which of the following operators are supported in Angular expressions?",
+      "options": [
+        "Arithmetic operators (+, -, *, /, %)",
+        "Logical operators (&&, ||, !)",
+        "Comparison operators (<, <=, >, >=, ==, ===, !=, !==)",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular expressions support various operators including arithmetic, logical, and comparison operators. They also support the pipe operator (|) and optional chaining (?.), but do not support bitwise operators or assignment operators."
+    },
+    {
+      "id": "angular-medium-51",
+      "question": "What is the difference between Angular expressions and event listener statements?",
+      "options": [
+        "Event listeners support assignment operators",
+        "Event listeners don't support pipes",
+        "Event listeners are statements rather than expressions",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Event listener statements differ from expressions in three ways: 1) They support assignment operators (but not destructuring), 2) They don't support pipes, and 3) They are statements rather than expressions."
+    },
+    {
+      "id": "angular-medium-52",
+      "question": "Which of the following declarations are not supported in Angular expressions?",
+      "options": [
+        "Variable declarations (let, const)",
+        "Function declarations",
+        "Arrow functions",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular expressions do not support any type of declarations, including variable declarations (let, const), function declarations, arrow functions, or class declarations. These must be defined in the component class instead."
+    },
+    {
+      "id": "angular-medium-53",
+      "question": "How does Angular handle template variables that shadow component members?",
+      "options": [
+        "The template variable takes precedence",
+        "The component member takes precedence",
+        "It causes a compilation error",
+        "It depends on the declaration order"
+      ],
+      "correctAnswers": ["The template variable takes precedence"],
+      "type": "single",
+      "explanation": "When a template variable has the same name as a component member, the template variable shadows (takes precedence over) the component member. You can still access the component member by explicitly using 'this.' prefix."
+    },
+    {
+      "id": "angular-medium-54",
+      "question": "What is the behavior of optional chaining (?.) in Angular expressions?",
+      "options": [
+        "Returns null if the left side is null or undefined",
+        "Returns undefined if the left side is null or undefined",
+        "Throws an error if the left side is null or undefined",
+        "Returns the left side value if it's null or undefined"
+      ],
+      "correctAnswers": ["Returns null if the left side is null or undefined"],
+      "type": "single",
+      "explanation": "Angular's optional chaining operator (?.) behaves differently from standard JavaScript. When the left side is null or undefined, it returns null instead of undefined, which is a key difference from the standard implementation."
+    },
+    {
+      "id": "angular-medium-55",
+      "question": "How does Angular handle whitespace between elements by default?",
+      "options": [
+        "It ignores unnecessary whitespace",
+        "It preserves all whitespace",
+        "It converts whitespace to HTML entities",
+        "It adds special whitespace markers"
+      ],
+      "correctAnswers": ["It ignores unnecessary whitespace"],
+      "type": "single",
+      "explanation": "By default, Angular ignores whitespace between elements that it considers unnecessary. This includes newlines and indentation used for template formatting, which helps improve rendering performance by reducing the number of text nodes."
+    },
+    {
+      "id": "angular-medium-56",
+      "question": "What happens to collapsible whitespace inside text in Angular templates?",
+      "options": [
+        "It is collapsed to a single space",
+        "It is preserved exactly as written",
+        "It is converted to HTML entities",
+        "It is removed completely"
+      ],
+      "correctAnswers": ["It is collapsed to a single space"],
+      "type": "single",
+      "explanation": "Angular collapses multiple consecutive whitespace characters inside text to a single space character during template compilation. This matches browser behavior and reduces unnecessary whitespace in the rendered output."
+    },
+    {
+      "id": "angular-medium-57",
+      "question": "How can you preserve whitespace in an Angular template?",
+      "options": [
+        "Using preserveWhitespaces: true in @Component",
+        "Using the &ngsp; entity",
+        "Using CSS white-space property",
+        "Using HTML pre tags"
+      ],
+      "correctAnswers": [
+        "Using preserveWhitespaces: true in @Component",
+        "Using the &ngsp; entity"
+      ],
+      "type": "multiple",
+      "explanation": "There are two ways to preserve whitespace in Angular templates: 1) Set preserveWhitespaces: true in the @Component decorator to preserve all whitespace, or 2) Use the &ngsp; entity to preserve specific space characters."
+    },
+    {
+      "id": "angular-medium-58",
+      "question": "What are the performance implications of preserving whitespace in Angular templates?",
+      "options": [
+        "Increased number of text nodes",
+        "Slower rendering performance",
+        "Larger template size",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Preserving whitespace in Angular templates can negatively impact performance by: increasing the number of text nodes, slowing down rendering, and increasing template size. It should only be used when absolutely necessary."
+    },
+    {
+      "id": "angular-medium-59",
+      "question": "Which of the following statements about whitespace in Angular templates are true?",
+      "options": [
+        "Whitespace between elements is ignored by default",
+        "Multiple spaces in text are collapsed to one space",
+        "The &ngsp; entity preserves a single space",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Angular's whitespace handling includes: ignoring unnecessary whitespace between elements by default, collapsing multiple spaces in text to a single space, and providing the &ngsp; entity for preserving specific spaces. These features help optimize template rendering."
+    },
+    {
+      "id": "angular-medium-60",
+      "question": "When should you use preserveWhitespaces: true in an Angular component?",
+      "options": [
+        "When whitespace is critical for layout",
+        "When using pre-formatted text",
+        "When working with ASCII art",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "You should use preserveWhitespaces: true only in specific cases where whitespace is critical, such as: when whitespace affects layout, when working with pre-formatted text, or when displaying ASCII art. In most cases, the default whitespace handling is preferred for better performance."
+    },
+    {
+      "id": "angular-medium-61",
+      "question": "What is the main purpose of Angular Signals?",
+      "options": [
+        "To track state usage and optimize rendering updates",
+        "To handle HTTP requests",
+        "To manage component lifecycle",
+        "To handle form validation"
+      ],
+      "correctAnswers": ["To track state usage and optimize rendering updates"],
+      "type": "single",
+      "explanation": "Angular Signals is a system that granularly tracks how and where state is used throughout an application, allowing the framework to optimize rendering updates. It provides a way to manage reactive state with fine-grained control over updates."
+    },
+    {
+      "id": "angular-medium-62",
+      "question": "Which of the following are true about writable signals?",
+      "options": [
+        "They can be updated using .set()",
+        "They can be updated using .update()",
+        "They are created using the signal() function",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Writable signals are created using the signal() function with an initial value. They can be updated using either .set() for direct value assignment or .update() for computing a new value based on the previous one."
+    },
+    {
+      "id": "angular-medium-63",
+      "question": "What are the key characteristics of computed signals?",
+      "options": [
+        "They are read-only",
+        "They derive their value from other signals",
+        "They are lazily evaluated and memoized",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Computed signals are read-only signals that derive their value from other signals. They are lazily evaluated (only when first read) and memoized (cached until dependencies change). They cannot be directly assigned values."
+    },
+    {
+      "id": "angular-medium-64",
+      "question": "How do effects work in Angular Signals?",
+      "options": [
+        "They run when signal values change",
+        "They always run at least once",
+        "They execute asynchronously during change detection",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Effects are operations that run whenever signal values change. They always run at least once, execute asynchronously during change detection, and track their dependencies dynamically based on the signals read in their most recent execution."
+    },
+    {
+      "id": "angular-medium-65",
+      "question": "When should you use effects in Angular?",
+      "options": [
+        "For logging data changes",
+        "For syncing with localStorage",
+        "For custom DOM behavior",
+        "For propagating state changes"
+      ],
+      "correctAnswers": [
+        "For logging data changes",
+        "For syncing with localStorage",
+        "For custom DOM behavior"
+      ],
+      "type": "multiple",
+      "explanation": "Effects are useful for: logging data changes, syncing with localStorage, adding custom DOM behavior, and performing custom rendering. However, they should not be used for propagating state changes, which is better handled by computed signals."
+    },
+    {
+      "id": "angular-medium-66",
+      "question": "What is the purpose of the untracked function in Angular Signals?",
+      "options": [
+        "To read signals without creating dependencies",
+        "To disable signal updates",
+        "To remove signal tracking",
+        "To clear signal values"
+      ],
+      "correctAnswers": ["To read signals without creating dependencies"],
+      "type": "single",
+      "explanation": "The untracked function allows reading signals without creating dependencies. This is useful when you need to read a signal's value within a reactive function (like computed or effect) but don't want changes to that signal to trigger updates."
+    },
+    {
+      "id": "angular-medium-67",
+      "question": "How can you provide custom equality checking for signals?",
+      "options": [
+        "Using the equal option in signal creation",
+        "Using the equals function",
+        "Using the compare option",
+        "Using the equality decorator"
+      ],
+      "correctAnswers": ["Using the equal option in signal creation"],
+      "type": "single",
+      "explanation": "You can provide a custom equality function when creating a signal using the equal option. This function determines whether a new value is different from the previous one, allowing for custom comparison logic beyond the default referential equality."
+    },
+    {
+      "id": "angular-medium-68",
+      "question": "What is the purpose of effect cleanup functions?",
+      "options": [
+        "To cancel long-running operations",
+        "To clean up resources when effects are destroyed",
+        "To handle effect re-runs",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "Effect cleanup functions are used to: cancel long-running operations, clean up resources when effects are destroyed, and handle cleanup before effect re-runs. They help prevent memory leaks and ensure proper resource management."
+    },
+    {
+      "id": "angular-medium-69",
+      "question": "What is the main purpose of linkedSignal in Angular?",
+      "options": [
+        "To create a signal that depends on other state",
+        "To link multiple signals together",
+        "To create bidirectional signal bindings",
+        "To handle signal cleanup"
+      ],
+      "correctAnswers": ["To create a signal that depends on other state"],
+      "type": "single",
+      "explanation": "linkedSignal is used to create a signal that holds state intrinsically linked to some other state. It ensures the signal always has a valid value by automatically updating when its linked state changes."
+    },
+    {
+      "id": "angular-medium-70",
+      "question": "What is the key difference between signal and linkedSignal?",
+      "options": [
+        "linkedSignal takes a computation function instead of a default value",
+        "linkedSignal cannot be updated manually",
+        "linkedSignal only works with arrays",
+        "linkedSignal requires a source signal"
+      ],
+      "correctAnswers": ["linkedSignal takes a computation function instead of a default value"],
+      "type": "single",
+      "explanation": "The main difference is that linkedSignal takes a computation function (like computed) instead of a default value. This function is used to determine the signal's value based on other state, and the value updates automatically when the computation result changes."
+    },
+    {
+      "id": "angular-medium-71",
+      "question": "How can you create a linkedSignal with source and computation?",
+      "options": [
+        "Using an object with source and computation properties",
+        "Using a tuple of source and computation",
+        "Using a decorator",
+        "Using a factory function"
+      ],
+      "correctAnswers": ["Using an object with source and computation properties"],
+      "type": "single",
+      "explanation": "You can create a linkedSignal by passing an object with source and computation properties. The source can be any signal, and the computation function receives the new source value and a previous object containing both the previous source and computation values."
+    },
+    {
+      "id": "angular-medium-72",
+      "question": "What information is available in the previous parameter of a linkedSignal computation?",
+      "options": [
+        "The previous source value",
+        "The previous computation result",
+        "Both source and computation values",
+        "Only the signal's history"
+      ],
+      "correctAnswers": ["Both source and computation values"],
+      "type": "single",
+      "explanation": "The previous parameter in a linkedSignal computation provides both the previous source value (previous.source) and the previous computation result (previous.value). This allows for making decisions based on both the old and new state."
+    },
+    {
+      "id": "angular-medium-73",
+      "question": "How can you provide custom equality comparison for a linkedSignal?",
+      "options": [
+        "Using the equal option in the configuration object",
+        "Using a separate equality function",
+        "Using a decorator",
+        "Using a factory method"
+      ],
+      "correctAnswers": ["Using the equal option in the configuration object"],
+      "type": "single",
+      "explanation": "You can provide custom equality comparison for a linkedSignal by including an equal option in the configuration object. This function determines whether the new computation result is different from the previous one, allowing for custom comparison logic."
+    },
+    {
+      "id": "angular-medium-74",
+      "question": "Which of the following are valid use cases for linkedSignal?",
+      "options": [
+        "Maintaining selected items in a list",
+        "Preserving user selections when options change",
+        "Creating dependent form controls",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "linkedSignal is useful for various scenarios including: maintaining selected items in a list, preserving user selections when options change, and creating dependent form controls. It's particularly helpful when you need to ensure a signal's value remains valid as related state changes."
+    },
+    {
+      "id": "angular-medium-75",
+      "question": "What happens when the source of a linkedSignal changes?",
+      "options": [
+        "The computation function is called with the new source value",
+        "The signal's value is updated to the computation result",
+        "Previous values are available for comparison",
+        "All of the above"
+      ],
+      "correctAnswers": ["All of the above"],
+      "type": "multiple",
+      "explanation": "When a linkedSignal's source changes: the computation function is called with the new source value, the signal's value is updated to the computation result, and the previous values (both source and computation) are available for making decisions about the new value."
+    },
+    {
+      "id": "angular-medium-76",
+      "question": "What is the main purpose of Resource in Angular Signals?",
+      "options": [
+        "To handle asynchronous data in signal-based code",
+        "To manage component lifecycle",
+        "To handle HTTP requests",
+        "To manage state transitions"
+      ],
+      "correctAnswers": ["To handle asynchronous data in signal-based code"],
+      "type": "single",
+      "explanation": "Resource is designed to incorporate async data into Angular's signal-based code. While most signal APIs are synchronous, Resource provides a way to handle asynchronous operations, particularly useful for fetching data from servers."
+    },
+    {
+      "id": "angular-medium-77",
+      "question": "What are the two main properties required when creating a Resource?",
+      "options": [
+        "params and loader",
+        "source and computation",
+        "value and status",
+        "signal and effect"
+      ],
+      "correctAnswers": ["params and loader"],
+      "type": "single",
+      "explanation": "The resource function requires a ResourceOptions object with two main properties: params (a reactive computation that produces parameter values) and loader (an async function that retrieves state)."
+    },
+    {
+      "id": "angular-medium-78",
+      "question": "What information is available in the ResourceLoaderParams object?",
+      "options": [
+        "params, previous, and abortSignal",
+        "value, status, and error",
+        "source, target, and options",
+        "signal, effect, and context"
+      ],
+      "correctAnswers": ["params, previous, and abortSignal"],
+      "type": "single",
+      "explanation": "The ResourceLoaderParams object contains three properties: params (the value of the resource's params computation), previous (the previous ResourceStatus), and abortSignal (an AbortSignal for request cancellation)."
+    },
+    {
+      "id": "angular-medium-79",
+      "question": "Which of the following are valid ResourceStatus values?",
+      "options": [
+        "'idle', 'error', 'loading'",
+        "'pending', 'resolved', 'rejected'",
+        "'active', 'inactive', 'completed'",
+        "'initial', 'processing', 'done'"
+      ],
+      "correctAnswers": ["'idle', 'error', 'loading'"],
+      "type": "single",
+      "explanation": "ResourceStatus includes values like 'idle' (no valid request), 'error' (loader encountered error), 'loading' (loader running), 'reloading' (loader running from reload), 'resolved' (loader completed), and 'local' (value set locally)."
+    },
+    {
+      "id": "angular-medium-80",
+      "question": "How can you programmatically trigger a resource's loader?",
+      "options": [
+        "Using the reload() method",
+        "Using the refresh() method",
+        "Using the update() method",
+        "Using the set() method"
+      ],
+      "correctAnswers": ["Using the reload() method"],
+      "type": "single",
+      "explanation": "You can programmatically trigger a resource's loader by calling the reload() method on the resource object. This is useful when you need to manually refresh the data."
+    },
+    {
+      "id": "angular-medium-81",
+      "question": "What happens when the params computation returns undefined?",
+      "options": [
+        "The loader function does not run and status becomes 'idle'",
+        "The loader function runs with undefined params",
+        "An error is thrown",
+        "The previous value is maintained"
+      ],
+      "correctAnswers": ["The loader function does not run and status becomes 'idle'"],
+      "type": "single",
+      "explanation": "When the params computation returns undefined, the loader function does not execute and the resource's status becomes 'idle'. This is useful for conditional loading scenarios."
+    },
+    {
+      "id": "angular-medium-82",
+      "question": "Which of the following are signal properties available on a Resource?",
+      "options": [
+        "value, hasValue, error, isLoading, status",
+        "data, loading, error, success",
+        "result, pending, failed, complete",
+        "state, status, error, loading"
+      ],
+      "correctAnswers": ["value, hasValue, error, isLoading, status"],
+      "type": "single",
+      "explanation": "A Resource provides several signal properties: value (most recent value), hasValue (whether a value exists), error (most recent error), isLoading (whether loader is running), and status (specific ResourceStatus)."
+    },
+    {
+      "id": "angular-medium-83",
+      "question": "How does a Resource handle concurrent requests?",
+      "options": [
+        "It aborts outstanding requests when params change",
+        "It queues multiple requests",
+        "It merges concurrent requests",
+        "It ignores new requests while loading"
+      ],
+      "correctAnswers": ["It aborts outstanding requests when params change"],
+      "type": "single",
+      "explanation": "A Resource automatically aborts any outstanding loading operation if the params computation changes while the resource is loading. This prevents race conditions and ensures only the most recent request's result is used."
     }
   ]
 }

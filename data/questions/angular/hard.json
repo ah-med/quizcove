@@ -289,6 +289,1508 @@
       "correctAnswers": ["Using CSS custom properties (variables) for shared styles"],
       "type": "single",
       "explanation": "While ::ng-deep was previously used to style child components, it is now deprecated. The recommended approach is to use CSS custom properties (variables) for shared styles. This approach: 1) Maintains proper encapsulation, 2) Provides better maintainability, 3) Allows for dynamic style updates, 4) Works with Angular's view encapsulation, and 5) Follows modern best practices. The parent component can define the variables, and child components can use them while maintaining their own style boundaries."
+    },
+    {
+      "id": "angular-hard-21",
+      "question": "Which of the following statements about Angular's new signal-based inputs are correct?",
+      "options": [
+        "Signal-based inputs are recorded statically at compile-time",
+        "Signal-based inputs can be added or removed at runtime",
+        "Signal-based inputs are inherited by child classes",
+        "Signal-based inputs can only be used in component property initializers",
+        "Signal-based inputs are case-insensitive"
+      ],
+      "correctAnswers": [
+        "Signal-based inputs are recorded statically at compile-time",
+        "Signal-based inputs are inherited by child classes",
+        "Signal-based inputs can only be used in component property initializers"
+      ],
+      "type": "multiple",
+      "explanation": "Signal-based inputs in Angular are recorded statically at compile-time, cannot be modified at runtime, and are inherited by child classes. They must be used in component property initializers and are case-sensitive. This is part of Angular's move towards a more type-safe and predictable input system."
+    },
+    {
+      "id": "angular-hard-22",
+      "question": "Which of the following is the correct way to declare a required input using the new signal-based approach?",
+      "options": [
+        "value = input.required<number>();",
+        "value = input<number>({required: true});",
+        "@Input({required: true}) value: number;",
+        "value = input<number>(0, {required: true});",
+        "value = required.input<number>();"
+      ],
+      "correctAnswers": ["value = input.required<number>();"],
+      "type": "single",
+      "explanation": "The correct syntax for declaring a required input using the new signal-based approach is `input.required<type>()`. This ensures the input must be provided when using the component, and TypeScript will enforce this at compile time. The other options either use incorrect syntax or mix the old decorator-based approach with the new signal-based approach."
+    },
+    {
+      "id": "angular-hard-23",
+      "question": "Which of the following statements about input transforms in Angular are correct?",
+      "options": [
+        "Input transforms must be pure functions",
+        "Input transforms can be set conditionally at runtime",
+        "Input transforms can access component state",
+        "Input transforms can be used with both signal-based and decorator-based inputs",
+        "Input transforms can return any type"
+      ],
+      "correctAnswers": [
+        "Input transforms must be pure functions",
+        "Input transforms can be used with both signal-based and decorator-based inputs"
+      ],
+      "type": "multiple",
+      "explanation": "Input transforms in Angular must be pure functions and cannot access component state or be set conditionally. They work with both signal-based and decorator-based inputs, but the transform function's parameter type determines what types can be set to the input in templates. This ensures predictable behavior and type safety."
+    },
+    {
+      "id": "angular-hard-24",
+      "question": "Which of the following is the correct way to use a model input for two-way binding in a component?",
+      "options": [
+        "value = model<number>();",
+        "value = input<number>();",
+        "@Input() value: number;",
+        "value = model.required<number>();",
+        "value = twoWay.input<number>();"
+      ],
+      "correctAnswers": ["value = model<number>();"],
+      "type": "single",
+      "explanation": "The `model` function is used to create a model input that supports two-way binding. When you declare a model input, Angular automatically creates a corresponding output with the 'Change' suffix. This allows for two-way binding using the 'banana-in-a-box' syntax [(value)] in templates."
+    },
+    {
+      "id": "angular-hard-25",
+      "question": "Which of the following statements about input aliases in Angular are correct?",
+      "options": [
+        "Input aliases can be used to change the name of an input in templates",
+        "Input aliases can be used to change the name of an input in the component class",
+        "Input aliases can be used to change the type of an input",
+        "Input aliases can be used to make an input required",
+        "Input aliases can be used to add validation to an input"
+      ],
+      "correctAnswers": ["Input aliases can be used to change the name of an input in templates"],
+      "type": "single",
+      "explanation": "Input aliases in Angular allow you to change how an input is referenced in templates while keeping the original property name in the component class. This is useful for maintaining consistent internal naming while providing a different public API. Aliases don't affect the input's type, required status, or validation."
+    },
+    {
+      "id": "angular-hard-26",
+      "question": "Which of the following statements about Angular's new signal-based outputs are correct?",
+      "options": [
+        "Outputs can emit any type of data",
+        "Outputs can only emit primitive values",
+        "Outputs can be used to raise custom events",
+        "Outputs can bubble up the DOM like native events",
+        "Outputs can only be used in component property initializers"
+      ],
+      "correctAnswers": [
+        "Outputs can emit any type of data",
+        "Outputs can be used to raise custom events",
+        "Outputs can only be used in component property initializers"
+      ],
+      "type": "multiple",
+      "explanation": "Angular's signal-based outputs can emit any type of data (primitives, objects, etc.) and are used to raise custom events. Unlike native DOM events, they don't bubble up the DOM. The output function can only be called in component property initializers, similar to inputs."
+    },
+    {
+      "id": "angular-hard-27",
+      "question": "Which of the following is the correct way to emit an event using the new signal-based output approach?",
+      "options": [
+        "this.valueChanged.emit(newValue);",
+        "this.valueChanged.next(newValue);",
+        "this.valueChanged.set(newValue);",
+        "this.valueChanged.trigger(newValue);",
+        "this.valueChanged.publish(newValue);"
+      ],
+      "correctAnswers": ["this.valueChanged.emit(newValue);"],
+      "type": "single",
+      "explanation": "The correct way to emit an event using the new signal-based output approach is to use the `emit` method. This is different from the old EventEmitter approach which used `next`. The `emit` method is part of the OutputEmitterRef interface returned by the output function."
+    },
+    {
+      "id": "angular-hard-28",
+      "question": "Which of the following statements about output aliases in Angular are correct?",
+      "options": [
+        "Output aliases can be used to change the event name in templates",
+        "Output aliases can be used to change the event name in the component class",
+        "Output aliases can be used to change the event type",
+        "Output aliases can be used to make an output required",
+        "Output aliases can be used to add validation to an output"
+      ],
+      "correctAnswers": ["Output aliases can be used to change the event name in templates"],
+      "type": "single",
+      "explanation": "Output aliases in Angular allow you to change how an output is referenced in templates while keeping the original property name in the component class. This is useful for maintaining consistent internal naming while providing a different public API. Aliases don't affect the output's type or behavior."
+    },
+    {
+      "id": "angular-hard-29",
+      "question": "Which of the following is the correct way to programmatically subscribe to an output event?",
+      "options": [
+        "componentRef.instance.someEvent.subscribe(event => console.log(event));",
+        "componentRef.instance.someEvent.on(event => console.log(event));",
+        "componentRef.instance.someEvent.listen(event => console.log(event));",
+        "componentRef.instance.someEvent.addListener(event => console.log(event));",
+        "componentRef.instance.someEvent.attach(event => console.log(event));"
+      ],
+      "correctAnswers": ["componentRef.instance.someEvent.subscribe(event => console.log(event));"],
+      "type": "single",
+      "explanation": "When creating a component dynamically, you can subscribe to output events using the `subscribe` method on the output property. Angular automatically cleans up these subscriptions when the component is destroyed, but you can also manually unsubscribe using the returned subscription object."
+    },
+    {
+      "id": "angular-hard-30",
+      "question": "Which of the following statements about output naming conventions in Angular are correct?",
+      "options": [
+        "Output names should be in camelCase",
+        "Output names should be prefixed with 'on'",
+        "Output names should match DOM event names",
+        "Output names should be in PascalCase",
+        "Output names should be in kebab-case"
+      ],
+      "correctAnswers": ["Output names should be in camelCase"],
+      "type": "single",
+      "explanation": "Angular's best practices recommend using camelCase for output names and avoiding prefixes like 'on'. This helps maintain consistency with Angular's style guide and makes it clear that these are custom events rather than native DOM events. The naming should be descriptive of the event being emitted."
+    },
+    {
+      "id": "angular-hard-31",
+      "question": "Which of the following statements about `<ng-content>` in Angular are correct?",
+      "options": [
+        "`<ng-content>` is processed at build-time by Angular's compiler",
+        "`<ng-content>` can be conditionally included with @if or @for",
+        "`<ng-content>` can have directives or styles applied to it",
+        "`<ng-content>` is a DOM element that can be manipulated at runtime",
+        "`<ng-content>` can be used to project content from parent to child components"
+      ],
+      "correctAnswers": [
+        "`<ng-content>` is processed at build-time by Angular's compiler",
+        "`<ng-content>` can be used to project content from parent to child components"
+      ],
+      "type": "multiple",
+      "explanation": "`<ng-content>` is a special placeholder that tells Angular where to render content. It is processed at build-time and cannot be conditionally included or have directives/styles applied to it. It's not a DOM element but rather a marker for content projection from parent to child components."
+    },
+    {
+      "id": "angular-hard-32",
+      "question": "Which of the following is the correct way to create multiple content placeholders in a component?",
+      "options": [
+        "Using multiple `<ng-content>` elements with different select attributes",
+        "Using multiple `<ng-content>` elements with different class names",
+        "Using a single `<ng-content>` with multiple selectors",
+        "Using `<ng-content>` with an array of selectors",
+        "Using `<ng-content>` with a comma-separated list of selectors"
+      ],
+      "correctAnswers": ["Using multiple `<ng-content>` elements with different select attributes"],
+      "type": "single",
+      "explanation": "To create multiple content placeholders, you use separate `<ng-content>` elements with different `select` attributes. Each `select` attribute can use CSS selectors to determine which content goes where. For example: `<ng-content select='card-title'></ng-content>` and `<ng-content select='card-body'></ng-content>`."
+    },
+    {
+      "id": "angular-hard-33",
+      "question": "Which of the following statements about fallback content in `<ng-content>` are correct?",
+      "options": [
+        "Fallback content is shown when no matching content is provided",
+        "Fallback content can be dynamic based on component state",
+        "Fallback content must be static text only",
+        "Fallback content is defined inside the `<ng-content>` element",
+        "Fallback content can include other components"
+      ],
+      "correctAnswers": [
+        "Fallback content is shown when no matching content is provided",
+        "Fallback content is defined inside the `<ng-content>` element"
+      ],
+      "type": "multiple",
+      "explanation": "Fallback content is defined by adding child content inside the `<ng-content>` element. It is shown when no matching content is provided by the parent component. The fallback content is static and cannot be dynamic or include other components."
+    },
+    {
+      "id": "angular-hard-34",
+      "question": "Which of the following is the correct way to use `ngProjectAs` to alias content for projection?",
+      "options": [
+        "<div ngProjectAs='card-title'>Hello</div>",
+        "<div [ngProjectAs]='card-title'>Hello</div>",
+        "<div ngProjectAs=\"card-title\">Hello</div>",
+        "<div [ngProjectAs]=\"'card-title'\">Hello</div>",
+        "<div ngProjectAs={card-title}>Hello</div>"
+      ],
+      "correctAnswers": ["<div ngProjectAs='card-title'>Hello</div>"],
+      "type": "single",
+      "explanation": "The `ngProjectAs` attribute is used to specify a CSS selector for content projection. It must be used with a static value (not a binding) and should be written as `ngProjectAs='selector'`. This allows elements to be projected into specific `<ng-content>` placeholders even if they don't match the selector naturally."
+    },
+    {
+      "id": "angular-hard-35",
+      "question": "Which of the following statements about content projection and view encapsulation are correct?",
+      "options": [
+        "Projected content maintains its original styling context",
+        "Projected content inherits the component's view encapsulation",
+        "Projected content can be styled by the receiving component",
+        "Projected content can be styled by the parent component",
+        "Projected content can be styled by both parent and child components"
+      ],
+      "correctAnswers": [
+        "Projected content maintains its original styling context",
+        "Projected content can be styled by the parent component"
+      ],
+      "type": "multiple",
+      "explanation": "When content is projected, it maintains its original styling context from the parent component. The parent component's styles can still affect the projected content, but the receiving component's view encapsulation does not apply to the projected content. This is important for maintaining proper style isolation in Angular applications."
+    },
+    {
+      "id": "angular-hard-36",
+      "question": "Which of the following statements about host elements in Angular are correct?",
+      "options": [
+        "The host element is the DOM element that matches the component's selector",
+        "The component's template is rendered inside the host element",
+        "A component can have multiple host elements",
+        "The host element is always a custom HTML element",
+        "The host element is created after the component's template is rendered"
+      ],
+      "correctAnswers": [
+        "The host element is the DOM element that matches the component's selector",
+        "The component's template is rendered inside the host element"
+      ],
+      "type": "multiple",
+      "explanation": "The host element is the DOM element that matches the component's selector. When Angular renders a component, it places all the template content inside this host element. A component can only have one host element, and it can be any valid HTML element that matches the selector, not just custom elements."
+    },
+    {
+      "id": "angular-hard-37",
+      "question": "Which of the following is the correct way to bind properties to a component's host element?",
+      "options": [
+        "Using the host property in the @Component decorator",
+        "Using @HostBinding decorator on class properties",
+        "Using @HostListener decorator on class methods",
+        "Using the host element's tag name in the template",
+        "Using the :host selector in the component's styles"
+      ],
+      "correctAnswers": [
+        "Using the host property in the @Component decorator",
+        "Using @HostBinding decorator on class properties"
+      ],
+      "type": "multiple",
+      "explanation": "There are two ways to bind properties to a host element: using the `host` property in the @Component decorator (preferred) or using the @HostBinding decorator (for backwards compatibility). The host property allows binding properties, attributes, and events to the host element in a more maintainable way."
+    },
+    {
+      "id": "angular-hard-38",
+      "question": "Which of the following is the correct syntax for binding an event to a host element using the host property?",
+      "options": [
+        {
+          "text": "Using parentheses syntax",
+          "code": {
+            "code": "'(click)': 'handleClick($event)'",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using square brackets syntax",
+          "code": {
+            "code": "[click]='handleClick($event)'",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using at symbol syntax",
+          "code": {
+            "code": "@click='handleClick($event)'",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using on prefix syntax",
+          "code": {
+            "code": "onClick='handleClick($event)'",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using plain event name",
+          "code": {
+            "code": "click='handleClick($event)'",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using parentheses syntax"],
+      "type": "single",
+      "explanation": "When using the host property to bind events, the syntax is '(eventName)': 'handler($event)'. The parentheses around the event name indicate it's an event binding, and the handler method can receive the event object as a parameter."
+    },
+    {
+      "id": "angular-hard-39",
+      "question": "Which of the following statements about binding collisions between component host bindings and instance bindings are correct?",
+      "options": [
+        "Static instance bindings override static host bindings",
+        "Dynamic bindings always override static bindings",
+        "Component host bindings override dynamic instance bindings",
+        "The most recently defined binding always wins",
+        "Binding collisions are resolved at runtime"
+      ],
+      "correctAnswers": [
+        "Static instance bindings override static host bindings",
+        "Dynamic bindings always override static bindings",
+        "Component host bindings override dynamic instance bindings"
+      ],
+      "type": "multiple",
+      "explanation": "When there's a conflict between component host bindings and instance bindings, the following rules apply: 1) Static instance bindings override static host bindings, 2) Dynamic bindings (using []) override static bindings, and 3) Component host bindings override dynamic instance bindings. These rules are applied at compile time, not runtime."
+    },
+    {
+      "id": "angular-hard-40",
+      "question": "Which of the following is the correct way to bind a class to a host element based on a component property?",
+      "options": [
+        {
+          "text": "Using class property binding with dot notation",
+          "code": {
+            "code": "'[class.active]': 'isActive'",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using class property binding without brackets",
+          "code": {
+            "code": "'class.active': 'isActive'",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using attribute binding",
+          "code": {
+            "code": "'[active]': 'isActive'",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using class binding with ternary operator",
+          "code": {
+            "code": "'class': 'isActive ? \"active\" : \"\"'",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using class binding with array syntax",
+          "code": {
+            "code": "'[class]': 'isActive ? \"active\" : \"\"'",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using class property binding with dot notation"],
+      "type": "single",
+      "explanation": "To bind a class to a host element based on a component property, use the syntax '[class.className]': 'property'. This will add the class when the property is true and remove it when false. The square brackets indicate a property binding, and the dot notation specifies which class to toggle."
+    },
+    {
+      "id": "angular-hard-41",
+      "question": "Which of the following statements about Angular's component lifecycle hooks are correct?",
+      "options": [
+        "ngOnInit runs after all inputs are initialized",
+        "ngOnChanges runs before ngOnInit during initialization",
+        "ngDoCheck runs before every change detection cycle",
+        "ngAfterViewInit runs after the component's view is initialized",
+        "ngOnDestroy runs when the component is removed from the DOM"
+      ],
+      "correctAnswers": [
+        "ngOnInit runs after all inputs are initialized",
+        "ngOnChanges runs before ngOnInit during initialization",
+        "ngDoCheck runs before every change detection cycle",
+        "ngAfterViewInit runs after the component's view is initialized",
+        "ngOnDestroy runs when the component is removed from the DOM"
+      ],
+      "type": "multiple",
+      "explanation": "Angular's lifecycle hooks follow a specific order: 1) ngOnChanges runs first during initialization, 2) ngOnInit runs after all inputs are initialized, 3) ngDoCheck runs before each change detection cycle, 4) ngAfterViewInit runs after the view is initialized, and 5) ngOnDestroy runs when the component is removed from the DOM."
+    },
+    {
+      "id": "angular-hard-42",
+      "question": "Which of the following is the correct way to handle component cleanup using DestroyRef?",
+      "options": [
+        {
+          "text": "Using onDestroy callback in constructor",
+          "code": {
+            "code": "constructor() {\n  inject(DestroyRef).onDestroy(() => {\n    console.log('Component destroyed');\n  });\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using onDestroy callback in ngOnInit",
+          "code": {
+            "code": "ngOnInit() {\n  inject(DestroyRef).onDestroy(() => {\n    console.log('Component destroyed');\n  });\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using onDestroy callback in ngAfterViewInit",
+          "code": {
+            "code": "ngAfterViewInit() {\n  inject(DestroyRef).onDestroy(() => {\n    console.log('Component destroyed');\n  });\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using onDestroy callback in ngDoCheck",
+          "code": {
+            "code": "ngDoCheck() {\n  inject(DestroyRef).onDestroy(() => {\n    console.log('Component destroyed');\n  });\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using onDestroy callback in ngOnChanges",
+          "code": {
+            "code": "ngOnChanges() {\n  inject(DestroyRef).onDestroy(() => {\n    console.log('Component destroyed');\n  });\n}",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using onDestroy callback in constructor"],
+      "type": "single",
+      "explanation": "DestroyRef should be used in the constructor to register cleanup callbacks. This ensures the cleanup is registered early in the component's lifecycle and can be used to keep setup code close to cleanup code, rather than putting all cleanup code in ngOnDestroy."
+    },
+    {
+      "id": "angular-hard-43",
+      "question": "Which of the following statements about ngOnChanges are correct?",
+      "options": [
+        "It receives a SimpleChanges object as a parameter",
+        "It runs before ngOnInit during initialization",
+        "It only runs when inputs change",
+        "It can access both previous and current values of inputs",
+        "It runs after the component's template is checked"
+      ],
+      "correctAnswers": [
+        "It receives a SimpleChanges object as a parameter",
+        "It runs before ngOnInit during initialization",
+        "It only runs when inputs change",
+        "It can access both previous and current values of inputs"
+      ],
+      "type": "multiple",
+      "explanation": "ngOnChanges is called when any input property changes. It receives a SimpleChanges object that contains previous and current values for each changed input. It runs before ngOnInit during initialization and before the component's template is checked. It only runs when there are actual changes to input properties."
+    },
+    {
+      "id": "angular-hard-44",
+      "question": "Which of the following statements about afterNextRender and afterEveryRender are correct?",
+      "options": [
+        "They must be called in an injection context",
+        "They run after all components are rendered to the DOM",
+        "They can be used to perform manual DOM operations",
+        "They run during server-side rendering",
+        "They support different phases for read and write operations"
+      ],
+      "correctAnswers": [
+        "They must be called in an injection context",
+        "They run after all components are rendered to the DOM",
+        "They can be used to perform manual DOM operations",
+        "They support different phases for read and write operations"
+      ],
+      "type": "multiple",
+      "explanation": "afterNextRender and afterEveryRender are application-wide hooks that run after all components are rendered to the DOM. They must be called in an injection context (typically a constructor) and can be used for manual DOM operations. They support different phases (earlyRead, mixedReadWrite, write, read) to optimize DOM operations and prevent layout thrashing. They do not run during server-side rendering."
+    },
+    {
+      "id": "angular-hard-45",
+      "question": "Which of the following lifecycle hooks should be avoided due to performance concerns?",
+      "options": [
+        "ngDoCheck",
+        "ngAfterContentChecked",
+        "ngAfterViewChecked",
+        "afterEveryRender",
+        "ngOnChanges"
+      ],
+      "correctAnswers": [
+        "ngDoCheck",
+        "ngAfterContentChecked",
+        "ngAfterViewChecked",
+        "afterEveryRender"
+      ],
+      "type": "multiple",
+      "explanation": "ngDoCheck, ngAfterContentChecked, ngAfterViewChecked, and afterEveryRender run very frequently and can significantly impact performance. They should be avoided unless absolutely necessary. These hooks run during every change detection cycle, which can be triggered by various events in the application."
+    },
+    {
+      "id": "angular-hard-46",
+      "question": "Which of the following statements about view queries in Angular are correct?",
+      "options": [
+        "View queries retrieve results from the component's own template",
+        "View queries can pierce through component boundaries",
+        "View queries always traverse into descendants",
+        "View queries can use template reference variables as locators",
+        "View queries return signals that reflect the most up-to-date results"
+      ],
+      "correctAnswers": [
+        "View queries retrieve results from the component's own template",
+        "View queries always traverse into descendants",
+        "View queries can use template reference variables as locators",
+        "View queries return signals that reflect the most up-to-date results"
+      ],
+      "type": "multiple",
+      "explanation": "View queries retrieve results from elements in the component's own template (view). They always traverse into descendants and can use template reference variables as locators. The results are returned as signals that stay up-to-date with changes. Queries never pierce through component boundaries."
+    },
+    {
+      "id": "angular-hard-47",
+      "question": "Which of the following is the correct way to use a required view query?",
+      "options": [
+        {
+          "text": "Using viewChild.required",
+          "code": {
+            "code": "header = viewChild.required(CustomCardHeader);",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using required viewChild",
+          "code": {
+            "code": "header = required.viewChild(CustomCardHeader);",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using viewChild with required option",
+          "code": {
+            "code": "header = viewChild(CustomCardHeader, {required: true});",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using viewChild with static option",
+          "code": {
+            "code": "header = viewChild(CustomCardHeader, {static: true});",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using viewChild with strict option",
+          "code": {
+            "code": "header = viewChild(CustomCardHeader, {strict: true});",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using viewChild.required"],
+      "type": "single",
+      "explanation": "To create a required view query that will throw an error if no matching element is found, use the `viewChild.required()` function. This ensures that the query result is always available and removes `undefined` from the signal's value type."
+    },
+    {
+      "id": "angular-hard-48",
+      "question": "Which of the following statements about content queries are correct?",
+      "options": [
+        "Content queries retrieve results from elements nested inside the component",
+        "Content queries can pierce through component boundaries",
+        "contentChildren queries only find direct children by default",
+        "contentChild queries traverse into descendants by default",
+        "Content queries can use ProviderToken as locators"
+      ],
+      "correctAnswers": [
+        "Content queries retrieve results from elements nested inside the component",
+        "contentChildren queries only find direct children by default",
+        "contentChild queries traverse into descendants by default",
+        "Content queries can use ProviderToken as locators"
+      ],
+      "type": "multiple",
+      "explanation": "Content queries retrieve results from elements nested inside the component where it's used. By default, contentChildren only finds direct children while contentChild traverses into descendants. Content queries can use ProviderToken as locators, but like all queries, they cannot pierce through component boundaries."
+    },
+    {
+      "id": "angular-hard-49",
+      "question": "Which of the following is the correct way to read a TemplateRef from a queried element?",
+      "options": [
+        {
+          "text": "Using the read option",
+          "code": {
+            "code": "toggle = contentChild(ExpandoContent, {read: TemplateRef});",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using the template option",
+          "code": {
+            "code": "toggle = contentChild(ExpandoContent, {template: true});",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using the ref option",
+          "code": {
+            "code": "toggle = contentChild(ExpandoContent, {ref: TemplateRef});",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using the get option",
+          "code": {
+            "code": "toggle = contentChild(ExpandoContent, {get: TemplateRef});",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using the type option",
+          "code": {
+            "code": "toggle = contentChild(ExpandoContent, {type: TemplateRef});",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using the read option"],
+      "type": "single",
+      "explanation": "To read a different value from a queried element, use the `read` option in the query options object. This is commonly used to retrieve ElementRef or TemplateRef from elements matched by the locator."
+    },
+    {
+      "id": "angular-hard-50",
+      "question": "Which of the following statements about query pitfalls in Angular are correct?",
+      "options": [
+        "Queries should maintain a single source of truth for shared state",
+        "Directly writing state to child components is recommended",
+        "Directly writing state to parent components is recommended",
+        "Queries can be used to avoid ExpressionChangedAfterItHasBeenChecked errors",
+        "Queries should be used to share state between components"
+      ],
+      "correctAnswers": ["Queries should maintain a single source of truth for shared state"],
+      "type": "single",
+      "explanation": "When using queries, it's important to maintain a single source of truth for state shared between components. Directly writing state to child or parent components can lead to brittle code and ExpressionChangedAfterItHasBeenChecked errors. Queries should be used to read values, not to share state between components."
+    },
+    {
+      "id": "angular-hard-51",
+      "question": "Which of the following statements about DOM manipulation in Angular are correct?",
+      "options": [
+        "Direct DOM manipulation should be avoided when possible",
+        "DOM manipulation should be done in render callbacks",
+        "DOM manipulation can be done in any lifecycle hook",
+        "DOM manipulation is always safe in ngOnInit",
+        "DOM manipulation is always safe in ngAfterViewInit"
+      ],
+      "correctAnswers": [
+        "Direct DOM manipulation should be avoided when possible",
+        "DOM manipulation should be done in render callbacks"
+      ],
+      "type": "multiple",
+      "explanation": "Angular recommends avoiding direct DOM manipulation whenever possible. When necessary, DOM manipulation should be done in render callbacks (afterEveryRender or afterNextRender) rather than in lifecycle hooks. This ensures the DOM is fully rendered and prevents layout thrashing."
+    },
+    {
+      "id": "angular-hard-52",
+      "question": "Which of the following is the correct way to get a reference to a component's host element?",
+      "options": [
+        {
+          "text": "Using ElementRef injection",
+          "code": {
+            "code": "constructor() {\n  const elementRef = inject(ElementRef);\n  console.log(elementRef.nativeElement);\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ViewChild with ElementRef",
+          "code": {
+            "code": "@ViewChild(ElementRef) elementRef: ElementRef;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ContentChild with ElementRef",
+          "code": {
+            "code": "@ContentChild(ElementRef) elementRef: ElementRef;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using HostBinding with ElementRef",
+          "code": {
+            "code": "@HostBinding(ElementRef) elementRef: ElementRef;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using HostListener with ElementRef",
+          "code": {
+            "code": "@HostListener(ElementRef) elementRef: ElementRef;",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using ElementRef injection"],
+      "type": "single",
+      "explanation": "To get a reference to a component's host element, inject ElementRef in the constructor. The nativeElement property of ElementRef provides access to the actual DOM element. This is the recommended way to access the host element in Angular."
+    },
+    {
+      "id": "angular-hard-53",
+      "question": "Which of the following are valid use cases for DOM APIs in Angular?",
+      "options": [
+        "Managing element focus",
+        "Measuring element geometry with getBoundingClientRect",
+        "Reading element text content",
+        "Setting up native observers like ResizeObserver",
+        "Directly modifying innerHTML"
+      ],
+      "correctAnswers": [
+        "Managing element focus",
+        "Measuring element geometry with getBoundingClientRect",
+        "Reading element text content",
+        "Setting up native observers like ResizeObserver"
+      ],
+      "type": "multiple",
+      "explanation": "Valid use cases for DOM APIs include managing focus, measuring element geometry, reading text content, and setting up native observers. Directly modifying innerHTML should be avoided as it can make the application vulnerable to XSS attacks. Angular's template bindings provide safer alternatives for DOM manipulation."
+    },
+    {
+      "id": "angular-hard-54",
+      "question": "Which of the following statements about Renderer2 in Angular are correct?",
+      "options": [
+        "Renderer2 can be used for DOM manipulations tied to Angular features",
+        "Renderer2 elements participate in component style encapsulation",
+        "Renderer2 supports DOM manipulation in server-side rendering",
+        "Renderer2 is required for all DOM manipulations",
+        "Renderer2 provides better performance than native DOM APIs"
+      ],
+      "correctAnswers": [
+        "Renderer2 can be used for DOM manipulations tied to Angular features",
+        "Renderer2 elements participate in component style encapsulation"
+      ],
+      "type": "multiple",
+      "explanation": "Renderer2 is useful for DOM manipulations that need to work with Angular features like style encapsulation and animations. However, it doesn't support server-side rendering and isn't required for all DOM manipulations. It doesn't provide better performance than native DOM APIs for general use cases."
+    },
+    {
+      "id": "angular-hard-55",
+      "question": "Which of the following is the correct way to focus an input element after render?",
+      "options": [
+        {
+          "text": "Using afterEveryRender",
+          "code": {
+            "code": "constructor() {\n  const elementRef = inject(ElementRef);\n  afterEveryRender(() => {\n    elementRef.nativeElement.querySelector('input')?.focus();\n  });\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ngAfterViewInit",
+          "code": {
+            "code": "ngAfterViewInit() {\n  this.elementRef.nativeElement.querySelector('input')?.focus();\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ngOnInit",
+          "code": {
+            "code": "ngOnInit() {\n  this.elementRef.nativeElement.querySelector('input')?.focus();\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ngAfterContentInit",
+          "code": {
+            "code": "ngAfterContentInit() {\n  this.elementRef.nativeElement.querySelector('input')?.focus();\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ngDoCheck",
+          "code": {
+            "code": "ngDoCheck() {\n  this.elementRef.nativeElement.querySelector('input')?.focus();\n}",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using afterEveryRender"],
+      "type": "single",
+      "explanation": "The correct way to focus an input element after render is to use afterEveryRender in the constructor. This ensures the DOM is fully rendered before attempting to focus the element. Using lifecycle hooks like ngAfterViewInit can lead to timing issues and potential errors."
+    },
+    {
+      "id": "angular-hard-56",
+      "question": "Which of the following statements about component inheritance in Angular are correct?",
+      "options": [
+        "Components can extend any base class",
+        "Components can only extend other components",
+        "Components can extend multiple base classes",
+        "Components can extend directives",
+        "Components can extend services"
+      ],
+      "correctAnswers": [
+        "Components can extend any base class",
+        "Components can extend directives"
+      ],
+      "type": "multiple",
+      "explanation": "Angular components are TypeScript classes and can extend any base class, including other components and directives. However, they cannot extend multiple base classes (no multiple inheritance) and cannot extend services as services are not designed for inheritance."
+    },
+    {
+      "id": "angular-hard-57",
+      "question": "Which of the following metadata is inherited when a component extends another component?",
+      "options": ["Host bindings", "Inputs", "Outputs", "Lifecycle methods", "Template"],
+      "correctAnswers": ["Host bindings", "Inputs", "Outputs", "Lifecycle methods"],
+      "type": "multiple",
+      "explanation": "When a component extends another component, it inherits host bindings, inputs, outputs, and lifecycle methods from the base class. The template is not inherited and must be defined in the child component's decorator. The child component ends up with the union of all its ancestors' metadata and its own."
+    },
+    {
+      "id": "angular-hard-58",
+      "question": "Which of the following is the correct way to forward injected dependencies in a child component?",
+      "options": [
+        {
+          "text": "Using super() in constructor",
+          "code": {
+            "code": "constructor(element: ElementRef) {\n  super(element);\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using @Inject decorator",
+          "code": {
+            "code": "@Inject(ElementRef) element: ElementRef;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using inject() function",
+          "code": {
+            "code": "element = inject(ElementRef);",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using @Injectable decorator",
+          "code": {
+            "code": "@Injectable()\nconstructor(element: ElementRef) {}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using @Optional decorator",
+          "code": {
+            "code": "@Optional() element: ElementRef;",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using super() in constructor"],
+      "type": "single",
+      "explanation": "When a base class injects dependencies as constructor parameters, the child class must explicitly call these dependencies to super() in its constructor. This ensures proper initialization of the base class and maintains the dependency injection chain."
+    },
+    {
+      "id": "angular-hard-59",
+      "question": "Which of the following is the correct way to override a lifecycle method while preserving the base class's implementation?",
+      "options": [
+        {
+          "text": "Using super() call",
+          "code": {
+            "code": "override ngOnInit() {\n  super.ngOnInit();\n  // Additional logic\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using @Override decorator",
+          "code": {
+            "code": "@Override()\nngOnInit() {\n  // New implementation\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using virtual keyword",
+          "code": {
+            "code": "virtual ngOnInit() {\n  // New implementation\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using abstract keyword",
+          "code": {
+            "code": "abstract ngOnInit(): void;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using interface implementation",
+          "code": {
+            "code": "implements OnInit {\n  ngOnInit() {\n    // New implementation\n  }\n}",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using super() call"],
+      "type": "single",
+      "explanation": "To override a lifecycle method while preserving the base class's implementation, use the override keyword and call super.methodName() at the beginning of the method. This ensures the base class's functionality is executed before any additional logic in the child class."
+    },
+    {
+      "id": "angular-hard-60",
+      "question": "Which of the following statements about metadata inheritance in Angular components are correct?",
+      "options": [
+        "Child components can override the base component's selector",
+        "Child components can override the base component's template",
+        "Child components inherit all inputs from the base component",
+        "Child components inherit all outputs from the base component",
+        "Child components inherit all host bindings from the base component"
+      ],
+      "correctAnswers": [
+        "Child components can override the base component's selector",
+        "Child components can override the base component's template",
+        "Child components inherit all inputs from the base component",
+        "Child components inherit all outputs from the base component",
+        "Child components inherit all host bindings from the base component"
+      ],
+      "type": "multiple",
+      "explanation": "Child components can override the base component's selector and template while inheriting all inputs, outputs, and host bindings. This allows for creating specialized versions of base components while maintaining their core functionality. The child component ends up with the union of all its ancestors' metadata and its own."
+    },
+    {
+      "id": "angular-hard-61",
+      "question": "Which of the following statements about NgComponentOutlet are correct?",
+      "options": [
+        "It's a structural directive for dynamic component rendering",
+        "It can only render components defined in the same module",
+        "It can render components based on runtime conditions",
+        "It requires a component factory",
+        "It can only render one component at a time"
+      ],
+      "correctAnswers": [
+        "It's a structural directive for dynamic component rendering",
+        "It can render components based on runtime conditions"
+      ],
+      "type": "multiple",
+      "explanation": "NgComponentOutlet is a structural directive that dynamically renders components in templates. It can render components based on runtime conditions and doesn't require a component factory. It can render any component, not just those from the same module."
+    },
+    {
+      "id": "angular-hard-62",
+      "question": "Which of the following is the correct way to use NgComponentOutlet in a template?",
+      "options": [
+        {
+          "text": "Using ng-container with *ngComponentOutlet",
+          "code": {
+            "code": "<ng-container *ngComponentOutlet=\"getBioComponent()\" />",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using div with ngComponentOutlet",
+          "code": {
+            "code": "<div [ngComponentOutlet]=\"getBioComponent()\"></div>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ng-template with ngComponentOutlet",
+          "code": {
+            "code": "<ng-template ngComponentOutlet=\"getBioComponent()\"></ng-template>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using component with ngComponentOutlet",
+          "code": {
+            "code": "<component [ngComponentOutlet]=\"getBioComponent()\"></component>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ng-content with ngComponentOutlet",
+          "code": {
+            "code": "<ng-content [ngComponentOutlet]=\"getBioComponent()\"></ng-content>",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using ng-container with *ngComponentOutlet"],
+      "type": "single",
+      "explanation": "The correct way to use NgComponentOutlet is with an ng-container and the *ngComponentOutlet structural directive. This approach is clean and doesn't add unnecessary DOM elements. The component to render is provided as a method or property that returns the component class."
+    },
+    {
+      "id": "angular-hard-63",
+      "question": "Which of the following statements about ViewContainerRef are correct?",
+      "options": [
+        "It represents a node in Angular's component tree",
+        "It can be injected into any component or directive",
+        "It can only contain one component at a time",
+        "It can only be used in the root component",
+        "It can only be used with structural directives"
+      ],
+      "correctAnswers": [
+        "It represents a node in Angular's component tree",
+        "It can be injected into any component or directive"
+      ],
+      "type": "multiple",
+      "explanation": "ViewContainerRef represents a node in Angular's component tree that can contain content. It can be injected into any component or directive to get a reference to its location in the DOM. It can contain multiple components and can be used in any component, not just the root component."
+    },
+    {
+      "id": "angular-hard-64",
+      "question": "Which of the following is the correct way to create a component using ViewContainerRef?",
+      "options": [
+        {
+          "text": "Using createComponent method",
+          "code": {
+            "code": "constructor() {\n  const viewContainer = inject(ViewContainerRef);\n  viewContainer.createComponent(LeafContent);\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using createView method",
+          "code": {
+            "code": "constructor() {\n  const viewContainer = inject(ViewContainerRef);\n  viewContainer.createView(LeafContent);\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using createEmbeddedView method",
+          "code": {
+            "code": "constructor() {\n  const viewContainer = inject(ViewContainerRef);\n  viewContainer.createEmbeddedView(LeafContent);\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using createHostView method",
+          "code": {
+            "code": "constructor() {\n  const viewContainer = inject(ViewContainerRef);\n  viewContainer.createHostView(LeafContent);\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using createComponentFactory method",
+          "code": {
+            "code": "constructor() {\n  const viewContainer = inject(ViewContainerRef);\n  viewContainer.createComponentFactory(LeafContent);\n}",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using createComponent method"],
+      "type": "single",
+      "explanation": "The correct way to create a component using ViewContainerRef is to use the createComponent method. This method creates a new instance of the component and appends it to the DOM as the next sibling of the component that injected the ViewContainerRef."
+    },
+    {
+      "id": "angular-hard-65",
+      "question": "Which of the following is the correct way to lazy load a component using dynamic imports?",
+      "options": [
+        {
+          "text": "Using async import with NgComponentOutlet",
+          "code": {
+            "code": "async loadAdvanced() {\n  const { AdvancedSettings } = await import('./advanced-settings');\n  this.advancedSettings = AdvancedSettings;\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using require with NgComponentOutlet",
+          "code": {
+            "code": "loadAdvanced() {\n  const AdvancedSettings = require('./advanced-settings');\n  this.advancedSettings = AdvancedSettings;\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using System.import with NgComponentOutlet",
+          "code": {
+            "code": "loadAdvanced() {\n  System.import('./advanced-settings').then(module => {\n    this.advancedSettings = module.AdvancedSettings;\n  });\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using import() with ViewContainerRef",
+          "code": {
+            "code": "async loadAdvanced() {\n  const { AdvancedSettings } = await import('./advanced-settings');\n  this.viewContainer.createComponent(AdvancedSettings);\n}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using dynamic import with ComponentFactoryResolver",
+          "code": {
+            "code": "async loadAdvanced() {\n  const { AdvancedSettings } = await import('./advanced-settings');\n  const factory = this.resolver.resolveComponentFactory(AdvancedSettings);\n  this.viewContainer.createComponent(factory);\n}",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using async import with NgComponentOutlet"],
+      "type": "single",
+      "explanation": "The correct way to lazy load a component is to use async import with NgComponentOutlet. This approach allows for dynamic loading of components when needed, reducing the initial bundle size. The imported component is assigned to a property that is used by NgComponentOutlet in the template."
+    },
+    {
+      "id": "angular-hard-66",
+      "question": "Which of the following statements about ChangeDetectionStrategy.OnPush are correct?",
+      "options": [
+        "It reduces the amount of change detection checking",
+        "It only checks when component inputs change",
+        "It only checks when component events occur",
+        "It checks all ancestor components when triggered",
+        "It completely disables change detection"
+      ],
+      "correctAnswers": [
+        "It reduces the amount of change detection checking",
+        "It only checks when component inputs change",
+        "It only checks when component events occur",
+        "It checks all ancestor components when triggered"
+      ],
+      "type": "multiple",
+      "explanation": "ChangeDetectionStrategy.OnPush is an optimization that reduces change detection checks. It only triggers checks when: 1) Component inputs change, 2) Component events occur, or 3) The component is explicitly marked for check. When triggered, it also checks all ancestor components. It doesn't disable change detection completely."
+    },
+    {
+      "id": "angular-hard-67",
+      "question": "Which of the following will trigger change detection in an OnPush component?",
+      "options": [
+        "A bound input property changing",
+        "A click event in the component",
+        "A timer callback in the component",
+        "A network response in the component",
+        "A parent component's state change"
+      ],
+      "correctAnswers": ["A bound input property changing", "A click event in the component"],
+      "type": "multiple",
+      "explanation": "In an OnPush component, change detection is only triggered by: 1) Changes to bound input properties, 2) Events that occur in the component's template, or 3) Explicit marking for check. Timers, network responses, and parent component state changes won't trigger change detection unless the component is explicitly marked for check."
+    },
+    {
+      "id": "angular-hard-68",
+      "question": "Which of the following is the correct way to configure whitespace preservation in a component?",
+      "options": [
+        {
+          "text": "Using preserveWhitespaces in component metadata",
+          "code": {
+            "code": "@Component({\n  preserveWhitespaces: true,\n  template: `\n    <div>\n      Hello\n    </div>\n  `\n})",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using preserveWhitespace decorator",
+          "code": {
+            "code": "@PreserveWhitespace()\n@Component({\n  template: `\n    <div>\n      Hello\n    </div>\n  `\n})",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using whitespace directive",
+          "code": {
+            "code": "@Component({\n  template: `\n    <div preserve-whitespace>\n      Hello\n    </div>\n  `\n})",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using whitespace attribute",
+          "code": {
+            "code": "@Component({\n  template: `\n    <div whitespace=\"preserve\">\n      Hello\n    </div>\n  `\n})",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using whitespace property",
+          "code": {
+            "code": "@Component({\n  template: `\n    <div [whitespace]=\"true\">\n      Hello\n    </div>\n  `\n})",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using preserveWhitespaces in component metadata"],
+      "type": "single",
+      "explanation": "To preserve whitespace in a component's template, set the preserveWhitespaces option to true in the component's metadata. This prevents Angular from removing and collapsing superfluous whitespace from newlines and indentation in the template."
+    },
+    {
+      "id": "angular-hard-69",
+      "question": "Which of the following statements about custom element schemas in Angular are correct?",
+      "options": [
+        "CUSTOM_ELEMENTS_SCHEMA allows unknown HTML elements",
+        "Custom element schemas can be applied per component",
+        "Custom element schemas can be applied globally",
+        "Custom element schemas affect template validation",
+        "Custom element schemas affect runtime behavior"
+      ],
+      "correctAnswers": [
+        "CUSTOM_ELEMENTS_SCHEMA allows unknown HTML elements",
+        "Custom element schemas can be applied per component",
+        "Custom element schemas can be applied globally",
+        "Custom element schemas affect template validation"
+      ],
+      "type": "multiple",
+      "explanation": "CUSTOM_ELEMENTS_SCHEMA allows components to use unknown HTML elements without throwing errors. It can be applied at the component level or globally. It affects template validation by allowing custom elements, but doesn't change runtime behavior of the elements themselves."
+    },
+    {
+      "id": "angular-hard-70",
+      "question": "Which of the following is the correct way to use CUSTOM_ELEMENTS_SCHEMA in a component?",
+      "options": [
+        {
+          "text": "Using schemas property in component metadata",
+          "code": {
+            "code": "@Component({\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n  template: '<custom-element></custom-element>'\n})",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using schema decorator",
+          "code": {
+            "code": "@Schema(CUSTOM_ELEMENTS_SCHEMA)\n@Component({\n  template: '<custom-element></custom-element>'\n})",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using schema attribute",
+          "code": {
+            "code": "@Component({\n  template: '<custom-element schema=\"custom\"></custom-element>'\n})",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using schema property",
+          "code": {
+            "code": "@Component({\n  template: '<custom-element [schema]=\"custom\"></custom-element>'\n})",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using schema directive",
+          "code": {
+            "code": "@Component({\n  template: '<custom-element custom-schema></custom-element>'\n})",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using schemas property in component metadata"],
+      "type": "single",
+      "explanation": "To use CUSTOM_ELEMENTS_SCHEMA in a component, add it to the schemas array in the component's metadata. This allows the component to use custom elements without Angular throwing unknown element errors. The schema is applied at the component level and affects template validation."
+    },
+    {
+      "id": "angular-hard-71",
+      "question": "Which of the following statements about Angular Elements are correct?",
+      "options": [
+        "Angular Elements are Angular components packaged as custom elements",
+        "Custom elements are a web standard for defining new HTML elements",
+        "Custom elements are framework-agnostic",
+        "Custom elements bootstrap themselves",
+        "Custom elements require Angular knowledge to use"
+      ],
+      "correctAnswers": [
+        "Angular Elements are Angular components packaged as custom elements",
+        "Custom elements are a web standard for defining new HTML elements",
+        "Custom elements are framework-agnostic",
+        "Custom elements bootstrap themselves"
+      ],
+      "type": "multiple",
+      "explanation": "Angular Elements are Angular components packaged as custom elements (Web Components). They are framework-agnostic and bootstrap themselves when added to the DOM. Once added, they behave like regular HTML elements and don't require any special Angular knowledge to use."
+    },
+    {
+      "id": "angular-hard-72",
+      "question": "Which of the following is the correct way to create a custom element from an Angular component?",
+      "options": [
+        {
+          "text": "Using createCustomElement function",
+          "code": {
+            "code": "const PopupElement = createCustomElement(PopupComponent, {injector});\ncustomElements.define('popup-element', PopupElement);",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using @CustomElement decorator",
+          "code": {
+            "code": "@CustomElement('popup-element')\n@Component({...})\nexport class PopupComponent {}",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using createElement function",
+          "code": {
+            "code": "const PopupElement = createElement(PopupComponent);\ncustomElements.define('popup-element', PopupElement);",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using registerElement function",
+          "code": {
+            "code": "registerElement('popup-element', PopupComponent);",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using defineCustomElement function",
+          "code": {
+            "code": "defineCustomElement('popup-element', PopupComponent);",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using createCustomElement function"],
+      "type": "single",
+      "explanation": "To create a custom element from an Angular component, use the createCustomElement function from @angular/elements. This function converts the component into a class that can be registered with the browser's custom-element registry using customElements.define()."
+    },
+    {
+      "id": "angular-hard-73",
+      "question": "Which of the following statements about property mapping in custom elements are correct?",
+      "options": [
+        "Input properties are mapped to HTML attributes",
+        "Property names are transformed to dash-separated lowercase",
+        "Output properties are dispatched as HTML Custom Events",
+        "Event data is stored in the event's detail property",
+        "Property aliases are preserved in the custom element"
+      ],
+      "correctAnswers": [
+        "Input properties are mapped to HTML attributes",
+        "Property names are transformed to dash-separated lowercase",
+        "Output properties are dispatched as HTML Custom Events",
+        "Event data is stored in the event's detail property",
+        "Property aliases are preserved in the custom element"
+      ],
+      "type": "multiple",
+      "explanation": "When converting a component to a custom element: 1) Input properties are mapped to HTML attributes, 2) Property names are transformed to dash-separated lowercase for compatibility, 3) Output properties become HTML Custom Events, 4) Event data is stored in the event's detail property, and 5) Property aliases are preserved in the custom element."
+    },
+    {
+      "id": "angular-hard-74",
+      "question": "Which of the following is the correct way to get proper TypeScript types for a custom element?",
+      "options": [
+        {
+          "text": "Using NgElement and WithProperties types",
+          "code": {
+            "code": "const dialog = document.createElement('my-dialog') as NgElement & WithProperties<{content: string}>;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using CustomElement type",
+          "code": {
+            "code": "const dialog = document.createElement('my-dialog') as CustomElement<MyDialog>;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ElementRef type",
+          "code": {
+            "code": "const dialog = document.createElement('my-dialog') as ElementRef<MyDialog>;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using HTMLElement type",
+          "code": {
+            "code": "const dialog = document.createElement('my-dialog') as HTMLElement;",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ComponentRef type",
+          "code": {
+            "code": "const dialog = document.createElement('my-dialog') as ComponentRef<MyDialog>;",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using NgElement and WithProperties types"],
+      "type": "single",
+      "explanation": "To get proper TypeScript types for a custom element, use the NgElement and WithProperties types from @angular/elements. This provides type checking and autocomplete support for the custom element's properties. The WithProperties generic type should specify the input properties of the component."
+    },
+    {
+      "id": "angular-hard-75",
+      "question": "Which of the following are limitations of Angular Elements?",
+      "options": [
+        "Issues with disconnect() callback when re-attaching elements",
+        "Problems with ng-if in AngularJS",
+        "Problems with ng-repeat in AngularJS",
+        "Manual DOM detachment and re-attachment issues",
+        "Performance issues with large components"
+      ],
+      "correctAnswers": [
+        "Issues with disconnect() callback when re-attaching elements",
+        "Problems with ng-if in AngularJS",
+        "Problems with ng-repeat in AngularJS",
+        "Manual DOM detachment and re-attachment issues"
+      ],
+      "type": "multiple",
+      "explanation": "Angular Elements have several limitations: 1) Issues with the disconnect() callback when destroying and re-attaching elements, 2) Problems when used in ng-if or ng-repeat in AngularJS, and 3) Issues with manual DOM detachment and re-attachment. These limitations should be considered when using custom elements in these scenarios."
+    },
+    {
+      "id": "angular-hard-76",
+      "question": "Which of the following statements about text interpolation in Angular are correct?",
+      "options": [
+        "Text interpolation uses double curly braces",
+        "Text interpolation can be used anywhere text is written in HTML",
+        "All expression values are converted to strings",
+        "Objects are converted using toString method",
+        "Text interpolation only works with primitive values"
+      ],
+      "correctAnswers": [
+        "Text interpolation uses double curly braces",
+        "Text interpolation can be used anywhere text is written in HTML",
+        "All expression values are converted to strings",
+        "Objects are converted using toString method"
+      ],
+      "type": "multiple",
+      "explanation": "Text interpolation in Angular uses double curly braces {{ }} and can be used anywhere text is written in HTML. All expression values are converted to strings, with objects and arrays using their toString method. Text interpolation works with any valid expression, not just primitive values."
+    },
+    {
+      "id": "angular-hard-77",
+      "question": "Which of the following is the correct way to bind a property to a native HTML element?",
+      "options": [
+        {
+          "text": "Using square brackets",
+          "code": {
+            "code": "<button [disabled]=\"isFormValid\">Save</button>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using curly braces",
+          "code": {
+            "code": "<button disabled=\"{{isFormValid}}\">Save</button>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ng-bind",
+          "code": {
+            "code": "<button ng-bind=\"disabled: isFormValid\">Save</button>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using bind-",
+          "code": {
+            "code": "<button bind-disabled=\"isFormValid\">Save</button>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using property binding",
+          "code": {
+            "code": "<button property=\"disabled: isFormValid\">Save</button>",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using square brackets"],
+      "type": "single",
+      "explanation": "To bind a property to a native HTML element, use square brackets around the property name. This syntax tells Angular to evaluate the expression and set the property value on the element's DOM instance. The square bracket syntax is used for all property bindings in Angular."
+    },
+    {
+      "id": "angular-hard-78",
+      "question": "Which of the following statements about attribute binding in Angular are correct?",
+      "options": [
+        "Attribute binding uses the attr. prefix",
+        "Attribute binding is used for HTML attributes without DOM properties",
+        "Attribute binding is used for ARIA attributes",
+        "Attribute binding is used for SVG attributes",
+        "Attribute binding can only be used with string values"
+      ],
+      "correctAnswers": [
+        "Attribute binding uses the attr. prefix",
+        "Attribute binding is used for HTML attributes without DOM properties",
+        "Attribute binding is used for ARIA attributes",
+        "Attribute binding is used for SVG attributes"
+      ],
+      "type": "multiple",
+      "explanation": "Attribute binding in Angular uses the attr. prefix and is used for HTML attributes that don't have corresponding DOM properties, such as ARIA attributes and SVG attributes. The value can be any valid expression, not just strings, and Angular will convert it to a string when setting the attribute."
+    },
+    {
+      "id": "angular-hard-79",
+      "question": "Which of the following is the correct way to bind multiple CSS classes using an object?",
+      "options": [
+        {
+          "text": "Using class binding with an object",
+          "code": {
+            "code": "<button [class]=\"{\n  'active': isActive,\n  'disabled': isDisabled,\n  'highlighted': isHighlighted\n}\">Save</button>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using class binding with an array",
+          "code": {
+            "code": "<button [class]=\"['active', 'disabled', 'highlighted']\">Save</button>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using class binding with a string",
+          "code": {
+            "code": "<button [class]=\"'active disabled highlighted'\">Save</button>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using multiple class bindings",
+          "code": {
+            "code": "<button [class.active]=\"isActive\" [class.disabled]=\"isDisabled\" [class.highlighted]=\"isHighlighted\">Save</button>",
+            "language": "typescript"
+          }
+        },
+        {
+          "text": "Using ngClass directive",
+          "code": {
+            "code": "<button [ngClass]=\"{\n  'active': isActive,\n  'disabled': isDisabled,\n  'highlighted': isHighlighted\n}\">Save</button>",
+            "language": "typescript"
+          }
+        }
+      ],
+      "correctAnswers": ["Using class binding with an object"],
+      "type": "single",
+      "explanation": "To bind multiple CSS classes using an object, use the [class] binding with an object where each property name is a CSS class name and each value determines whether that class is applied. The class is applied when the value is truthy and removed when falsy. This is the most flexible way to conditionally apply multiple classes."
+    },
+    {
+      "id": "angular-hard-80",
+      "question": "Which of the following statements about style binding in Angular are correct?",
+      "options": [
+        "Style properties can be bound with units",
+        "Multiple styles can be bound using an object",
+        "Style bindings can use string values",
+        "Style bindings can use expressions",
+        "Style bindings can only be used with inline styles"
+      ],
+      "correctAnswers": [
+        "Style properties can be bound with units",
+        "Multiple styles can be bound using an object",
+        "Style bindings can use string values",
+        "Style bindings can use expressions"
+      ],
+      "type": "multiple",
+      "explanation": "Style binding in Angular supports: 1) Binding with units (e.g., [style.width.px]), 2) Multiple styles using an object, 3) String values for multiple styles, and 4) Expressions for dynamic values. Style bindings can be used with both inline styles and external stylesheets."
     }
   ]
 }
