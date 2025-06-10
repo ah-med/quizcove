@@ -20,10 +20,12 @@ import {
 } from '@/components/ui/select';
 import { useState } from 'react';
 import { formatTime } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 interface TopicWisePerformanceChartProps {
   history: QuizHistory[];
   selectedTopic: string;
+  onQuizClick?: (quiz: QuizHistory) => void;
 }
 
 const timeRanges = [
@@ -62,6 +64,7 @@ interface CustomTooltipProps {
   payload?: any[];
   selectedTimeRange: (typeof timeRanges)[0];
   selectedDifficulty: (typeof difficulties)[0];
+  onQuizClick?: (quiz: QuizHistory) => void;
 }
 
 const CustomTooltip = ({
@@ -69,6 +72,7 @@ const CustomTooltip = ({
   payload,
   selectedTimeRange,
   selectedDifficulty,
+  onQuizClick,
 }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
@@ -97,6 +101,14 @@ const CustomTooltip = ({
           <p className="text-sm font-medium">Time Taken</p>
           <p className="text-sm text-muted-foreground">{formatTime(data.timeTaken)}</p>
         </div>
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={() => onQuizClick?.(data.quiz)}
+          className="w-full mt-2"
+        >
+          View Details
+        </Button>
       </div>
     );
   }
@@ -110,10 +122,12 @@ const CustomTooltip = ({
  *
  * @param history - Array of quiz history entries
  * @param selectedTopic - Currently selected topic to filter data
+ * @param onQuizClick - Optional quiz click handler
  */
 export function TopicWisePerformanceChart({
   history,
   selectedTopic,
+  onQuizClick,
 }: TopicWisePerformanceChartProps) {
   const [selectedTimeRange, setSelectedTimeRange] = useState(timeRanges[0]); // Default to Today
   const [selectedDifficulty, setSelectedDifficulty] = useState(difficulties[0]); // Default to All Difficulties
@@ -178,6 +192,7 @@ export function TopicWisePerformanceChart({
       score: quiz.results.score,
       difficulty: quiz.config.difficulty,
       timeTaken: quiz.results.timeTaken,
+      quiz, // Add the full quiz object to the data
     };
   });
 
@@ -281,9 +296,11 @@ export function TopicWisePerformanceChart({
                       {...props}
                       selectedTimeRange={selectedTimeRange}
                       selectedDifficulty={selectedDifficulty}
+                      onQuizClick={onQuizClick}
                     />
                   )}
                   cursor={{ stroke: 'hsl(var(--muted))' }}
+                  wrapperStyle={{ pointerEvents: 'auto' }}
                 />
                 <Area
                   type="linear"

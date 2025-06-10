@@ -13,11 +13,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { ResultSummary, ResultQuestions } from '@/components/result/result-details';
 
 export default function HistoryPage() {
   const [history, setHistory] = useState<QuizHistory[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTopic, setSelectedTopic] = useState<string>('');
+  const [selectedQuiz, setSelectedQuiz] = useState<QuizHistory | null>(null);
 
   const getMostAttemptedTopic = (history: QuizHistory[]) => {
     if (history.length === 0) return 'None';
@@ -74,6 +77,10 @@ export default function HistoryPage() {
   // Get unique topics for the selector
   const topics = Array.from(new Set(history.map(quiz => quiz.config.topic))).filter(topic => topic);
 
+  const handleQuizClick = (quiz: QuizHistory) => {
+    setSelectedQuiz(quiz);
+  };
+
   if (isLoading) {
     return (
       <Layout>
@@ -113,9 +120,29 @@ export default function HistoryPage() {
                 </SelectContent>
               </Select>
             </div>
-            <TopicWisePerformanceChart history={history} selectedTopic={selectedTopic} />
+            <TopicWisePerformanceChart
+              history={history}
+              selectedTopic={selectedTopic}
+              onQuizClick={handleQuizClick}
+            />
           </div>
         )}
+
+        <Sheet open={!!selectedQuiz} onOpenChange={open => !open && setSelectedQuiz(null)}>
+          <SheetContent className="w-full sm:max-w-2xl overflow-y-auto">
+            <SheetHeader>
+              <SheetTitle>Quiz Details</SheetTitle>
+            </SheetHeader>
+            {selectedQuiz && (
+              <div className="mt-6 space-y-4 px-4 py-2">
+                <div className="flex justify-end">
+                  <ResultSummary results={selectedQuiz.detailedResults} />
+                </div>
+                <ResultQuestions results={selectedQuiz.detailedResults} />
+              </div>
+            )}
+          </SheetContent>
+        </Sheet>
       </div>
     </Layout>
   );
