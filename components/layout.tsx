@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ThemeToggle } from './theme-toggle';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/history" className="text-sm hover:underline">
               History
             </Link>
+            <ThemeToggle />
             <Link
               href="https://github.com/ah-med/quizcove"
               target="_blank"
