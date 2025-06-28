@@ -65,6 +65,8 @@ interface CustomTooltipProps {
   selectedTimeRange: (typeof timeRanges)[0];
   selectedDifficulty: (typeof difficulties)[0];
   onQuizClick?: (quiz: QuizHistory) => void;
+  isSticky?: boolean;
+  onStickyToggle?: () => void;
 }
 
 const CustomTooltip = ({
@@ -73,6 +75,8 @@ const CustomTooltip = ({
   selectedTimeRange,
   selectedDifficulty,
   onQuizClick,
+  isSticky = false,
+  onStickyToggle,
 }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
@@ -101,14 +105,32 @@ const CustomTooltip = ({
           <p className="text-sm font-medium">Time Taken</p>
           <p className="text-sm text-muted-foreground">{formatTime(data.timeTaken)}</p>
         </div>
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() => onQuizClick?.(data.quiz)}
-          className="w-full mt-2"
-        >
-          View Details
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => onQuizClick?.(data.quiz)}
+            className="flex-1"
+          >
+            View Details
+          </Button>
+          {isSticky && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onStickyToggle}
+              className="px-2"
+              title="Unpin tooltip"
+            >
+              ✕
+            </Button>
+          )}
+        </div>
+        {!isSticky && (
+          <p className="text-xs text-muted-foreground mt-2">
+            Click to pin • Click outside to unpin
+          </p>
+        )}
       </div>
     );
   }
@@ -131,6 +153,8 @@ export function TopicWisePerformanceChart({
 }: TopicWisePerformanceChartProps) {
   const [selectedTimeRange, setSelectedTimeRange] = useState(timeRanges[0]); // Default to Today
   const [selectedDifficulty, setSelectedDifficulty] = useState(difficulties[0]); // Default to All Difficulties
+  const [isTooltipSticky, setIsTooltipSticky] = useState(false);
+  const [stickyTooltipData, setStickyTooltipData] = useState<any>(null);
 
   // Filter history for selected topic
   const topicHistory = history.filter(quiz => quiz.config.topic === selectedTopic);
@@ -223,6 +247,16 @@ export function TopicWisePerformanceChart({
       );
     });
 
+  const handleStickyToggle = () => {
+    if (isTooltipSticky) {
+      setIsTooltipSticky(false);
+      setStickyTooltipData(null);
+    } else {
+      setIsTooltipSticky(true);
+      // Keep the current tooltip data
+    }
+  };
+
   return (
     <div className="space-y-4">
       <Card>
@@ -270,9 +304,43 @@ export function TopicWisePerformanceChart({
           </div>
         </CardHeader>
         <CardContent>
-          <div className="h-[300px]">
+          <div
+            className="h-[300px] relative"
+            onClick={e => {
+              // If clicking on the container (not the chart), unpin the tooltip
+              if (e.target === e.currentTarget && isTooltipSticky) {
+                setIsTooltipSticky(false);
+                setStickyTooltipData(null);
+              }
+            }}
+          >
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={scoreData}>
+              <AreaChart
+                data={scoreData}
+                onMouseMove={data => {
+                  if (!isTooltipSticky && data && data.activePayload) {
+                    setStickyTooltipData(data);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (!isTooltipSticky) {
+                    setStickyTooltipData(null);
+                  }
+                }}
+                onClick={data => {
+                  if (data && data.activePayload) {
+                    if (isTooltipSticky) {
+                      // If already sticky, unpin
+                      setIsTooltipSticky(false);
+                      setStickyTooltipData(null);
+                    } else {
+                      // Pin the tooltip
+                      setIsTooltipSticky(true);
+                      setStickyTooltipData(data);
+                    }
+                  }
+                }}
+              >
                 <defs>
                   <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
@@ -297,6 +365,8 @@ export function TopicWisePerformanceChart({
                       selectedTimeRange={selectedTimeRange}
                       selectedDifficulty={selectedDifficulty}
                       onQuizClick={onQuizClick}
+                      isSticky={isTooltipSticky}
+                      onStickyToggle={handleStickyToggle}
                     />
                   )}
                   cursor={{ stroke: 'hsl(var(--muted))' }}
@@ -314,6 +384,21 @@ export function TopicWisePerformanceChart({
                 />
               </AreaChart>
             </ResponsiveContainer>
+
+            {/* Sticky tooltip overlay */}
+            {isTooltipSticky && stickyTooltipData && (
+              <div className="absolute top-4 right-4 z-10" style={{ pointerEvents: 'auto' }}>
+                <CustomTooltip
+                  active={true}
+                  payload={stickyTooltipData.activePayload}
+                  selectedTimeRange={selectedTimeRange}
+                  selectedDifficulty={selectedDifficulty}
+                  onQuizClick={onQuizClick}
+                  isSticky={true}
+                  onStickyToggle={handleStickyToggle}
+                />
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
