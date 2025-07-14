@@ -5,6 +5,7 @@ import { PerformanceOverviewCard } from '@/components/history/performance-overvi
 import { TopicWisePerformanceChart } from '@/components/history/performance-charts';
 import { useEffect, useState } from 'react';
 import { STORAGE_KEYS } from '@/constants/storage';
+import { useAuthStore } from '@/store/authStore';
 import type { QuizHistory } from '@/types/quiz';
 import {
   Select,
@@ -17,6 +18,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sh
 import { ResultSummary, ResultQuestions } from '@/components/result/result-details';
 
 export default function HistoryPage() {
+  const { user, isAuthenticated } = useAuthStore();
   const [history, setHistory] = useState<QuizHistory[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTopic, setSelectedTopic] = useState<string>('');
@@ -35,21 +37,39 @@ export default function HistoryPage() {
   };
 
   useEffect(() => {
-    const loadHistory = () => {
-      const storedHistory = localStorage.getItem(STORAGE_KEYS.QUIZ_HISTORY);
-      if (storedHistory) {
-        const parsedHistory = JSON.parse(storedHistory);
-        setHistory(parsedHistory);
-        // Set initial selected topic to the most attempted one
-        if (parsedHistory.length > 0) {
-          setSelectedTopic(getMostAttemptedTopic(parsedHistory));
+    const loadHistory = async () => {
+      try {
+        let historyData: QuizHistory[] = [];
+
+        if (isAuthenticated && user) {
+          // Fetch from API for authenticated users
+          const response = await fetch(`/api/history?userId=${user.id}`);
+          if (response.ok) {
+            historyData = await response.json();
+          }
+        } else {
+          // Load from localStorage for anonymous users
+          const storedHistory = localStorage.getItem(STORAGE_KEYS.QUIZ_HISTORY);
+          if (storedHistory) {
+            historyData = JSON.parse(storedHistory);
+          }
         }
+
+        setHistory(historyData);
+
+        // Set initial selected topic to the most attempted one
+        if (historyData.length > 0) {
+          setSelectedTopic(getMostAttemptedTopic(historyData));
+        }
+      } catch (error) {
+        console.error('Failed to load history:', error);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     loadHistory();
-  }, []);
+  }, [isAuthenticated, user]);
 
   const calculateMetrics = () => {
     if (history.length === 0) {

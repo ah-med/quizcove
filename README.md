@@ -20,7 +20,7 @@ _Configure your quiz and start testing your knowledge!_
   - Auto-submission when time limit is reached
   - Auto-submission after answering all questions
   - Real-time progress tracking
-  - Browser local storage for persistent data
+  - Cloud-based data storage with Supabase
 
 - **Comprehensive Results**
 
@@ -31,10 +31,11 @@ _Configure your quiz and start testing your knowledge!_
   - Comparison of your answers vs correct answers
   - Explanations for correct answers
 
-- **Performance Analytics (Coming Soon)**
+- **Performance Analytics**
   - Topic-wise performance tracking
   - Historical quiz results
   - Performance trends over time
+  - Cloud-based history storage
 
 ## 🛠️ Tech Stack
 
@@ -43,8 +44,8 @@ _Configure your quiz and start testing your knowledge!_
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components**: [Shadcn UI](https://ui.shadcn.com/)
 - **State Management**: [Zustand](https://github.com/pmndrs/zustand)
-- **Data Storage**: Browser Local Storage
-- **Questions Source**: JSON file-based API
+- **Database**: [Supabase](https://supabase.com/) (PostgreSQL)
+- **Authentication**: Supabase Auth (optional)
 
 ## 📋 Prerequisites
 
@@ -53,6 +54,7 @@ Before you begin, ensure you have the following installed:
 - Node.js (v18.0.0 or higher)
 - npm (v9.0.0 or higher) or yarn (v1.22.0 or higher)
 - Git
+- Supabase account (for database)
 
 ## 🚀 Getting Started
 
@@ -63,7 +65,36 @@ Before you begin, ensure you have the following installed:
    cd quizcove
    ```
 
-2. **Install dependencies**
+2. **Set up Supabase**
+
+   - Create a new project at [supabase.com](https://supabase.com)
+   - Go to **Settings** → **API** to get your project URL and API keys
+   - Create a `.env` file with your Supabase credentials:
+
+   ```env
+   # Supabase Configuration (New API Key System)
+   NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_public_key_here
+
+   # Optional: Service role key for admin operations
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_secret_key_here
+   ```
+
+3. **Set up the database**
+
+   This app uses Supabase for data storage. To set up:
+
+   1. Create a Supabase project at [supabase.com](https://supabase.com)
+   2. Get your project URL and API keys from Settings → API
+   3. Add environment variables to your `.env` file
+
+   If you have existing JSON question files, run the migration script:
+
+   ```bash
+   npm run migrate
+   ```
+
+4. **Install dependencies**
 
    ```bash
    npm install
@@ -71,7 +102,7 @@ Before you begin, ensure you have the following installed:
    yarn install
    ```
 
-3. **Run the development server**
+6. **Run the development server**
 
    ```bash
    npm run dev
@@ -79,7 +110,7 @@ Before you begin, ensure you have the following installed:
    yarn dev
    ```
 
-4. **Open your browser**
+7. **Open your browser**
    Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
 ## 🏗️ Project Structure
@@ -88,9 +119,10 @@ Before you begin, ensure you have the following installed:
 quizcove/
 ├── app/              # Next.js app directory
 ├── components/       # Reusable UI components
-├── data/            # Quiz questions and data
+├── data/            # Quiz questions (legacy - now in database)
 ├── hooks/           # Custom React hooks
-├── lib/             # Utility functions
+├── lib/             # Utility functions and database services
+├── scripts/         # Migration and utility scripts
 ├── store/           # State management
 ├── types/           # TypeScript type definitions
 └── public/          # Static assets

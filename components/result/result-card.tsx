@@ -10,6 +10,7 @@ interface ResultCardProps {
   totalQuestions: number;
   timeTaken: number; // in seconds
   onStartNewQuiz: () => void;
+  onCreateAccount?: () => void;
 }
 
 export function ResultCard({
@@ -18,10 +19,16 @@ export function ResultCard({
   totalQuestions,
   timeTaken,
   onStartNewQuiz,
+  onCreateAccount,
 }: ResultCardProps) {
   return (
     <div className="space-y-4">
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-2">
+        {onCreateAccount && (
+          <Button onClick={onCreateAccount} variant="default">
+            Create Account
+          </Button>
+        )}
         <Button onClick={() => onStartNewQuiz()} variant="outline">
           Start New Quiz
         </Button>

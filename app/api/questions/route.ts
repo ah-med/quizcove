@@ -1,60 +1,33 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import type { QuizConfig, QuizQuestion, Option } from '@/types/quiz';
+import { DatabaseService } from '@/lib/database';
 import { shuffle } from '@/lib/utils';
+import type { QuizConfig, QuizQuestion } from '@/types/quiz';
 
 export async function POST(
   request: Request
 ): Promise<NextResponse<QuizQuestion[] | { error: string }>> {
   try {
-    const { topic, difficulty, numberOfQuestions } = (await request.json()) as QuizConfig;
+    const config = (await request.json()) as QuizConfig;
 
-    if (!topic || !difficulty || !numberOfQuestions) {
+    if (!config.topic || !config.difficulty || !config.numberOfQuestions) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const filePath = path.join(process.cwd(), 'data', 'questions', topic, `${difficulty}.json`);
+    // Fetch more questions than needed to allow for shuffling
+    const questions = await DatabaseService.getQuestions({
+      ...config,
+      numberOfQuestions: Math.min(config.numberOfQuestions * 2, 50), // Get more questions for shuffling
+    });
 
-    if (!fs.existsSync(filePath)) {
+    if (questions.length === 0) {
       return NextResponse.json(
-        { error: 'Questions not found for the selected topic and difficulty' },
+        { error: 'No questions found for the selected topic and difficulty' },
         { status: 404 }
       );
     }
 
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const { questions } = JSON.parse(fileContent) as { questions: QuizQuestion[] };
-
-    if (!Array.isArray(questions)) {
-      return NextResponse.json({ error: 'Invalid questions format' }, { status: 500 });
-    }
-
-    const shuffledQuestions = shuffle(questions)
-      .slice(0, numberOfQuestions)
-      .map(question => {
-        const options = [...question.options];
-        const allOfTheAboveIndex = options.findIndex(option => {
-          const optionText = typeof option === 'string' ? option : option.text;
-          return optionText.toLowerCase() === 'all of the above';
-        });
-
-        let allOfTheAbove: Option | undefined;
-        if (allOfTheAboveIndex !== -1) {
-          allOfTheAbove = options.splice(allOfTheAboveIndex, 1)[0];
-        }
-
-        const shuffledOptions = shuffle(options);
-
-        if (allOfTheAbove) {
-          shuffledOptions.push(allOfTheAbove);
-        }
-
-        return {
-          ...question,
-          options: shuffledOptions,
-        };
-      });
+    // Shuffle and limit to requested number
+    const shuffledQuestions = shuffle(questions).slice(0, config.numberOfQuestions);
 
     return NextResponse.json(shuffledQuestions);
   } catch (error) {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ThemeToggle } from './theme-toggle';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { UserMenu } from '@/components/user-menu';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,6 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/history" className="text-sm hover:underline">
               History
             </Link>
+            <UserMenu />
             <ThemeToggle />
             <Link
               href="https://github.com/ah-med/quizcove"
